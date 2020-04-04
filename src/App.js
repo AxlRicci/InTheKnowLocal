@@ -11,6 +11,7 @@ import AboutPage from './components/about/AboutPage';
 import Footer from './components/navigation/Footer'
 
 import './components/home/home.scss'
+import './components/navigation/navbar.scss' // scss for navbar
 
 
 
@@ -22,6 +23,7 @@ const App = () => {
     <BrowserRouter>
       <ScrollToTop />
       <div className="App">
+        <Navbar/>
         <Route exact path='/' component={Home} />
         <Route path='/features/:slug' component={IssuePage} />
         <Route path='/issues' component={IssueList} />
