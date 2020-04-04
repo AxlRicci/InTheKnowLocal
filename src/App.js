@@ -16,7 +16,7 @@ import './components/home/home.scss'
 
 const App = () => {
 
-  useFirestoreConnect(['features', 'questions', 'siteContent'])
+  //useFirestoreConnect(['features', 'questions', 'siteContent'])
 
   return (
     <BrowserRouter>
@@ -27,7 +27,7 @@ const App = () => {
         <Route path='/issues' component={IssueList} />
         <Route path='/contact' component={ContactPage} />
         <Route path='/about' component={AboutPage} />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </BrowserRouter>
   )
