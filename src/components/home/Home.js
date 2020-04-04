@@ -8,7 +8,7 @@ const Home = () => {
         return (
             <div>
                 <HomeGallery/>
-                {/* <IssueHighlights toRender={6} /> */}
+                <IssueHighlights toRender={6} />
             </div>
         )
     }

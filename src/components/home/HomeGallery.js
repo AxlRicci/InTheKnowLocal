@@ -6,7 +6,7 @@ const HomeGallery = (props) => {
         <div className="container">
             <div className="header-gallery">
                <div className="header-gallery__item header-gallery__item--main">
-                   <img className="header-gallery__img"src="https://images.unsplash.com/photo-1585436634834-dc83ead5f511?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt=""/>
+                   <img className="header-gallery__img" src="https://www7.mississauga.ca/Departments/Parks/images/avro-arrow.jpg" alt=""/>
                </div>
                <div className="header-gallery__item header-gallery__item--side-1">
                    <img className="header-gallery__img" src="https://images.unsplash.com/photo-1585803536199-7a8bc5384d14?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80" alt=""/>
