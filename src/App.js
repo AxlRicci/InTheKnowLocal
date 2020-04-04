@@ -1,26 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useFirestoreConnect } from 'react-redux-firebase';
+import Navbar from './components/Navbar';
+import { BrowserRouter, Route } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop'
+import Home from './components/Home';
+import IssueList from './components/IssueList';
+import IssuePage from './components/IssuePage';
+import ContactPage from './components/ContactPage';
+import AboutPage from './components/AboutPage';
+import Footer from './components/Footer'
 
-function App() {
+
+
+const App = () => {
+
+  useFirestoreConnect(['features', 'questions', 'siteContent'])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <ScrollToTop />
+      <div className="App">
+        <Navbar />
+        <Route exact path='/' component={Home} />
+        <Route path='/features/:slug' component={IssuePage} />
+        <Route path='/issues' component={IssueList} />
+        <Route path='/contact' component={ContactPage} />
+        <Route path='/about' component={AboutPage} />
+        <Footer />
+      </div>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
