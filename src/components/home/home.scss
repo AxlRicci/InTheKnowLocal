@@ -1,0 +1,147 @@
+// X-Small and Small screens
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  body {
+    background: grey;
+}
+
+.main-gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(400px,auto);
+    grid-template-areas:
+    "main";
+    margin-top: 30px;
+
+
+    &__main-img {
+        grid-area: main;
+        background: purple;
+    }
+
+    &__side-img {
+        display: none;
+    }
+}
+
+  
+  // Medium Screens
+  @media (min-width: 768px) {
+    body {
+        background: blue;
+    }
+
+    .container {
+      width: 750px;
+    }
+
+    .main-gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, minmax(200px,auto));
+        grid-gap: 10px;
+        grid-template-areas:
+        "main main"
+        "main main"
+        "side1 side2";
+
+        &__main-img {
+            grid-area: main;
+            background: purple;
+        }
+
+        &__side-img {
+
+            &--img1 {
+                grid-area: side1;
+                background: yellow;
+            }
+
+            &--img2 {
+                grid-area: side2;
+                background: red;
+            }
+        }
+    }
+
+  }
+
+  // Large Screens
+  @media (min-width: 992px) {
+    body {
+        background: red;
+    }
+
+    .container {
+      width: 970px;
+    }
+
+    .main-gallery {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, minmax(200px,auto));
+        grid-template-areas:
+        "main main main side1"
+        "main main main side2";
+
+        &__main-img {
+            grid-area: main;
+        }
+
+        &__side-img {
+
+            &--img1 {
+                grid-area: side1;
+            }
+
+            &--img2 {
+                grid-area: side2;
+            }
+        }
+    }
+  }
+
+
+  // Extra Large Screens
+  @media (min-width: 1200px) {
+
+    body {
+        background: green;
+    }
+
+    .container {
+      width: 1170px;
+    }
+
+    .main-gallery {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, minmax(200px,auto));
+        grid-gap: 10px;
+        grid-template-areas:
+        "main main main side1"
+        "main main main side2";
+
+        &__main-img {
+            grid-area: main;
+        }
+
+        &__side-img {
+            height: 100%;
+
+            &--img1 {
+                grid-area: side1;
+            }
+
+            &--img2 {
+                grid-area: side2;
+            }
+        }
+    }
+  }

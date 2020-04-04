@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addContact } from '../store/actions/contactActions'
+import { addContact } from '../../store/actions/contactActions'
 import ReCAPTCHA from 'react-google-recaptcha';
 
 class ContactForm extends Component {
