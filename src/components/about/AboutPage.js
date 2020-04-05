@@ -30,7 +30,6 @@ const AboutPage = (props) => {
                         Porro, nostrum sapiente! Labore, possimus!
                     </p>
                 </div>
-
             </div>
         </div>
         )
