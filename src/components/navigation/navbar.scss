@@ -10,6 +10,9 @@
     }
     
     .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
         display: flex;
         justify-content: space-around;
         align-items: center;
@@ -57,7 +60,7 @@
 
 .nav-active {
     transform: translateX(0%);
-    
+
     .navbar__burger--line1{
         transform: rotate(-45deg) translate(-5px,6px)
     }
@@ -78,6 +81,10 @@
       width: 750px;
     }
     .navbar {
+        z-index: 1;
+        position: fixed;
+        top: 0;
+        width: 100%;
         display: flex;
         justify-content: space-around;
         align-items: center;

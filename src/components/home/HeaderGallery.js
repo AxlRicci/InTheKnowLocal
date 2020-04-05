@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const HomeGallery = (props) => {
+const HeaderGallery = (props) => {
     return (
         <div className="container">
             <div className="header-gallery">
@@ -19,4 +19,4 @@ const HomeGallery = (props) => {
     )
 }
 
-export default HomeGallery
+export default HeaderGallery
