@@ -1,0 +1,120 @@
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .issue {
+    &__content {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(3, minmax(100px, auto));
+        grid-template-areas:
+        "intro"
+        "article"
+        "contact"; //Add in suggested reading soon.
+    }
+
+    &__intro-content {
+        text-align: center;
+        grid-area: intro;
+        margin-bottom: 60px;
+    }
+    
+    &__cover {
+        &-img {
+            width: 75%;
+            height: 75%;
+            object-fit: fill;
+        }
+    }
+
+    &__article {
+        grid-area: article;
+
+        &-section {
+            margin-bottom: 40px;
+        }
+    }
+
+    &__contact {
+        grid-area: contact;
+
+        &-list {
+            list-style-type: none;
+            margin-top: 10px;
+            
+            &-item {
+                margin-top: 5px;
+            }
+        }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      width: 750px;
+    }
+
+    .issue {
+        &__cover {
+            &-img {
+                width: 50%;
+                height: 50%;
+            }
+        }
+    }
+  }
+
+  @media (min-width: 992px) {
+    .container {
+      width: 970px;
+    }
+
+    .issue {
+        
+        &__content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 46vh 46vh auto;
+            column-gap: 50px;
+            grid-template-areas: 
+            "intro article"
+            "intro article"
+            ". contact"
+        }
+
+        &__intro-content {
+            grid-area: intro;
+            margin-top: 50px;
+            padding: 0 15px;
+        }
+
+        &__article {
+            grid-area: article;
+            overflow: scroll;
+            overflow-x: hidden;
+            margin-top: 50px;
+        }
+
+        &__contact {
+            grid-area: contact;
+            margin: 30px 0;
+            
+            &-list {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+        }
+    }
+
+
+  }
+
+  @media (min-width: 1200px) {
+    .container {
+      width: 1170px;
+    }
+  }
