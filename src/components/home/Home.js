@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import HeaderGallery from './HeaderGallery'
 import IssueHighlights from './IssueHighlights'
 
-import './Home.scss'
+import './home.scss'
 import './HeaderGallery.scss'
 import './IssueHighlights.scss'
 
