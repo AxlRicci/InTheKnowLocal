@@ -11,6 +11,7 @@ import AboutPage from './components/about/AboutPage';
 import Footer from './components/navigation/Footer'
 
 import './components/navigation/navbar.scss' // scss for navbar
+import './components/styles/global.scss'
 
 
 

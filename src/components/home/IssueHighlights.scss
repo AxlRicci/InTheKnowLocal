@@ -1,12 +1,5 @@
 // X-Small and Small screens
 
-.container {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
 .issue-highlights {
     display: grid;
     grid-template-columns: reapeat(2, 1fr);
@@ -34,10 +27,6 @@
 // Medium Screens
 @media (min-width: 768px) {
 
-.container {
-    width: 750px;
-}
-
     .issue-highlights {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
@@ -60,6 +49,7 @@
         }
 
         &__item--regular {
+            max-height: 100%;
             grid-column: span 4;
             grid-row: span 2;
 
@@ -72,10 +62,6 @@
 
 // Large Screens
 @media (min-width: 992px) {
-
-.container {
-    width: 970px;
-}
 
 .issue-highlights {
     display: grid;
@@ -114,9 +100,5 @@
 
 // Extra Large Screens
 @media (min-width: 1200px) {
-
-.container {
-    width: 1170px;
-}
 
 }

@@ -77,9 +77,6 @@
 // Medium Screens
 @media (min-width: 768px) {
     
-    .container {
-      width: 750px;
-    }
     .navbar {
         z-index: 1;
         position: fixed;
@@ -116,17 +113,11 @@
 
 // Large Screens
 @media (min-width: 992px) {
-    .container {
-        width: 970px;
-    }
+
     
 }
 
 // Extra Large Screens
 @media (min-width: 1200px) {
-    
-    .container {
-      width: 1170px;
-    }
 
   }

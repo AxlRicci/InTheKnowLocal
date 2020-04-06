@@ -3,13 +3,6 @@
     padding: 0px;
     box-sizing: border-box;
 }
-
-.container {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin: 78px auto 15px auto;
-  }
-
   .issue__grid {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
@@ -29,10 +22,7 @@
   }
 
   @media (min-width: 768px) {
-    .container {
-      width: 750px;
-    }
-
+      
     .issue__grid {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
@@ -47,9 +37,6 @@
   }
 
   @media (min-width: 992px) {
-    .container {
-      width: 970px;
-    }
 
     .issue__grid {
         display: grid;
@@ -65,7 +52,5 @@
   }
 
   @media (min-width: 1200px) {
-    .container {
-      width: 1170px;
-    }
+
   }
