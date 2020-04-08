@@ -7,12 +7,18 @@
         "intro"
         "article"
         "contact"; //Add in suggested reading soon.
+        margin: 78px 0 15px 0;
     }
 
     &__intro-content {
         text-align: center;
         grid-area: intro;
-        margin-bottom: 60px;
+    }
+
+    &__author-intro {
+        &--title {
+            padding: 10px 0px;
+        }
     }
     
     &__cover {
@@ -28,6 +34,10 @@
 
         &-section {
             margin-bottom: 40px;
+        }
+
+        &-content--question {
+            padding-bottom: 5px;
         }
     }
 
@@ -64,7 +74,7 @@
         &__content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 46vh 46vh auto;
+            grid-template-rows: auto auto auto;
             column-gap: 50px;
             grid-template-areas: 
             "intro article"
@@ -74,15 +84,13 @@
 
         &__intro-content {
             grid-area: intro;
-            margin-top: 50px;
             padding: 0 15px;
+            margin-top: 50px;
         }
 
         &__article {
             grid-area: article;
-            overflow: scroll;
-            overflow-x: hidden;
-            margin-top: 50px;
+            margin-top: 75px;
         }
 
         &__contact {

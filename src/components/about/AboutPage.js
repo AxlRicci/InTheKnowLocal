@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 
 import './AboutPage.scss'
@@ -6,10 +6,14 @@ import './AboutPage.scss'
 
 const AboutPage = (props) => {
 
-    // const siteContent = useSelector((state) => {
-    //     let data = state.firestore.data.siteContent;
-    //     return data ? Object.keys(data).map(key => data[key]) : null
-    // });
+    useEffect(() => {document.title = 'About | In The Know Local'})
+
+    const data = useSelector((state) => {
+        let data = state.firestore.data.siteContent;
+        return data ? Object.keys(data).map(key => data[key]) : null
+    });
+
+    const siteContent = data ? data[0] : null;
 
     return (
         <div className="container">
@@ -19,15 +23,11 @@ const AboutPage = (props) => {
                     <h2 className="about__title about__title--subtitle">In The Know local</h2>
                 </div>
                 <div className="about__media">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80" alt="" className="about__media about__media--image"/>
+                    <img src={siteContent ? siteContent.aboutImage : null} alt="" className="about__media about__media--image"/>
                 </div>
                 <div className="about__description">
                     <p className="about__description about__content--text">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero neque laudantium laborum deserunt, minus, dignissimos suscipit, natus officiis ad praesentium a voluptatum?
-                        Minima pariatur quaerat nisi ut aperiam doloremque delectus id, ex qui voluptatibus harum provident at rem iusto eveniet necessitatibus tempore nam natus quam. Iste ea tempore
-                        itaque sit nam delectus eos sed ut cupiditate porro eum earum, ratione architecto accusantium obcaecati harum atque numquam facilis dicta aliquam reiciendis. Eius voluptatem 
-                        error cupiditate a accusamus dolor porro pariatur nihil dolorem quia? Ipsam quod facilis aspernatur, earum autem ipsum. Animi debitis nesciunt iste! Nostrum, aspernatur! 
-                        Porro, nostrum sapiente! Labore, possimus!
+                        {siteContent ? siteContent.aboutMain : null}
                     </p>
                 </div>
             </div>

@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useEffect } from 'react'
 import ContactForm from './ContactForm'
 
 import './ContactPage.scss'
 
 const ContactPage = () => {
+
+    useEffect(() => {document.title = 'Contact | In The Know Local'})
+
     return (
         <div className="container">
             <div className="contact">

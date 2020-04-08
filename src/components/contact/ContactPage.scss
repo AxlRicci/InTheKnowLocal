@@ -1,7 +1,20 @@
   .contact {
+      margin: 78px 0 15px 0;
+      
       &__title {
-          text-align: center;
           margin-bottom: 10px;
+      }
+
+      &__info {
+          padding-bottom: 5px;
+    
+          &--email {
+              padding-top: 15px;
+          }
+    
+          &--desc {
+              padding-top: 15px;
+          }
       }
       
       &__media {
@@ -22,6 +35,7 @@
         grid-gap: 20px;
         grid-template-areas:
         "form image";
+
         
         &__content {
             grid-area: form;

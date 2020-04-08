@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,700&family=Montserrat:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,500;1,700&family=Montserrat:wght@200&display=swap');
 
 
 
@@ -12,6 +12,7 @@
   p {
     font-family: 'Montserrat', sans-serif;
     font-size: 1em;
+    font-weight: 200;
     line-height: 1.2em;
   }
 
@@ -29,9 +30,16 @@
 
   h3 {
     font-family: 'Lato', sans-serif;
-    font-weight: 300;
-    font-size: 1.5em;
-    line-height: 1.2em;
+    font-weight: 400;
+    font-size: 1.2em;
+  }
+
+  .nav {
+    a {
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+      font-size: 1.2em;
+    }
   }
 
   @media (min-width: 768px) {

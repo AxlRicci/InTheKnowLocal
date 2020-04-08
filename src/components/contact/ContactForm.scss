@@ -37,11 +37,14 @@
   
       &__input-submit {
           width: 25%;
-          height: 30px;
-          background-color: red;
-          border: 1px solid grey;
-          border-radius: 5px;
-          color: black;
+          padding: 15px 40px;
+          background-color:#ea212c;
+          border: 0px solid grey;
+          border-radius: 2px;
+          color: #fff;
+          font-family: 'Lato', sans-serif;
+          font-size: 1em;
+          font-weight: 500;
       }
   }
   

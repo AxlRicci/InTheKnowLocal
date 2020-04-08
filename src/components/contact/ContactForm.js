@@ -78,7 +78,7 @@ class ContactForm extends Component {
 
     render() {
         return (
-                <form className="contact__form" onSubmit={this.handleSubmit}>
+                <form id='contact-form' className="contact__form" onSubmit={this.handleSubmit}>
                     <div className="contact__input-section contact__input--text">
                         <input name='name' onChange={this.handleName} value={this.state.name} type="text" className="contact__input contact__input--name" id="name" placeholder="Enter your full name *" required/>
                     </div>
@@ -100,7 +100,7 @@ class ContactForm extends Component {
                         <textarea autoComplete="on" onChange={this.handleChange} className="contact__input-text-area contact__input-text-area--msg" id="msg" rows="3" placeholder='Enter your message'></textarea>
                     </div>
                     <ReCAPTCHA size='normal' sitekey='6LeDX-UUAAAAAMIYoGlvS3xxpfWpHqrT6MDz0RB4' onChange={this.captchaChange}/>
-                    <button disabled={!this.state.captchaVerified} className="contact__input-submit" type="submit">Submit</button>
+                    <button disabled={!this.state.captchaVerified} className="contact__input-submit" type="submit">SUBMIT</button>
                 </form>
         )
     } 
