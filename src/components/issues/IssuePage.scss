@@ -31,6 +31,7 @@
 
     &__article {
         grid-area: article;
+        margin-top: 50px;
 
         &-section {
             margin-bottom: 40px;
@@ -60,8 +61,8 @@
     .issue {
         &__cover {
             &-img {
-                width: 50%;
-                height: 50%;
+                width: 30%;
+                height: 30%;
             }
         }
     }
@@ -80,6 +81,13 @@
             "intro article"
             "intro article"
             ". contact"
+        }
+
+        &__cover {
+            &-img {
+                width: 75%;
+                height: 75%;
+            }
         }
 
         &__intro-content {
