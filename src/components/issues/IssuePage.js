@@ -103,62 +103,10 @@ const IssuePage = (props) => {
                             </div>
                         )
                     })}
-                    {/* <div className="issue__article-section">
-                        <h3 className="issue__article-content issue__article-content--question">
-                            Question 1. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ut.
-                        </h3>
-                        <p className="issue__article-content issue__article-content--answer">
-                            Answer 1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, architecto cum
-                            corrupti corporis magni totam delectus at aliquam neque aperiam ut numquam doloribus eos consequatur
-                            recusandae mollitia dolorum suscipit reiciendis voluptatibus vitae quibusdam illo sint ea. Deleniti,
-                            eaque molestiae! Alias, repudiandae mollitia ullam dolor molestiae voluptatum perspiciatis ex eos iusto!
-                        </p>
-                    </div>
-                    <div className="issue__article-section">
-                        <h3 className="issue__article-content issue__article-content--question">
-                            Question 2. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ut.
-                        </h3>
-                        <p className="issue__article-content issue__article-content--answer">
-                            Answer 2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, architecto cum
-                            corrupti corporis magni totam delectus at aliquam neque aperiam ut numquam doloribus eos consequatur
-                            recusandae mollitia dolorum suscipit reiciendis voluptatibus vitae quibusdam illo sint ea. Deleniti,
-                            eaque molestiae! Alias, repudiandae mollitia ullam dolor molestiae voluptatum perspiciatis ex eos iusto!
-                        </p>
-                    </div>
-                    <div className="issue__article-section">
-                        <h3 className="issue__article-content issue__article-content--question">
-                            Question 3. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ut.
-                        </h3>
-                        <p className="issue__article-content issue__article-content--answer">
-                            Answer 3. Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, architecto cum
-                            corrupti corporis magni totam delectus at aliquam neque aperiam ut numquam doloribus eos consequatur
-                            recusandae mollitia dolorum suscipit reiciendis voluptatibus vitae quibusdam illo sint ea. Deleniti,
-                            eaque molestiae! Alias, repudiandae mollitia ullam dolor molestiae voluptatum perspiciatis ex eos iusto!
-                        </p>
-                    </div>
-                    <div className="issue__article-section">
-                        <h3 className="issue__article-content issue__article-content--question">
-                            Question 4. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ut.
-                        </h3>
-                        <p className="issue__article-content issue__article-content--answer">
-                            Answer 4. Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, architecto cum
-                            corrupti corporis magni totam delectus at aliquam neque aperiam ut numquam doloribus eos consequatur
-                            recusandae mollitia dolorum suscipit reiciendis voluptatibus vitae quibusdam illo sint ea. Deleniti,
-                            eaque molestiae! Alias, repudiandae mollitia ullam dolor molestiae voluptatum perspiciatis ex eos iusto!
-                        </p>
-                    </div>
-                    <div className="issue__article-section">
-                        <h3 className="issue__article-content issue__article-content--question">
-                            Question 5. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ut.
-                        </h3>
-                        <p className="issue__article-content issue__article-content--answer">
-                            Answer 5. Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, architecto cum
-                            corrupti corporis magni totam delectus at aliquam neque aperiam ut numquam doloribus eos consequatur
-                            recusandae mollitia dolorum suscipit reiciendis voluptatibus vitae quibusdam illo sint ea. Deleniti,
-                            eaque molestiae! Alias, repudiandae mollitia ullam dolor molestiae voluptatum perspiciatis ex eos iusto!
-                        </p>
-                    </div> */}
                 </div>
+            </div>
+            <div className="suggested-reading">
+                <SuggestedReading currentPage={slug}/>
             </div>
         </div>
 
