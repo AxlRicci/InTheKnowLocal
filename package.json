@@ -9,6 +9,7 @@
     "firebase": "^7.12.0",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
+    "react-cool-img": "^1.0.24",
     "react-dom": "^16.13.1",
     "react-google-recaptcha": "^2.0.1",
     "react-redux": "^7.2.0",

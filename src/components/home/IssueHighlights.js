@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Img from 'react-cool-img';
 
 // use prop toRender to pass in number of issues that will be rendered for the component. default is 6
 
@@ -54,7 +55,7 @@ const IssueHighlights = (props) => {
                             return (
                                 <div className={`issue-highlights__item--featured-${index}`} key={feature.id}>
                                     <Link to={`/features/${feature.slug}`}>
-                                        <img src={feature.cover} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
+                                        <Img placeholder={feature.coverPlaceholder} src={feature.cover} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
                                     </Link>
                                 </div>
                             )
@@ -62,7 +63,7 @@ const IssueHighlights = (props) => {
                             return (
                                 <div className="issue-highlights__item--regular" key={feature.id}>
                                     <Link to={`/features/${feature.slug}`}>
-                                        <img src={feature.cover} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
+                                        <Img placeholder={feature.coverPlaceholder} src={feature.cover} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
                                     </Link>
                                 </div>
                             )
