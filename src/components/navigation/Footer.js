@@ -65,17 +65,17 @@ const Footer = () => {
                         </p>
                     </div>
                     <div className="footer__social">
-                        <div className="footer__social-item footer__social-item--linkedin">
-                            <img className="footer__social-img footer__social-img--facebook" src="https://img.icons8.com/dotty/80/000000/facebook-circled.png"/>
+                        <div className="footer__social-item footer__social-item--facebook">
+                            <img className="footer__social-img footer__social-img--facebook" src="https://img.icons8.com/metro/52/FFFFFF/facebook-new--v2.png" alt='In The Know Local Facebook'/>                        
                         </div>
                         <div className="footer__social-item footer__social-item--linkedin">
-                            <img className="footer__social-img footer__social-img--twitter" src="https://img.icons8.com/dotty/80/000000/facebook-circled.png"/>
+                            <img className="footer__social-img footer__social-img--linkedin" src="https://img.icons8.com/metro/52/FFFFFF/linkedin.png" alt='In The Know Local Linkedin'/>
                         </div>
-                        <div className="footer__social-item footer__social-item--linkedin">
-                            <img className="footer__social-img footer__social-img--instagram" src="https://img.icons8.com/dotty/80/000000/facebook-circled.png"/>
+                        <div className="footer__social-item footer__social-item--instagram">
+                            <img className="footer__social-img footer__social-img--instagram" src="https://img.icons8.com/metro/52/FFFFFF/instagram-new.png" alt='In The Know Local Instagram'/>
                         </div>
-                        <div className="footer__social-item footer__social-item--linkedin">
-                            <img className="footer__social-img footer__social-img--linkedin" src="https://img.icons8.com/dotty/80/000000/facebook-circled.png"/>
+                        <div className="footer__social-item footer__social-item--twitter">
+                            <img className="footer__social-img footer__social-img--twitter" src="https://img.icons8.com/metro/52/FFFFFF/twitter.png" alt='In The Know Local Twitter'/>
                         </div>
                     </div>
                 </div>

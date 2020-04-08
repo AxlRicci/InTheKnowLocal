@@ -76,15 +76,15 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        margin-right: 6px;
+        margin-right: 10px;
         
         &-item {
             padding: 20px 0;
         }
 
         &-img {
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
         }
     }
   }
@@ -114,13 +114,14 @@
         &__copyright {
             text-align: left;
             padding-left: 15px;
+            align-self: center;
         }
 
         &__social {
             justify-self: end;
 
             &-img {
-                margin-left: 6px;
+                margin-left: 15px;
             }
         }
     }
