@@ -71,10 +71,3 @@ const SuggestedReading = (props) => {
 }
 
 export default SuggestedReading
-// <div className="container py-5">
-//     <h5>Suggested Reading</h5>
-//     <div className='row'>
-//         <div className="col-12 d-flex flex-wrap">
-        //         </div>
-        //     </div>
-        // </div>

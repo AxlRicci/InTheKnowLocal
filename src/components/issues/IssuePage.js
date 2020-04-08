@@ -60,7 +60,7 @@ const IssuePage = (props) => {
     let selectedFeature = featureInfo[0];
 
     return (
-        <div className="container">
+        <main className="container">
             <div className="issue__content">
                 <div className="issue__intro-content">
                     <div className="issue__cover">
@@ -94,7 +94,7 @@ const IssuePage = (props) => {
                         </li>
                     </ul>
                 </div>
-                <div className="issue__article">
+                <article className="issue__article">
                     {sortedAnswers.map(answer => {
                         return (
                             <div className="issue__article-section" key={answer.key}>
@@ -103,45 +103,15 @@ const IssuePage = (props) => {
                             </div>
                         )
                     })}
-                </div>
+                </article>
             </div>
             <div className="suggested-reading">
                 <SuggestedReading currentPage={slug}/>
             </div>
-        </div>
+        </main>
 
 
         )      
     }
     
-    export default IssuePage
-    
-
-    //    <div id='main' className='container' >
-    //        <div className="row">
-    //             <div className="col-md-6 py-5 d-flex justify-content-center">
-    //                 <div>
-    //                     <img className='img-fluid' src={selectedFeature ? selectedFeature.cover : null} alt={selectedFeature ? `${selectedFeature.name} In The Know Local magazine Cover` : null}/>
-    //                     <div className="py-3 d-none d-md-block">
-    //                         <h1 className="text-muted text-center font-weight-light">{selectedFeature ? selectedFeature.name : null}</h1>
-    //                         <p>Email:</p>
-    //                         <p>Twitter:</p>
-    //                         <p>LinkedIn: </p>
-    //                     </div>
-    //                 </div>
-    //             </div>
-    //             <div className="col-md-6 py-5 overflow-auto" style={{height: 100 + 'vh'}}>
-    //             </div>
-    //        </div>
-    //             <div className="col-12 py-3 d-md-none text-center">
-    //                 <h1 className="text-muted font-weight-light">{selectedFeature ? selectedFeature.name : null}</h1>
-    //                 <p>Email:</p>
-    //                 <p>Twitter:</p>
-    //                 <p>LinkedIn: </p>
-    //             </div>
-    //        <div className="row">
-    //            <div className="col-12">
-    //                <SuggestedReading currentPage={slug}/>
-    //            </div>
-    //        </div>
-    //    </div>
+export default IssuePage

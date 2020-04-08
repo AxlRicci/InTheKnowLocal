@@ -10,10 +10,10 @@ import './IssueHighlights.scss'
 const Home = () => {
     useEffect(() => {document.title = 'In The Know Local'})
         return (
-            <div>
+            <main>
                 <HeaderGallery/>
                 <IssueHighlights toRender={9} />
-            </div>
+            </main>
         )
     }
 

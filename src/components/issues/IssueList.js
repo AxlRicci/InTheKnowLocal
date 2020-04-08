@@ -15,7 +15,7 @@ const IssueList = (props) => {
     useEffect(()=> { document.title = 'Issues | In The Know Local'})
 
     return (
-        <div className="container">
+        <main className="container">
             <div className="issue__grid">
                 {features
                 ?features.map((feature) => {
@@ -34,7 +34,7 @@ const IssueList = (props) => {
                         : null
                     }
             </div>
-        </div>
+        </main>
         )
     }
     
