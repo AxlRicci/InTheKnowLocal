@@ -9,8 +9,6 @@ const IssueHighlights = (props) => {
     let featureArray = features ? Object.keys(features).map(key => features[key]) : null;
     let sortedFeatures = featureArray ? featureArray.sort((a,b) => (a.featured === "") - (b.featured === "") || a - b) : null;
 
-    console.log(sortedFeatures);
-
     const size = useWindowSize();
 
     // Hook
@@ -40,21 +38,6 @@ const IssueHighlights = (props) => {
     }); // Empty array ensures that effect is only run on mount and unmount
     return windowSize;
     }
-    
-    // let render = null;
-    // switch(size) {
-    //     case size < 425:
-    //         render = 8;
-    //         break;
-    //     case size > 425 && size < 768:
-    //         render = 9;
-    //         break;
-    //     case size > 768:
-    //         render = 10;
-    //         break;
-    //     default:
-    //         render = 8;
-    // }
 
     
 
@@ -63,7 +46,7 @@ const IssueHighlights = (props) => {
             <div className="issue-highlights">
                     {sortedFeatures
                     ?sortedFeatures.map((feature, index) => {
-                        if (index >= (size.width <= 425 ? 8 : size.width > 425 && size.width <= 992 ? 9 : size.width > 768 ? 10 : 10 ) ){
+                        if (index >= (size.width <= 500 ? 8 : size.width > 500 && size.width <= 992 ? 9 : size.width > 768 ? 10 : 10 ) ){
                             return null
                         } else if (feature.featured) {
                             return (

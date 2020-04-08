@@ -23,19 +23,19 @@ const Footer = () => {
                         <h3 className="footer__categories-title">Categories</h3>
                         <ul className="footer__categories-list">
                             <li className="footer__categories-item footer__categories-item--item1">
-                                <Link className="footer__categories-item-link footer__categories-item-link--link1"></Link>
+                                <Link to='#' className="footer__categories-item-link footer__categories-item-link--link1">Category 1</Link>
                             </li>
                             <li className="footer__categories-item footer__categories-item--item2">
-                                <Link className="footer__categories-item-link footer__categories-item-link--link2"></Link>
+                                <Link to='#' className="footer__categories-item-link footer__categories-item-link--link2">Category 2</Link>
                             </li>
                             <li className="footer__categories-item footer__categories-item--item3">
-                                <Link className="footer__categories-item-link footer__categories-item-link--link3"></Link>
+                                <Link to='#' className="footer__categories-item-link footer__categories-item-link--link3">Category 3</Link>
                             </li>
                             <li className="footer__categories-item footer__categories-item--item4">
-                                <Link className="footer__categories-item-link footer__categories-item-link--link4"></Link>
+                                <Link to='#' className="footer__categories-item-link footer__categories-item-link--link4">Category 4</Link>
                             </li>
                             <li className="footer__categories-item footer__categories-item--item5">
-                                <Link className="footer__categories-item-link footer__categories-item-link--link5"></Link>
+                                <Link to='#' className="footer__categories-item-link footer__categories-item-link--link5">Category 5</Link>
                             </li>
                         </ul>
                     </div>
@@ -43,19 +43,19 @@ const Footer = () => {
                         <h3 className="footer__quick-links-title">Quick Links</h3>
                         <ul className="footer__quick-links-list">
                             <li className="footer__quick-links-item footer__quick-links-item--item1">
-                                <Link className="footer__quick-links-item-link footer__quick-links-item-link--link1"></Link>
+                                <Link to='#' className="footer__quick-links-item-link footer__quick-links-item-link--link1">Link 1</Link>
                             </li>
                             <li className="footer__quick-links-item footer__quick-links-item--item2">
-                                <Link className="footer__quick-links-item-link footer__quick-links-item-link--link2"></Link>
+                                <Link to='#' className="footer__quick-links-item-link footer__quick-links-item-link--link2">Link 2</Link>
                             </li>
                             <li className="footer__quick-links-item footer__quick-links-item--item3">
-                                <Link className="footer__quick-links-item-link footer__quick-links-item-link--link3"></Link>
+                                <Link to='#' className="footer__quick-links-item-link footer__quick-links-item-link--link3">Link 3</Link>
                             </li>
                             <li className="footer__quick-links-item footer__quick-links-item--item4">
-                                <Link className="footer__quick-links-item-link footer__quick-links-item-link--link4"></Link>
+                                <Link to='#' className="footer__quick-links-item-link footer__quick-links-item-link--link4">Link 4</Link>
                             </li>
                             <li className="footer__quick-links-item footer__quick-links-item--item5">
-                                <Link className="footer__quick-links-item-link footer__quick-links-item-link--link5"></Link>
+                                <Link to='#' className="footer__quick-links-item-link footer__quick-links-item-link--link5">Link 5</Link>
                             </li>
                         </ul>
                     </div>

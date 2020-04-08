@@ -26,7 +26,7 @@ const Navbar = () => {
                 <li className="navbar__link"><NavLink className="navbar__link" to='/about'>About</NavLink></li>
                 <li className="navbar__link"><NavLink className="navbar__link" to='/contact'>Contact</NavLink></li>
             </ul>
-            <div className="navbar__burger" on>
+            <div className="navbar__burger">
                 <div className="navbar__burger navbar__burger--line1"></div>
                 <div className="navbar__burger navbar__burger--line2"></div>
                 <div className="navbar__burger navbar__burger--line3"></div>
