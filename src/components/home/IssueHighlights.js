@@ -6,15 +6,10 @@ import { Link } from 'react-router-dom'
 
 const IssueHighlights = (props) => {
     const features = useSelector((state) => state.firestore.data.features);
-
     const unsortedFeatures = features ? Object.keys(features).map(key => features[key]) : null;
-
     const featured = unsortedFeatures ? unsortedFeatures.filter(feature => feature.featured !== "").sort((a,b) => a.featured - b.featured) : null;
-
     const regular = unsortedFeatures ? unsortedFeatures.filter(feature => feature.featured === "").sort((a,b) => Date.parse(a.publishDate) - Date.parse(b.publishDate)) : null;
-
     const sortedFeatures = regular && featured ? [...featured, ...regular ] : null;
-
     
     const size = useWindowSize();
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -10,20 +10,37 @@ import './suggestedReading.scss'
 const SuggestedReading = (props) => {
     const { currentPage } = props
 
-    const features = useSelector((state) => {
-        let data = state.firestore.data.features;
-        return data ? Object.keys(data).map(key => data[key]) : null
-    });
+    const features = useSelector((state) => state.firestore.data.features);
+    const usableFeatures = features ? Object.keys(features).map(key => features[key]).filter(feature => feature.slug !== currentPage).sort((a,b) => Date.parse(a.publishDate) - Date.parse(b.publishDate)) : null;
 
+    const size = useWindowSize();
 
-    let otherFeatures = [];
-    if (features && currentPage ) {
-        features.map(feature => {
-            if (feature.slug !== currentPage) {
-                otherFeatures.push(feature)
-            } 
-            return null
-        })
+    // Hook
+    function useWindowSize() {
+    const isClient = typeof window === 'object';
+
+    function getSize() {
+        return {
+        width: isClient ? window.innerWidth : undefined,
+        height: isClient ? window.innerHeight : undefined
+        };
+    }
+
+    const [windowSize, setWindowSize] = useState(getSize);
+
+    useEffect(() => {
+        if (!isClient) {
+        return false;
+        }
+        
+        function handleResize() {
+        setWindowSize(getSize());
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }); // Empty array ensures that effect is only run on mount and unmount
+    return windowSize;
     }
 
     return (
@@ -32,9 +49,9 @@ const SuggestedReading = (props) => {
                 <h3 className="suggested-reading__intro suggested-reading__intro--title">Suggested Reading</h3>
             </div>
             <div className="suggested-reading__issue-grid">
-                {otherFeatures
-                ?otherFeatures.map((feature, index) => {
-                    if (index >= (4) ){
+                {usableFeatures
+                ?usableFeatures.map((feature, index) => {
+                    if (index >= (size.width <= 500 ? 4 : size.width > 500 ? 6 : 6) ){
                         return null
                     } else {
                         return (
