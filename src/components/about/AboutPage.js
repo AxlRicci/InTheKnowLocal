@@ -23,7 +23,7 @@ const AboutPage = (props) => {
                     <h2 className="about__title about__title--subtitle">In The Know local</h2>
                 </div>
                 <div className="about__media">
-                    <img src={siteContent ? siteContent.aboutImage : null} alt="" className="about__media about__media--image"/>
+                    <img src={siteContent ? siteContent.aboutImage : null} alt={siteContent ? siteContent.aboutImageAlt : null} className="about__media about__media--image"/>
                 </div>
                 <div className="about__description">
                     <p className="about__description about__content--text">

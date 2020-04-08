@@ -1,11 +1,15 @@
-import React, {useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import ContactForm from './ContactForm'
 
 import './ContactPage.scss'
 
 const ContactPage = () => {
 
-    useEffect(() => {document.title = 'Contact | In The Know Local'})
+    const redux = useSelector((state) => state.firestore.data.siteContent);
+    const siteContent = redux ? Object.keys(redux).map(key => redux[key]) : null;
+
+    useEffect(() => {document.title = 'Contact | In The Know Local'});
 
     return (
         <div className="container">
@@ -27,7 +31,7 @@ const ContactPage = () => {
                     </div>
                 </div>
                 <div className="contact__media">
-                    <img src="https://cdn.thescoutguide.com/content/uploads/2018/05/12133303/the-scout-guide-contact-page.jpg" alt="" className="contact__media contact__media--image"/>
+                    <img src={siteContent ? siteContent[0].contactImage : null} alt={siteContent ? siteContent[0].contactImageAlt : null} className="contact__media contact__media--image"/>
                 </div>
             </div>
         </div>

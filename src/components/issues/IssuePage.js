@@ -64,7 +64,7 @@ const IssuePage = (props) => {
             <div className="issue__content">
                 <div className="issue__intro-content">
                     <div className="issue__cover">
-                        <img src={selectedFeature ? selectedFeature.cover : null } alt={selectedFeature ? `${selectedFeature.name}'s In The Know Local Cover` : null} className="issue__cover-img"/>
+                        <img src={selectedFeature ? selectedFeature.cover : null } alt={selectedFeature ? `${selectedFeature.name}'s In The Know Local Cover for ${selectedFeature.city}` : null} className="issue__cover-img"/>
                     </div>
                     <div className="issue__author-intro">
                         <h2 className="issue__author-intro issue__author-intro--title">

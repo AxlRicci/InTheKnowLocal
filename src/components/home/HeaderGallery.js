@@ -13,13 +13,13 @@ const HeaderGallery = (props) => {
         <div className="container">
             <div className="header-gallery">
                <div className="header-gallery__item header-gallery__item--main">
-                   <img className="header-gallery__img" src={siteContent ? siteContent[0].headerGalleryMain : null} alt=""/>
+                   <img className="header-gallery__img" src={siteContent ? siteContent[0].headerGalleryMain : null} alt={siteContent ? siteContent[0].headerGalleryMainAlt : null}/>
                </div>
                <div className="header-gallery__item header-gallery__item--side-1">
-                   <img className="header-gallery__img" src={siteContent ? siteContent[0].headerGallerySide1 : null} alt=""/>
+                   <img className="header-gallery__img" src={siteContent ? siteContent[0].headerGallerySide1 : null} alt={siteContent ? siteContent[0].headerGallerySide1Alt : null}/>
                </div>
                <div className="header-gallery__item header-gallery__item--side-2">
-                   <img className="header-gallery__img"src={siteContent ? siteContent[0].headerGallerySide2 : null} alt=""/>
+                   <img className="header-gallery__img"src={siteContent ? siteContent[0].headerGallerySide2 : null} alt={siteContent ? siteContent[0].headerGallerySide2Alt : null}/>
                </div>
             </div>
         </div>

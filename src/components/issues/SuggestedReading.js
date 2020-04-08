@@ -57,7 +57,7 @@ const SuggestedReading = (props) => {
                         return (
                                 <div className="suggested-reading__issue" key={feature.id}>
                                     <Link to={`/features/${feature.slug}`}>
-                                        <img src={feature.cover} className="suggested-reading__cover-img" alt={`${feature.name}'s In The Know Local Cover`}/>
+                                        <img src={feature.cover} className="suggested-reading__cover-img" alt={`${feature.name}'s In The Know Local Cover for ${feature.city}`}/>
                                     </Link>
                                 </div>
                                 )

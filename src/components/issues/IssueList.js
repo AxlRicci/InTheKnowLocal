@@ -23,7 +23,7 @@ const IssueList = (props) => {
                         return (
                             <div className="issue__grid-item">
                                 <Link to={`/features/${feature.slug}`}>
-                                    <img src={feature.cover} className="issue__img" alt={`${feature.name}'s In The Know Local Magazine Cover`}/>
+                                    <img src={feature.cover} className="issue__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
                                 </Link>
                             </div>
                         )
@@ -38,12 +38,4 @@ const IssueList = (props) => {
         )
     }
     
-    export default IssueList
-    
-    // <div className="container px-5 py-5">
-    //     <h1>Issues</h1>
-    //     <div className='row'>
-    //     </div>
-    // </div>
-
-    // https://uploads-ssl.webflow.com/5a0b4d2cff28590001531b25/5ad0238f161fc8d0fb368058_Joette-p-500.jpeg
+export default IssueList
