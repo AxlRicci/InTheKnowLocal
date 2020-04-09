@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import Img from 'react-cool-img';
 
 // use prop toRender to pass in number of issues that will be rendered for the component. default is 6
 
@@ -42,7 +41,22 @@ const IssueHighlights = (props) => {
     return windowSize;
     }
 
-    
+    let regImg = null;
+    let featImg = null;
+
+    if (size.width < 768 ) { // mobile
+        regImg = '?w=192&h=253';
+        featImg = '?w=395&h=515';
+    } else if (size.width >= 768 && size.width < 992) { //tablet
+        regImg = '?w=233&h=306';
+        featImg = '?w=476&h=621';
+    } else if (size.width >= 992 && size.width < 1200 ) { // small desktop
+        regImg = '?w=227&h=298';
+        featImg = '?w=465&h=606';
+    } else if (size.width >= 1200) { // large desktop
+        regImg = '?w=277&h=363';
+        featImg = '?w=564&h=736';
+    }
 
     return (
         <div className="container">
@@ -55,7 +69,7 @@ const IssueHighlights = (props) => {
                             return (
                                 <div className={`issue-highlights__item--featured-${index}`} key={feature.id}>
                                     <Link to={`/features/${feature.slug}`}>
-                                        <Img placeholder={feature.coverPlaceholder} src={feature.cover} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
+                                        <img src={`${feature.cover}${featImg}`} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
                                     </Link>
                                 </div>
                             )
@@ -63,7 +77,7 @@ const IssueHighlights = (props) => {
                             return (
                                 <div className="issue-highlights__item--regular" key={feature.id}>
                                     <Link to={`/features/${feature.slug}`}>
-                                        <Img placeholder={feature.coverPlaceholder} src={feature.cover} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
+                                        <img src={`${feature.cover}${regImg}`} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
                                     </Link>
                                 </div>
                             )
