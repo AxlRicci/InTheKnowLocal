@@ -98,7 +98,7 @@ const IssuePage = (props) => {
                         { contactInfo ? contactInfo.map(value => {
                             return (
                                 <li className={`issue__contact-list-item issue__contact-list-item--${value.type}`} key={value.address}>
-                                    <a href={value.address} className="issue__contact-list-link issue contact-list-link--item1">{value.type}</a>
+                                    <a href={value.address} className="issue__contact-list-link issue contact-list-link--item1" rel="noopener noreferrer" target="_blank">{value.type}</a>
                                 </li>
                             )
                         }) : null
