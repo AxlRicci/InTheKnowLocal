@@ -63,7 +63,7 @@ const IssueList = (props) => {
                 ?features.map((feature) => {
                     if (feature.cover){
                         return (
-                            <div className="issue__grid-item">
+                            <div className="issue__grid-item" key={feature.slug}>
                                 <Link to={`/features/${feature.slug}`}>
                                     <img src={`${feature.cover}${coverSize}`}className="issue__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
                                 </Link>

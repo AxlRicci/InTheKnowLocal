@@ -79,9 +79,10 @@ const IssueHighlights = (props) => {
                                 </div>
                             )
                         } else if(index % 5 === 0) {
-                            let img = sortedPlaceholders ? sortedPlaceholders[Math.floor(Math.random()*Math.floor(sortedPlaceholders.length))].imgUrl : null;
+                            let placeholderId = sortedPlaceholders ? Math.floor(Math.random()*Math.floor(sortedPlaceholders.length)) : Math.random();
+                            let img = sortedPlaceholders ? sortedPlaceholders[placeholderId].imgUrl : null;
                             return (
-                                <div className="issue-highlights__item--placeholder" key={feature.id}>
+                                <div className="issue-highlights__item--placeholder" key={placeholderId}>
                                         <img src={`${img}${regImg}`} className="issue-highlights__img" alt='...'/>
                                     {/* <Link to='#'>
                                     </Link> */}
@@ -89,7 +90,7 @@ const IssueHighlights = (props) => {
                             )
                         } else {
                             return (
-                                <div className="issue-highlights__item--regular" key={feature.id}>
+                                <div className="issue-highlights__item--regular" key={feature.slug}>
                                     <Link to={`/features/${feature.slug}`}>
                                         <img src={`${feature.cover}${regImg}`} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
                                     </Link>
