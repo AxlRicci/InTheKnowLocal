@@ -1,9 +1,14 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import './Footer.scss'
 
 const Footer = () => {
+    const data = useSelector((state) => state.firestore.data.siteContent);
+    const siteContentArray = data ? Object.keys(data).map(key => data[key]) : null;
+    const siteContent = siteContentArray ? siteContentArray[0] : null;
+
     return (
         <footer>
             <div className="holder">
@@ -11,15 +16,10 @@ const Footer = () => {
                     <div className="footer__about">
                         <h3 className="footer__about-title">About</h3>
                         <p className="footer__about-desc">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit, fugiat deleniti numquam 
-                            nihil velit odit aperiam consequatur possimus nesciunt quo corrupti accusantium neque modi alias enim quam at blanditiis 
-                            unde iste dignissimos repellat commodi nisi. Recusandae consequuntur exercitationem itaque temporibus explicabo doloremque 
-                            at ipsum, ea reprehenderit! In, delectus numquam beatae corporis quibusdam autem totam velit commodi veritatis nesciunt tempora 
-                            soluta cumque corrupti, error minima culpa nisi vel excepturi aliquam a. Quis ducimus iste repellat, nulla architecto illo 
-                            repellendus eum quaerat?
+                            {siteContent ? siteContent.footerAbout : null}
                         </p>
                     </div>
-                    <div className="footer__categories">
+                    {/* <div className="footer__categories">
                         <h3 className="footer__categories-title">Categories</h3>
                         <ul className="footer__categories-list">
                             <li className="footer__categories-item footer__categories-item--item1">
@@ -58,31 +58,37 @@ const Footer = () => {
                                 <Link to='#' className="footer__quick-links-item-link footer__quick-links-item-link--link5">Link 5</Link>
                             </li>
                         </ul>
-                    </div>
+                    </div> */}
                     <div className="footer__copyright">
                         <p className="footer__copyright-text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet quos ab dolorem.
+                            {siteContent ? siteContent.footerCopyright : null}
                         </p>
                     </div>
                     <div className="footer__social">
                         <div className="footer__social-item footer__social-item--facebook">
-                            <img className="footer__social-img footer__social-img--facebook" src="https://img.icons8.com/metro/52/FFFFFF/facebook-new--v2.png" alt='In The Know Local Facebook'/>                        
+                            <a href={siteContent ? siteContent.footerFacebook : null} rel="noopener noreferrer">
+                                <img className="footer__social-img footer__social-img--facebook" src="https://img.icons8.com/metro/52/FFFFFF/facebook-new--v2.png" alt='In The Know Local Facebook'/>                        
+                            </a>
                         </div>
                         <div className="footer__social-item footer__social-item--linkedin">
-                            <img className="footer__social-img footer__social-img--linkedin" src="https://img.icons8.com/metro/52/FFFFFF/linkedin.png" alt='In The Know Local Linkedin'/>
+                            <a href={siteContent ? siteContent.footerLinkedin : null} rel="noopener noreferrer">
+                                <img className="footer__social-img footer__social-img--linkedin" src="https://img.icons8.com/metro/52/FFFFFF/linkedin.png" alt='In The Know Local Linkedin'/>
+                            </a>
                         </div>
                         <div className="footer__social-item footer__social-item--instagram">
-                            <img className="footer__social-img footer__social-img--instagram" src="https://img.icons8.com/metro/52/FFFFFF/instagram-new.png" alt='In The Know Local Instagram'/>
+                            <a href={siteContent ? siteContent.footerInstagram : null} rel="noopener noreferrer">  
+                                <img className="footer__social-img footer__social-img--instagram" src="https://img.icons8.com/metro/52/FFFFFF/instagram-new.png" alt='In The Know Local Instagram'/>
+                            </a>
                         </div>
                         <div className="footer__social-item footer__social-item--twitter">
-                            <img className="footer__social-img footer__social-img--twitter" src="https://img.icons8.com/metro/52/FFFFFF/twitter.png" alt='In The Know Local Twitter'/>
+                            <a href={siteContent ? siteContent.footerFacebook : null} target="_blank" rel="noopener noreferrer">
+                                <img className="footer__social-img footer__social-img--twitter" src="https://img.icons8.com/metro/52/FFFFFF/twitter.png" alt='In The Know Local Twitter'/>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </footer>
-
-
         )
     }
     
