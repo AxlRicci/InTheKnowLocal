@@ -19,8 +19,8 @@ const AboutPage = (props) => {
         <main className="container">
             <div className="about">
                 <div className="about__title">
-                    <h1 className="about__title about__title--main-title">What is</h1>
-                    <h2 className="about__title about__title--subtitle">In The Know local</h2>
+                    <h1 className="about__title about__title--main-title">{siteContent ? siteContent.aboutTitle : null}</h1>
+                    <h2 className="about__title about__title--subtitle">{siteContent ? siteContent.aboutSubtitle : null}</h2>
                 </div>
                 <div className="about__media">
                     <img src={siteContent ? siteContent.aboutImage : null} alt={siteContent ? siteContent.aboutImageAlt : null} className="about__media about__media--image"/>
