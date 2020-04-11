@@ -79,10 +79,9 @@ const IssueHighlights = (props) => {
                                 </div>
                             )
                         } else if(index % 5 === 0) {
-                            let placeholderId = sortedPlaceholders ? Math.floor(Math.random()*Math.floor(sortedPlaceholders.length)) : Math.random();
                             let img = sortedPlaceholders ? sortedPlaceholders[Math.floor(Math.random()*Math.floor(sortedPlaceholders.length))].imgUrl : null;
                             return (
-                                <div className="issue-highlights__item--placeholder" key={placeholderId}>
+                                <div className="issue-highlights__item--placeholder" key={index}>
                                         <img src={`${img}${regImg}`} className="issue-highlights__img" alt='...'/>
                                     {/* <Link to='#'>
                                     </Link> */}
