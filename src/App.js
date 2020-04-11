@@ -17,7 +17,7 @@ import './components/styles/global.scss'
 
 const App = () => {
 
-  useFirestoreConnect(['features', 'questions', 'siteContent'])
+  useFirestoreConnect(['features', 'questions', 'siteContent', 'placeholders']);
 
   return (
     <BrowserRouter>

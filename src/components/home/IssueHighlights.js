@@ -7,9 +7,14 @@ import { Link } from 'react-router-dom'
 const IssueHighlights = (props) => {
     const features = useSelector((state) => state.firestore.data.features);
     const unsortedFeatures = features ? Object.keys(features).map(key => features[key]) : null;
-    const featured = unsortedFeatures ? unsortedFeatures.filter(feature => feature.featured !== "").sort((a,b) => a.featured - b.featured) : null;
+    const featured = unsortedFeatures ? unsortedFeatures.filter(feature => feature.featured === true).sort((a,b) => a.featureRank - b.featureRank) : null;
     const regular = unsortedFeatures ? unsortedFeatures.filter(feature => feature.featured === "").sort((a,b) => Date.parse(a.publishDate) - Date.parse(b.publishDate)) : null;
     const sortedFeatures = regular && featured ? [...featured, ...regular ] : null;
+
+    const placeholders = useSelector((state) => state.firestore.data.placeholders);
+    const unsortedPlaceholders = placeholders ? Object.keys(placeholders).map(key => placeholders[key]) : null;
+    const sortedPlaceholders = unsortedPlaceholders ? unsortedPlaceholders.sort((a,b) => a.id - b.id) : null;
+
     
     const size = useWindowSize();
 
@@ -63,14 +68,23 @@ const IssueHighlights = (props) => {
             <div className="issue-highlights">
                     {sortedFeatures
                     ?sortedFeatures.map((feature, index) => {
-                        if (index >= (size.width <= 500 ? 8 : size.width > 500 && size.width <= 992 ? 9 : size.width > 768 ? 10 : 10 ) ){
+                        if (index >=  (size.width > 768 && size.width <= 992 ? 18 : 20)){
                             return null
-                        } else if (feature.featured) {
+                        } else if (feature.featured && feature.featureRank <= 4) {
                             return (
-                                <div className={`issue-highlights__item--featured-${index}`} key={feature.id}>
+                                <div className={`issue-highlights__item--featured-${feature.featureRank}`} key={feature.slug}>
                                     <Link to={`/features/${feature.slug}`}>
                                         <img src={`${feature.cover}${featImg}`} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
                                     </Link>
+                                </div>
+                            )
+                        } else if(index % 5 === 0) {
+                            let img = sortedPlaceholders ? sortedPlaceholders[Math.floor(Math.random()*Math.floor(sortedPlaceholders.length))].imgUrl : null;
+                            return (
+                                <div className="issue-highlights__item--placeholder" key={feature.id}>
+                                        <img src={`${img}${regImg}`} className="issue-highlights__img" alt='...'/>
+                                    {/* <Link to='#'>
+                                    </Link> */}
                                 </div>
                             )
                         } else {
@@ -91,3 +105,5 @@ const IssueHighlights = (props) => {
 }
 
 export default IssueHighlights
+
+//(size.width <= 500 ? 8 : size.width > 500 && size.width <= 992 ? 9 : size.width > 768 ? 10 : 10 )
