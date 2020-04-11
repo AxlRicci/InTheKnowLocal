@@ -48,6 +48,12 @@
         &-list {
             list-style-type: none;
             margin-top: 10px;
+
+            &-link {
+                text-transform: capitalize;
+                color: #ED1C22;
+                text-decoration: none;
+            }
             
             &-item {
                 margin-top: 5px;

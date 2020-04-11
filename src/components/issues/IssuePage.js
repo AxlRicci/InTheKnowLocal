@@ -59,6 +59,21 @@ const IssuePage = (props) => {
     })
     let selectedFeature = featureInfo[0];
 
+    let contactTypes = ['twitter', 'instagram', 'linkedin', 'facebook', 'youtube', 'website'];
+    let contactInfo = [];
+
+    if (selectedFeature) {
+        contactTypes.forEach(type => {
+        if (selectedFeature.hasOwnProperty(type)) {
+            let contactObj = {
+                'type': type,
+                'address': selectedFeature[type]
+            }
+            contactInfo.push(contactObj)
+        }
+    });
+    }
+
     return (
         <main className="container">
             <div className="issue__content">
@@ -80,18 +95,14 @@ const IssuePage = (props) => {
                        Connect with {selectedFeature ? selectedFeature.name.split(' ')[0] : null}:
                     </h3>
                     <ul className="issue__contact-list">
-                        <li className="issue__contact-list-item issue__contact-list-item--item1">
-                            <a href="#" className="issue__contact-list-link issue contact-list-link--item1">Email</a>
-                        </li>
-                        <li className="issue__contact-list-item issue__contact-list-item--item2">
-                            <a href="#" className="issue__contact-list-link issue contact-list-link--item2">twitter</a>
-                        </li>
-                        <li className="issue__contact-list-item issue__contact-list-item--item3">
-                            <a href="#" className="issue__contact-list-link issue contact-list-link--item3">LinkedIn</a>
-                        </li>
-                        <li className="issue__contact-list-item issue__contact-list-item--item4">
-                            <a href="#" className="issue__contact-list-link issue contact-list-link--item4">Website</a>
-                        </li>
+                        { contactInfo ? contactInfo.map(value => {
+                            return (
+                                <li className={`issue__contact-list-item issue__contact-list-item--${value.type}`} key={value.address}>
+                                    <a href={value.address} className="issue__contact-list-link issue contact-list-link--item1">{value.type}</a>
+                                </li>
+                            )
+                        }) : null
+                        }
                     </ul>
                 </div>
                 <article className="issue__article">
