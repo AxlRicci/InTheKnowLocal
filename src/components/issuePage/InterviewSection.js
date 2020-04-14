@@ -37,7 +37,7 @@ const InterviewSection = (props) => {
                 return (
                     <div className="issue__article-section" key={question.key}>
                         <h3 className="issue__article-content issue__article-content--question">{question.question}</h3>
-                        <p className="issue__article-content issue__article-content--answer">{question.answer}</p>
+                        {question.answer.split('<br>').map((line, index) => <><p key={index} className="issue__article-content issue__article-content--answer">{line}</p><br/></>)}
                     </div>
                 )
             })
