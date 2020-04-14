@@ -14,8 +14,9 @@ const LegacyRoutesSection = (props) => {
             {routes
             ? routes.map(route => {
                 return (
-                    <Link to={route.slug} key={route.slug}>
+                    <Link to={`${route.slug}`} key={route.slug}>
                     <div className="route__card" >
+                        {console.log(route.slug)}
                         <img className="route__card-image" src={route.cover} alt=""/>
                         <div className="route__card-content">
                                 <h2 className="route__card-title">{route.name}</h2>

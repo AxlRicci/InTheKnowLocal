@@ -8,10 +8,11 @@ import LegacyRoutesSection from './LegacyRoutesSection'
 import LegacyBioSection from './LegacyBioSection'
 import LegacyRouteArticle from './LegacyRouteArticle'
 
-import './legacyMainPage.scss'
+import './legacyRouteArticle.scss'
 
 const LegacyArticlePage = (props) => {
     const { slug } = props.match.params;
+    console.log(slug)
 
     const features = useSelector((state) => {
         let data = state.firestore.data.features;

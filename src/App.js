@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFirestoreConnect } from 'react-redux-firebase';
 import Navbar from './components/navigation/Navbar';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import ScrollToTop from './components/function/ScrollToTop'
 import Home from './components/home/Home';
 import IssueList from './components/issues/IssueList';
@@ -31,8 +31,7 @@ const App = () => {
         <Route path='/issues' component={IssueList} />
         <Route path='/contact' component={ContactPage} />
         <Route path='/about' component={AboutPage} />
-        <Route path='/city/oakville-joette-fielding' component={LegacyMainPage} />
-        <Route path='/city/:slug' component={LegacyArticlePage} />
+        <Route exact path='/city/:slug' component={LegacyMainPage} />
         <Footer />
       </div>
     </BrowserRouter>

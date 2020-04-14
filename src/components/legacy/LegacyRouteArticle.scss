@@ -1,0 +1,30 @@
+.route-article {
+    margin: 50px 0px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+    "intro"
+    "article"
+    "list";
+    
+    &__intro {
+        grid-area: intro;
+        text-align: center;
+        margin-bottom: 40px;
+        & h3 {
+            color: grey;
+            margin-top: 20px;
+        }
+    }
+
+    &__content {
+        grid-area: article;
+    }
+
+    &__stop-list {
+        grid-area: list;
+        justify-self: center;
+    }
+}
+

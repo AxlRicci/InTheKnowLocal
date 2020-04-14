@@ -1,7 +1,13 @@
 import React from 'react'
 
 const CoverSection = (props) => {
-    const { selectedFeature } = props;
+    const { selectedFeature, slug } = props;
+
+    const legacyRoutes = useSelector((state) => {
+        let data = state.firestore.data.legacyRoutes;
+        return data ? Object.keys(data).map(key => data[key]) : null
+    });
+
     
     return (
         <>

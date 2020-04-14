@@ -73,7 +73,7 @@ const IssueHighlights = (props) => {
                         } else if (feature.featured && feature.featureRank <= 4) {
                             return (
                                 <div className={`issue-highlights__item--featured-${feature.featureRank}`} key={feature.slug}>
-                                    <Link to={`/features/${feature.slug}`}>
+                                    <Link to={ feature.slug === 'joette-fielding' ? `/city/oakville-joette-fielding` : `/features/${feature.slug}`}>
                                         <img src={`${feature.cover}${featImg}`} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
                                     </Link>
                                 </div>
@@ -90,7 +90,7 @@ const IssueHighlights = (props) => {
                         } else {
                             return (
                                 <div className="issue-highlights__item--regular" key={feature.slug}>
-                                    <Link to={`/features/${feature.slug}`}>
+                                    <Link to={feature.slug === 'joette-fielding' ? `/city/oakville-joette-fielding` : `/features/${feature.slug}`}>
                                         <img src={`${feature.cover}${regImg}`} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
                                     </Link>
                                 </div>
