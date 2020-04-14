@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import SuggestedReading from './SuggestedReading'
+import SuggestedReading from '../issues/SuggestedReading'
 import CoverSection from '../issuePage/CoverSection'
 import InterviewSection from '../issuePage/InterviewSection'
 import ContactSection from '../issuePage/ContactSection'
+import LegacyRoutesSection from './LegacyRoutesSection'
+import LegacyBioSection from './LegacyBioSection'
+import LegacyRouteArticle from './LegacyRouteArticle'
 
-import './IssuePage.scss'
+import './legacyMainPage.scss'
 
-const IssuePage = (props) => {
-    const { slug } = props.match.params
+const LegacyArticlePage = (props) => {
+    const { slug } = props.match.params;
 
     const features = useSelector((state) => {
         let data = state.firestore.data.features;
@@ -20,29 +23,28 @@ const IssuePage = (props) => {
     })
 
     let featureInfo = [];
-    let articleType = null;
     if (features) {
         features.forEach(feature => {
-            if (feature.slug === slug) {
-                articleType = feature.type;
+            if (feature.slug === 'joette-fielding') {
                 featureInfo.push(feature);
             }
         })
     }
     let selectedFeature = featureInfo[0];
 
+
     return (
         <main className="container">
             <div className="issue__content">
                 <CoverSection selectedFeature={selectedFeature}/>
-                <InterviewSection selectedFeature={selectedFeature} articleType={articleType} />
+                <LegacyRouteArticle slug={slug} />
                 <ContactSection selectedFeature={selectedFeature} />
             </div>
             <div className="suggested-reading">
-                <SuggestedReading currentPage={slug}/>
+                <SuggestedReading currentPage={'joette-fielding'}/>
             </div>
         </main>
         )      
     }
-    
-export default IssuePage
+
+export default LegacyArticlePage

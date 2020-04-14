@@ -12,12 +12,14 @@ import Footer from './components/navigation/Footer'
 
 import './components/navigation/navbar.scss' // scss for navbar
 import './components/styles/global.scss'
+import LegacyMainPage from './components/legacy/LegacyMainPage';
+import LegacyArticlePage from './components/legacy/LegacyArticlePage';
 
 
 
 const App = () => {
 
-  useFirestoreConnect(['features', 'questions', 'siteContent', 'placeholders']);
+  useFirestoreConnect(['features', 'questions', 'siteContent', 'placeholders', 'legacyRoutes']);
 
   return (
     <BrowserRouter>
@@ -29,6 +31,8 @@ const App = () => {
         <Route path='/issues' component={IssueList} />
         <Route path='/contact' component={ContactPage} />
         <Route path='/about' component={AboutPage} />
+        <Route path='/city/oakville-joette-fielding' component={LegacyMainPage} />
+        <Route path='/city/:slug' component={LegacyArticlePage} />
         <Footer />
       </div>
     </BrowserRouter>
