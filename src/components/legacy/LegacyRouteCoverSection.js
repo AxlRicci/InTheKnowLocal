@@ -1,6 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
+import './legacyRouteCoverSection.scss'
+
 const LegacyRouteCoverSection = (props) => {
     const { slug, selectedFeature } = props;
 
@@ -26,9 +28,9 @@ const LegacyRouteCoverSection = (props) => {
     return (
         <>
         {route
-        ? <div className="issue__intro-content">
-                <div className="issue__cover">
-                    <img src={route.cover} alt={`${selectedFeature.name}'s In The Know Local Cover for ${selectedFeature.city}`} className="issue__cover-img"/>
+        ? <div className="route__intro-content">
+                <div className="route__cover">
+                    <img src={route.cover} alt={`${selectedFeature.name}'s In The Know Local Cover for ${selectedFeature.city}`} className="route__cover-img"/>
                 </div>
             </div>
         : null}

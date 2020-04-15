@@ -10,6 +10,10 @@ const LegacyRoutesSection = (props) => {
     });
 
     return (
+        <>
+        <div>
+            <h2>#JoettesRoutes</h2>
+        </div>
         <div className="route__list">
             {routes
             ? routes.map(route => {
@@ -19,7 +23,7 @@ const LegacyRoutesSection = (props) => {
                         {console.log(route.slug)}
                         <img className="route__card-image" src={route.cover} alt=""/>
                         <div className="route__card-content">
-                                <h2 className="route__card-title">{route.name}</h2>
+                            <h3 className="route__card-title">{route.name}</h3>
                             <p className="route__card-desc">{route.subtitle}</p>
                         </div>
                     </div>
@@ -28,6 +32,7 @@ const LegacyRoutesSection = (props) => {
                 })
             : null}
         </div>
+        </>
     )
 }
 

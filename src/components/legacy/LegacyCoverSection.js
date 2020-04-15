@@ -1,28 +1,17 @@
 import React from 'react'
+import ContactSection from '../issuePage/ContactSection'
 
-const CoverSection = (props) => {
-    const { selectedFeature, slug } = props;
+import './legacyCoverSection.scss'
 
-    const legacyRoutes = useSelector((state) => {
-        let data = state.firestore.data.legacyRoutes;
-        return data ? Object.keys(data).map(key => data[key]) : null
-    });
+const LegacyCoverSection = (props) => {
+    const { selectedFeature } = props;
 
-    
     return (
         <>
         {selectedFeature
-        ? <div className="issue__intro-content">
-                <div className="issue__cover">
-                    <img src={selectedFeature.cover} alt={`${selectedFeature.name}'s In The Know Local Cover for ${selectedFeature.city}`} className="issue__cover-img"/>
-                </div>
-                <div className="issue__author-intro">
-                    <h2 className="issue__author-intro issue__author-intro--title">
-                        {selectedFeature.name}
-                    </h2>
-                    <p className="issue__author-intro issue__author-intro--text">
-                        {selectedFeature.bio}
-                    </p>
+        ? <div className="legacy-cover">
+                <div className="legacy-cover__cover">
+                    <img src={selectedFeature.cover} alt={`${selectedFeature.name}'s In The Know Local Cover for ${selectedFeature.city}`} className="legacy-cover__cover-image"/>
                 </div>
             </div>
         : null}
@@ -30,4 +19,4 @@ const CoverSection = (props) => {
     )
 }
 
-export default CoverSection
+export default LegacyCoverSection

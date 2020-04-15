@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import SuggestedReading from '../issues/SuggestedReading'
-import CoverSection from '../issuePage/CoverSection'
-import InterviewSection from '../issuePage/InterviewSection'
+import LegacyCoverSection from './LegacyCoverSection'
 import ContactSection from '../issuePage/ContactSection'
 import LegacyRoutesSection from './LegacyRoutesSection'
 import LegacyBioSection from './LegacyBioSection'
@@ -20,8 +19,6 @@ const LegacyMainPage = (props) => {
         return data ? Object.keys(data).map(key => data[key]) : null
     });
 
-    console.log(props)
-
     useEffect(()=> {
         selectedFeature ? document.title = `${selectedFeature.name} | In The Know Local` : document.title = '... | In The Know Local'
     })
@@ -37,29 +34,40 @@ const LegacyMainPage = (props) => {
     let selectedFeature = featureInfo[0];
 
     let content = null;
-    let coverImg = null;
 
     // determine if the content is bio page or route page by slug.
     if (slug === 'oakville-joette-fielding') {
         content = (
             <main className="container">
-                <div className="issue__content">
-                    <CoverSection selectedFeature={selectedFeature}/>
-                    <LegacyBioSection />
-                    <ContactSection selectedFeature={selectedFeature} />
+                <div className="legacy-page__content">
+                    <div className="legacy-cover-section">
+                        <LegacyCoverSection  selectedFeature={selectedFeature}/>
+                    </div>
+                    <div className="legacy-bio-section">
+                        <LegacyBioSection  />
+                    </div>
+                    <div className="legacy-routes-section">
+                        <LegacyRoutesSection  />
+                    </div>
+                    <div className="legacy-contact-section">
+                        <ContactSection  selectedFeature={selectedFeature} />
+                    </div>
                 </div>
                 <div className="suggested-reading">
-                    <LegacyRoutesSection />
-                    <SuggestedReading currentPage={'joette-fielding'}/>
+                    <SuggestedReading className="suggested-reading" currentPage={'joette-fielding'}/>
                 </div>
             </main>
             )
     } else {
         content = (
             <main className="container">
-                <div className="issue__content">
-                    <LegacyRouteCoverSection selectedFeature={selectedFeature} slug={slug}/>
-                    <LegacyRouteArticle slug={slug} />
+                <div className="legacy-page__content">
+                    <div className="legacy-route-cover-section">
+                        <LegacyRouteCoverSection selectedFeature={selectedFeature} slug={slug}/>
+                    </div>
+                    <div className="legacy-route-article-section">
+                        <LegacyRouteArticle slug={slug} />
+                    </div>
                 </div>
                 <div className="suggested-reading">
                     <SuggestedReading currentPage={'joette-fielding'}/>

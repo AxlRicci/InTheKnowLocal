@@ -1,6 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
+import './interviewSection.scss'
+
 const InterviewSection = (props) => {
     const { selectedFeature, articleType } = props;
 
@@ -31,13 +33,13 @@ const InterviewSection = (props) => {
     let sortedQuestions = selectedQuestions.sort((a,b) => a.order - b.order);
 
     return (
-        <article className="issue__article">
+        <article className="article__content">
             {sortedQuestions
-            ? sortedQuestions.map(question => {
+            ? sortedQuestions.map((question, contentIndex) => {
                 return (
-                    <div className="issue__article-section" key={question.key}>
-                        <h3 className="issue__article-content issue__article-content--question">{question.question}</h3>
-                        {question.answer.split('<br>').map((line, index) => <><p key={index} className="issue__article-content issue__article-content--answer">{line}</p><br/></>)}
+                    <div className="article__q-a" key={question.key}>
+                        <h3 className={`article__question article__question--question${contentIndex}`}>{question.question}</h3>
+                        {question.answer.split('<br>').map((line, index) => <p key={index} className={`article__answer article__answer--answer${contentIndex}`}>{line}</p>)}
                     </div>
                 )
             })

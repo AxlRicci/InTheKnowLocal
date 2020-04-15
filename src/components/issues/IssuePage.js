@@ -5,7 +5,7 @@ import CoverSection from '../issuePage/CoverSection'
 import InterviewSection from '../issuePage/InterviewSection'
 import ContactSection from '../issuePage/ContactSection'
 
-import './IssuePage.scss'
+import './issuePage.scss'
 
 const IssuePage = (props) => {
     const { slug } = props.match.params
@@ -34,9 +34,15 @@ const IssuePage = (props) => {
     return (
         <main className="container">
             <div className="issue__content">
-                <CoverSection selectedFeature={selectedFeature}/>
-                <InterviewSection selectedFeature={selectedFeature} articleType={articleType} />
-                <ContactSection selectedFeature={selectedFeature} />
+                <div className='cover-area'>
+                    <CoverSection className='cover-component' selectedFeature={selectedFeature}/>
+                </div>
+                <div className="interview-area">
+                    <InterviewSection className='interview-component' selectedFeature={selectedFeature} articleType={articleType} />
+                </div>
+                <div className="contact-area">
+                    <ContactSection className='contact-component' selectedFeature={selectedFeature} />
+                </div>
             </div>
             <div className="suggested-reading">
                 <SuggestedReading currentPage={slug}/>

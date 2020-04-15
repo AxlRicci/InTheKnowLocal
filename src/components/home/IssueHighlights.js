@@ -83,8 +83,6 @@ const IssueHighlights = (props) => {
                             return (
                                 <div className="issue-highlights__item--placeholder" key={index}>
                                         <img src={`${img}${regImg}`} className="issue-highlights__img" alt='...'/>
-                                    {/* <Link to='#'>
-                                    </Link> */}
                                 </div>
                             )
                         } else {

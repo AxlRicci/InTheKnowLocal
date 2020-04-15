@@ -1,0 +1,58 @@
+.cover-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+    "img"
+    "content";
+
+    &__cover {
+        grid-area: img;
+        text-align: center;
+
+        &-image {
+            width: 75%;
+            height: 75%;
+            object-fit: fill;
+        }
+    }
+
+    &__author-intro {
+        text-align: center;
+
+        &--title {
+            margin: 20px;
+        }
+        &--intro {
+            margin: 0 20px
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .cover-section {
+        &__cover {
+            &-image {
+                width: 50%;
+                height: 50%;
+            }
+        }
+    }
+  }
+
+  @media (min-width: 992px) {
+    .cover-section {
+        margin-top: 50px;
+        &__cover-image {
+            width: 80%;
+            height: 80%;
+        }
+
+    }
+}
+
+@media (min-width: 1200px) {
+    .cover-section {
+        margin-top: 50px;
+    }
+}

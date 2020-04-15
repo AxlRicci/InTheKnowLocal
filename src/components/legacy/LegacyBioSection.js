@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
+import './legacyBioSection.scss'
+
 const LegacyBioSection = (props) => {
     
     const features = useSelector((state) => {
@@ -22,14 +24,14 @@ const LegacyBioSection = (props) => {
     let bioArray = selectedFeature ? selectedFeature.intro.split('<br>') : null;
 
     return (
-        <article className="issue__article">
+        <article className="legacy-bio">
             {selectedFeature
-            ? <div className="issue__article-section">
+            ? <div className="legacy-bio__content">
                 {bioArray.map((line,index) => {
                     return (
-                        <div key={`bioLine ${index}`}>
-                            <p className="issue__article-content issue__article-content--answer">{line}</p>
-                            <br/>
+                        <div className="legacy-bio__line" key={`bioLine ${index}`}>
+                        <p className="legacy-bio__line--text">{line}</p>
+                        <br/>
                         </div>
                     )
                 })}
