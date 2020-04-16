@@ -18,7 +18,7 @@ const Navbar = () => {
         <nav className="navbar">
             <div className="navbar__item">
                 <Link className="navbar__logo--link" to='/'>
-                    <img className="navbar__logo" style={{width: 250 + 'px', height: 59 + 'px'}} src="https://uploads-ssl.webflow.com/5a0b4d2cff28590001531aff/5a16fe60b1b09d0001923efc_ITKlogo%20for%20Andrew-1-p-500.png" alt="In The Know Local Logo"/>
+                    <img className="navbar__logo" src="https://parablar.sirv.com/ITKL/logo/ITKL_Logo.jpg?w=250&h=119" alt="In The Know Local Logo"/>
                 </Link>
             </div>
             <ul className="navbar__link-list">
