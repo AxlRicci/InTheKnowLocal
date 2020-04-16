@@ -26,7 +26,7 @@
 }
 
 @media (min-width: 768px) {
-
+    
     .header-gallery {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
@@ -43,30 +43,18 @@
         &__item--main {
             grid-column: 1/13;
             grid-row: 1/6;
-
-            &:hover {
-                opacity: 0.7;
-            }
         }
 
         &__item--side-1 {
             display: grid;
             grid-column: 1/7;
             grid-row: 6/8;
-
-            &:hover {
-                opacity: 0.7;
-            }
         }
 
         &__item--side-2 {
             display: grid;
             grid-column: 7/13;
             grid-row: 6/8;
-
-            &:hover {
-                opacity: 0.7;
-            }
         }
     }
 }

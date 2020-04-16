@@ -91,28 +91,16 @@
                 grid-column: 5/13;
                 grid-row: 13/17;
             }
-
-            &:hover {
-                opacity: 0.7;
-            }
         }
 
         &__item--regular {
             grid-column: span 4;
             grid-row: span 2;
-
-            &:hover {
-                opacity: 0.7;
-            }
         }
 
         &__item--placeholder {
             grid-column: span 4;
             grid-row: span 2;
-
-            &:hover {
-                opacity: 0.7;
-            }
         }
     }
 
@@ -165,19 +153,11 @@
     &__item--regular {
         grid-column: span 3;
         grid-row: span 2;
-
-        &:hover {
-            opacity: 0.7;
-        }
     }
 
     &__item--placeholder {
         grid-column: span 3;
         grid-row: span 2;
-
-        &:hover {
-            opacity: 0.7;
-        }
     }
 }
 
