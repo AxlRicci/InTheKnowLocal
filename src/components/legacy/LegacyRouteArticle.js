@@ -4,32 +4,28 @@ import './legacyRouteArticle.scss'
 
 const LegacyRouteArticle = (props) => {
     const { slug } = props;
-    console.log(slug)
 
     const legacyRoutes = useSelector((state) => {
         let data = state.firestore.data.legacyRoutes;
         return data ? Object.keys(data).map(key => data[key]) : null
     });
 
-    
-    
     let content = legacyRoutes ? legacyRoutes.filter(article => article.slug === slug) : null;
     let article = content ? content[0] : null;
 
-    console.log(article)
+    // define content to be rendered once data from props and redux/firebase are available.
+    let renderContent = null;
 
-
-
-    return (<>
-        {article
-            ? <article className="route-article">
+    if (article) {
+        renderContent = (
+            <article className="route-article">
                 <div className="route-article__intro">
                     <h1 className="route-article__title">{article.title}</h1>
                     <h3 className="route-article__subtitle">{article.subtitle}</h3>
                 </div>
                 <div className="route-article__content">
                     <div className="route-article__content-intro">
-                        {article.intro.split('<br>').map((line,index) => {
+                        {article.intro.split('<br>').map((line,index) => { // iterate through article content to add line breaks where indicated.
                             return (
                                 <div key={`articleLine ${index}`}>
                                     <p className="route-article__intro-text" >{line}</p>
@@ -47,7 +43,14 @@ const LegacyRouteArticle = (props) => {
                     </div>
                 </div>
             </article>
-            : null}
+        )
+    }
+
+
+
+    return (
+        <>
+        {renderContent ? renderContent : null}
         </>
     )
 }

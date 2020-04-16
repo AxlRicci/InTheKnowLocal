@@ -24,16 +24,22 @@ const LegacyRouteCoverSection = (props) => {
 
     let route = selectedRoute ? selectedRoute[0] : null;
 
-    
-    return (
-        <>
-        {route
-        ? <div className="route__intro-content">
+
+    let renderContent = null;
+
+    if (route) {
+        renderContent = (
+            <div className="route__intro-content">
                 <div className="route__cover">
                     <img src={route.cover} alt={`${selectedFeature.name}'s In The Know Local Cover for ${selectedFeature.city}`} className="route__cover-img"/>
                 </div>
             </div>
-        : null}
+        )
+    }
+
+    return (
+        <>
+        {renderContent ? renderContent : null}
         </>
     )
 }

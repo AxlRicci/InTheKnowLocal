@@ -13,12 +13,12 @@ import './legacyMainPage.scss'
 const LegacyMainPage = (props) => {
 
     const { slug } = props.match.params;
-
+    
     const features = useSelector((state) => {
         let data = state.firestore.data.features;
         return data ? Object.keys(data).map(key => data[key]) : null
     });
-
+    
     useEffect(()=> {
         selectedFeature ? document.title = `${selectedFeature.name} | In The Know Local` : document.title = '... | In The Know Local'
     })
@@ -33,11 +33,11 @@ const LegacyMainPage = (props) => {
     }
     let selectedFeature = featureInfo[0];
 
-    let content = null;
+    let renderContent = null;
 
     // determine if the content is bio page or route page by slug.
     if (slug === 'oakville-joette-fielding') {
-        content = (
+        renderContent = (
             <main className="container">
                 <div className="legacy-page__content">
                     <div className="legacy-cover-section">
@@ -59,7 +59,7 @@ const LegacyMainPage = (props) => {
             </main>
             )
     } else {
-        content = (
+        renderContent = (
             <main className="container">
                 <div className="legacy-page__content">
                     <div className="legacy-route-cover-section">
@@ -79,7 +79,7 @@ const LegacyMainPage = (props) => {
 
     return (
         <>
-        {content ? content : null}
+        {renderContent ? renderContent : null}
        </>
     )
     }

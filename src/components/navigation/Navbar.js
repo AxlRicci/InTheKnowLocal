@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
 
+    // Effect to animate mobile nav. 
     useEffect(()=> {
         const burger = document.querySelector('.navbar__burger');
         const nav = document.querySelector('.navbar__link-list');

@@ -19,9 +19,6 @@
     }
 }
 
-        
-
-
 
 @media (min-width: 768px) {
     .legacy-cover {
@@ -36,7 +33,7 @@
 }
 
 
-  @media (min-width: 992px) {
+@media (min-width: 992px) {
     .legacy-cover {
         margin-top: 50px;
         &__cover-image {
@@ -44,7 +41,6 @@
             height: 80%;
         }
     }
-
 }
 
 @media (min-width: 1200px) {

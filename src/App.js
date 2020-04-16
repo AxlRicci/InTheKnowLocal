@@ -13,7 +13,6 @@ import Footer from './components/navigation/Footer'
 import './components/navigation/navbar.scss' // scss for navbar
 import './components/styles/global.scss'
 import LegacyMainPage from './components/legacy/LegacyMainPage';
-import LegacyArticlePage from './components/legacy/LegacyArticlePage';
 
 
 

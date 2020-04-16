@@ -9,14 +9,17 @@ const Footer = () => {
     const siteContentArray = data ? Object.keys(data).map(key => data[key]) : null;
     const siteContent = siteContentArray ? siteContentArray[0] : null;
 
-    return (
-        <footer>
+    let renderFooter = null;
+
+    if(siteContent) {
+        renderFooter = (
+            <footer>
             <div className="holder">
                 <div className="footer">
                     <div className="footer__about">
                         <h3 className="footer__about-title">About</h3>
                         <p className="footer__about-desc">
-                            {siteContent ? siteContent.footerAbout : null}
+                            {siteContent.footerAbout}
                         </p>
                     </div>
                     {/* <div className="footer__categories">
@@ -61,27 +64,27 @@ const Footer = () => {
                     </div> */}
                     <div className="footer__copyright">
                         <p className="footer__copyright-text">
-                            {siteContent ? siteContent.footerCopyright : null}
+                            {siteContent.footerCopyright}
                         </p>
                     </div>
                     <div className="footer__social">
                         <div className="footer__social-item footer__social-item--facebook">
-                            <a href={siteContent ? siteContent.footerFacebook : null} rel="noopener noreferrer">
+                            <a href={siteContent.footerFacebook} rel="noopener noreferrer">
                                 <img className="footer__social-img footer__social-img--facebook" src="https://img.icons8.com/metro/52/FFFFFF/facebook-new--v2.png" alt='In The Know Local Facebook'/>                        
                             </a>
                         </div>
                         <div className="footer__social-item footer__social-item--linkedin">
-                            <a href={siteContent ? siteContent.footerLinkedin : null} rel="noopener noreferrer">
+                            <a href={siteContent.footerLinkedin} rel="noopener noreferrer">
                                 <img className="footer__social-img footer__social-img--linkedin" src="https://img.icons8.com/metro/52/FFFFFF/linkedin.png" alt='In The Know Local Linkedin'/>
                             </a>
                         </div>
                         <div className="footer__social-item footer__social-item--instagram">
-                            <a href={siteContent ? siteContent.footerInstagram : null} rel="noopener noreferrer">  
+                            <a href={siteContent.footerInstagram} rel="noopener noreferrer">  
                                 <img className="footer__social-img footer__social-img--instagram" src="https://img.icons8.com/metro/52/FFFFFF/instagram-new.png" alt='In The Know Local Instagram'/>
                             </a>
                         </div>
                         <div className="footer__social-item footer__social-item--twitter">
-                            <a href={siteContent ? siteContent.footerFacebook : null} target="_blank" rel="noopener noreferrer">
+                            <a href={siteContent.footerFacebook} target="_blank" rel="noopener noreferrer">
                                 <img className="footer__social-img footer__social-img--twitter" src="https://img.icons8.com/metro/52/FFFFFF/twitter.png" alt='In The Know Local Twitter'/>
                             </a>
                         </div>
@@ -89,6 +92,13 @@ const Footer = () => {
                 </div>
             </div>
         </footer>
+        )
+    }
+
+    return (
+        <>
+        {renderFooter ? renderFooter : null}
+        </>
         )
     }
     

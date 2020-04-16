@@ -4,11 +4,13 @@ import '../styles/global.scss'
 
 const CoverSection = (props) => {
     const { selectedFeature } = props;
-    
-    return (
-        <>
-        {selectedFeature
-        ? <div className="cover-section">
+
+    // Content to be rendered if/when data from props becomes available.
+    let renderContent = null;
+
+    if (selectedFeature) {
+        renderContent = (
+            <div className="cover-section">
                 <div className="cover-section__cover">
                     <img className="cover-section__cover-image" src={selectedFeature.cover} alt={`${selectedFeature.name}'s In The Know Local Cover for ${selectedFeature.city}`} />
                 </div>
@@ -21,7 +23,12 @@ const CoverSection = (props) => {
                     </p>
                 </div>
             </div>
-        : null}
+        )
+    }
+    
+    return (
+        <>
+        {renderContent ? renderContent : null}
         </>
     )
 }

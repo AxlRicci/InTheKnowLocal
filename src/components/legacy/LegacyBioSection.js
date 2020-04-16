@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 import './legacyBioSection.scss'
 
 const LegacyBioSection = (props) => {
-    
     const features = useSelector((state) => {
         let data = state.firestore.data.features;
         return data ? Object.keys(data).map(key => data[key]) : null
@@ -21,23 +20,33 @@ const LegacyBioSection = (props) => {
     }
     let selectedFeature = featureInfo[0];
 
+    // take bio string from feature and split it into array so that line breaks can be added.
     let bioArray = selectedFeature ? selectedFeature.intro.split('<br>') : null;
 
+    let renderContent = null;
+
+    if (selectedFeature && bioArray) {
+        renderContent = (
+            <article className="legacy-bio">
+                {<div className="legacy-bio__content">
+                    {bioArray.map((line,index) => {
+                        return (
+                            <div className="legacy-bio__line" key={`bioLine ${index}`}>
+                            <p className="legacy-bio__line--text">{line}</p>
+                            <br/>
+                            </div>
+                        )
+                    })}
+                </div>}
+            </article>
+        )
+    }
+
+
     return (
-        <article className="legacy-bio">
-            {selectedFeature
-            ? <div className="legacy-bio__content">
-                {bioArray.map((line,index) => {
-                    return (
-                        <div className="legacy-bio__line" key={`bioLine ${index}`}>
-                        <p className="legacy-bio__line--text">{line}</p>
-                        <br/>
-                        </div>
-                    )
-                })}
-            </div>
-            : null}
-        </article>
+        <>
+        {renderContent ? renderContent : null}
+        </>
     )
 }
 

@@ -5,47 +5,57 @@ import { Link } from 'react-router-dom'
 // use prop toRender to pass in number of issues that will be rendered for the component. default is 6
 
 const IssueHighlights = (props) => {
-    const features = useSelector((state) => state.firestore.data.features);
-    const unsortedFeatures = features ? Object.keys(features).map(key => features[key]) : null;
-    const featured = unsortedFeatures ? unsortedFeatures.filter(feature => feature.featured === true).sort((a,b) => a.featureRank - b.featureRank) : null;
-    const regular = unsortedFeatures ? unsortedFeatures.filter(feature => feature.featured === "").sort((a,b) => Date.parse(a.publishDate) - Date.parse(b.publishDate)) : null;
+
+    // Get feature data from redux
+    const reduxFeatures = useSelector((state) => {
+        let data = state.firestore.data.features;
+        return data ? Object.keys(data).map(key => data[key]) : null;
+    });
+
+    // sort features from redux and organize correctly into new array. i.e 'featured' features sorted by featureRank and then 'regular' features sorted by date.
+    const featured = reduxFeatures ? reduxFeatures.filter(feature => feature.featured === true).sort((a,b) => a.featureRank - b.featureRank) : null;
+    const regular = reduxFeatures ? reduxFeatures.filter(feature => feature.featured === "").sort((a,b) => Date.parse(a.publishDate) - Date.parse(b.publishDate)) : null;
     const sortedFeatures = regular && featured ? [...featured, ...regular ] : null;
 
-    const placeholders = useSelector((state) => state.firestore.data.placeholders);
-    const unsortedPlaceholders = placeholders ? Object.keys(placeholders).map(key => placeholders[key]) : null;
-    const sortedPlaceholders = unsortedPlaceholders ? unsortedPlaceholders.sort((a,b) => a.id - b.id) : null;
+    // Get placeholder data from redux
+    const reduxPlaceholders = useSelector((state) => {
+        let data = state.firestore.data.placeholders;
+        return data ? Object.keys(data).map(key => data[key]) : null;
+    });
 
-    
+    // Current size of the window.
     const size = useWindowSize();
 
-    // Hook
+    // Hook to monitor window size.
     function useWindowSize() {
-    const isClient = typeof window === 'object';
+        const isClient = typeof window === 'object';
 
-    function getSize() {
-        return {
-        width: isClient ? window.innerWidth : undefined,
-        height: isClient ? window.innerHeight : undefined
-        };
-    }
-
-    const [windowSize, setWindowSize] = useState(getSize);
-
-    useEffect(() => {
-        if (!isClient) {
-        return false;
-        }
-        
-        function handleResize() {
-        setWindowSize(getSize());
+        function getSize() {
+            return {
+            width: isClient ? window.innerWidth : undefined,
+            height: isClient ? window.innerHeight : undefined
+            };
         }
 
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }); // Empty array ensures that effect is only run on mount and unmount
-    return windowSize;
+        const [windowSize, setWindowSize] = useState(getSize);
+
+        useEffect(() => {
+            if (!isClient) {
+            return false;
+            }
+            
+            function handleResize() {
+            setWindowSize(getSize());
+            }
+
+            window.addEventListener('resize', handleResize);
+            return () => window.removeEventListener('resize', handleResize);
+        }); // Empty array ensures that effect is only run on mount and unmount
+
+        return windowSize;
     }
 
+    // Use current window size to load appropriately sized images.
     let regImg = null;
     let featImg = null;
 
@@ -63,45 +73,52 @@ const IssueHighlights = (props) => {
         featImg = '?w=564&h=736';
     }
 
-    return (
-        <div className="container">
-            <div className="issue-highlights">
-                    {sortedFeatures
-                    ?sortedFeatures.map((feature, index) => {
-                        if (index >=  (size.width > 768 && size.width <= 992 ? 18 : 20)){
+    // Content to be rendered if data from redux/firebase available.
+
+    let renderContent = null;
+
+    if (sortedFeatures && reduxPlaceholders) {
+        renderContent = (
+            <div className="container">
+                <div className="issue-highlights">
+                    {sortedFeatures.map((feature, index) => {
+                        if (index >=  (size.width > 768 && size.width <= 992 ? 18 : 20)){ // determine how many covers to render depending on size of screen.
                             return null
-                        } else if (feature.featured && feature.featureRank <= 4) {
+                        } else if (feature.featured && feature.featureRank <= 4) { // if cover is designated as "featured" render a different size and determine location in layout. Only render 4.
                             return (
                                 <div className={`issue-highlights__item--featured-${feature.featureRank}`} key={feature.slug}>
-                                    <Link to={ feature.slug === 'joette-fielding' ? `/city/oakville-joette-fielding` : `/features/${feature.slug}`}>
+                                    <Link to={ feature.slug === 'joette-fielding' ? `/city/oakville-joette-fielding` : `/features/${feature.slug}`}> {/*  if feature is a legacy article i.e joette-fielding redirect to old style url */}
                                         <img src={`${feature.cover}${featImg}`} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
                                     </Link>
                                 </div>
                             )
-                        } else if(index % 5 === 0) {
-                            let img = sortedPlaceholders ? sortedPlaceholders[Math.floor(Math.random()*Math.floor(sortedPlaceholders.length))].imgUrl : null;
+                        } else if(index % 5 === 0) { // place a random ad tile every ~5 covers.
+                            let img = reduxPlaceholders[Math.floor(Math.random()*Math.floor(reduxPlaceholders.length))].imgUrl;
                             return (
                                 <div className="issue-highlights__item--placeholder" key={index}>
                                         <img src={`${img}${regImg}`} className="issue-highlights__img" alt='...'/>
                                 </div>
                             )
-                        } else {
-                            return (
+                        } else { // place a regular cover into the layout.
+                            return ( 
                                 <div className="issue-highlights__item--regular" key={feature.slug}>
-                                    <Link to={feature.slug === 'joette-fielding' ? `/city/oakville-joette-fielding` : `/features/${feature.slug}`}>
+                                    <Link to={feature.slug === 'joette-fielding' ? `/city/oakville-joette-fielding` : `/features/${feature.slug}`}>{/*  if feature is a legacy article i.e joette fielding redirect to old style url */}
                                         <img src={`${feature.cover}${regImg}`} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
                                     </Link>
                                 </div>
                             )
                         }
-                            })
-                            : null
-                        }
+                    })}
+                </div>
             </div>
-        </div>
+        )
+    }
+
+    return (
+        <>
+            {renderContent ? renderContent : <p>Loading...</p>}
+        </>
     )
 }
 
-export default IssueHighlights
-
-//(size.width <= 500 ? 8 : size.width > 500 && size.width <= 992 ? 9 : size.width > 768 ? 10 : 10 )
+export default IssueHighlights;

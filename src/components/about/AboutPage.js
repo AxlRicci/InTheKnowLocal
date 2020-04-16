@@ -8,30 +8,43 @@ const AboutPage = (props) => {
 
     useEffect(() => {document.title = 'About | In The Know Local'})
 
-    const data = useSelector((state) => {
+    const reduxData = useSelector((state) => {
         let data = state.firestore.data.siteContent;
         return data ? Object.keys(data).map(key => data[key]) : null
     });
 
-    const siteContent = data ? data[0] : null;
+    const siteContent = reduxData ? reduxData[0] : null;
+
+    
+    // Content to be rendered if data from redux/firebase available.
+    
+    let renderContent = null;
+    
+    if (siteContent) {
+        renderContent = (
+            <main className="container">
+                <div className="about">
+                    <div className="about__title">
+                        <h1 className="about__title about__title--main-title">{siteContent.aboutTitle}</h1>
+                        <h2 className="about__title about__title--subtitle">{siteContent.aboutSubtitle}</h2>
+                    </div>
+                    <div className="about__media">
+                        <img src={siteContent.aboutImage} alt={siteContent.aboutImageAlt} className="about__media about__media--image"/>
+                    </div>
+                    <article className="about__description">
+                        <p className="about__description about__content--text">
+                            {siteContent.aboutMain}
+                        </p>
+                    </article>
+                </div>
+            </main>
+        )
+    }
 
     return (
-        <main className="container">
-            <div className="about">
-                <div className="about__title">
-                    <h1 className="about__title about__title--main-title">{siteContent ? siteContent.aboutTitle : null}</h1>
-                    <h2 className="about__title about__title--subtitle">{siteContent ? siteContent.aboutSubtitle : null}</h2>
-                </div>
-                <div className="about__media">
-                    <img src={siteContent ? siteContent.aboutImage : null} alt={siteContent ? siteContent.aboutImageAlt : null} className="about__media about__media--image"/>
-                </div>
-                <article className="about__description">
-                    <p className="about__description about__content--text">
-                        {siteContent ? siteContent.aboutMain : null}
-                    </p>
-                </article>
-            </div>
-        </main>
+        <>
+        {renderContent ? renderContent : <p>Loading...</p>}
+        </>
         )
     }
     

@@ -14,36 +14,39 @@ const IssueList = (props) => {
 
     useEffect(()=> { document.title = 'Issues | In The Know Local'})
 
+    // current window size
     const size = useWindowSize();
 
-    // Hook
+    // Hook to determine current window size.
     function useWindowSize() {
-    const isClient = typeof window === 'object';
+        const isClient = typeof window === 'object';
 
-    function getSize() {
-        return {
-        width: isClient ? window.innerWidth : undefined,
-        height: isClient ? window.innerHeight : undefined
-        };
-    }
-
-    const [windowSize, setWindowSize] = useState(getSize);
-
-    useEffect(() => {
-        if (!isClient) {
-        return false;
-        }
-        
-        function handleResize() {
-        setWindowSize(getSize());
+        function getSize() {
+            return {
+            width: isClient ? window.innerWidth : undefined,
+            height: isClient ? window.innerHeight : undefined
+            };
         }
 
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }); // Empty array ensures that effect is only run on mount and unmount
-    return windowSize;
+        const [windowSize, setWindowSize] = useState(getSize);
+
+        useEffect(() => {
+            if (!isClient) {
+            return false;
+            }
+            
+            function handleResize() {
+            setWindowSize(getSize());
+            }
+
+            window.addEventListener('resize', handleResize);
+            return () => window.removeEventListener('resize', handleResize);
+        }); // Empty array ensures that effect is only run on mount and unmount
+        return windowSize;
     }
 
+
+    // set proper image size to load depending on window size.
     let coverSize = null;
 
     if (size.width < 768 ) { // mobile
@@ -56,27 +59,31 @@ const IssueList = (props) => {
         coverSize = '?w=277&h=363';
     }
 
+    let renderContent = null;
+
+    if (features) {
+        renderContent = (
+            <main className="container">
+                <div className="issue__grid">
+                    {features.map((feature) => {
+                        if (feature.cover){
+                            return (
+                                <div className="issue__grid-item" key={feature.slug}>
+                                    <Link to={feature.slug === 'joette-fielding' ? `/city/oakville-joette-fielding` : `/features/${feature.slug}`}> {/* if feature is legacy i.e joette fielding then redirect to old url style  */}
+                                        <img src={`${feature.cover}${coverSize}`}className="issue__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
+                                    </Link>
+                                </div>
+                            )
+                        }})}
+                </div>
+            </main>
+        )
+    }
+
     return (
-        <main className="container">
-            <div className="issue__grid">
-                {features
-                ?features.map((feature) => {
-                    if (feature.cover){
-                        return (
-                            <div className="issue__grid-item" key={feature.slug}>
-                                <Link to={feature.slug === 'joette-fielding' ? `/city/oakville-joette-fielding` : `/features/${feature.slug}`}>
-                                    <img src={`${feature.cover}${coverSize}`}className="issue__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
-                                </Link>
-                            </div>
-                        )
-                    } else {
-                        return null
-                    }
-                        })
-                        : null
-                    }
-            </div>
-        </main>
+        <>
+        {renderContent ? renderContent : <p>Loading...</p>}
+        </>
         )
     }
     
