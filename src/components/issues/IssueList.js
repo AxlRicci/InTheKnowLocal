@@ -82,7 +82,7 @@ const IssueList = (props) => {
 
     return (
         <>
-        {renderContent ? renderContent : <p>Loading...</p>}
+        {renderContent ? renderContent : null}
         </>
         )
     }
