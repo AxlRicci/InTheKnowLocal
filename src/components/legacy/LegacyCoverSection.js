@@ -1,5 +1,4 @@
 import React from 'react'
-import ContactSection from '../issuePage/ContactSection'
 
 import './legacyCoverSection.scss'
 

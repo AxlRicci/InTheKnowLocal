@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFirestoreConnect } from 'react-redux-firebase';
 import Navbar from './components/navigation/Navbar';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import ScrollToTop from './components/function/ScrollToTop'
 import Home from './components/home/Home';
 import IssueList from './components/issues/IssueList';
