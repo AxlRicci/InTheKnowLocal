@@ -82,7 +82,7 @@ const IssueHighlights = (props) => {
             <div className="container">
                 <div className="issue-highlights">
                     {sortedFeatures.map((feature, index) => {
-                        if (index >=  (size.width > 768 && size.width <= 992 ? 18 : 20)){ // determine how many covers to render depending on size of screen.
+                        if (index >=  (size.width >= 768 && size.width <= 992 ? 18 : 20)){ // determine how many covers to render depending on size of screen.
                             return null
                         } else if (feature.featured && feature.featureRank <= 4) { // if cover is designated as "featured" render a different size and determine location in layout. Only render 4.
                             return (

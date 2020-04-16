@@ -32,9 +32,7 @@ const AboutPage = (props) => {
                         <img src={siteContent.aboutImage} alt={siteContent.aboutImageAlt} className="about__media about__media--image"/>
                     </div>
                     <article className="about__description">
-                        <p className="about__description about__content--text">
-                            {siteContent.aboutMain}
-                        </p>
+                            {siteContent.aboutMain.split("<br>").map(line => <><p className="about__description about__content--text">{line}</p><br/></>)}            
                     </article>
                 </div>
             </main>
