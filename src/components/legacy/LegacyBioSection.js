@@ -20,7 +20,7 @@ const LegacyBioSection = (props) => {
     let selectedFeature = featureInfo[0];
 
     // take bio string from feature and split it into array so that line breaks can be added.
-    let bioArray = selectedFeature ? selectedFeature.intro.split('<br>') : null;
+    let bioArray = selectedFeature ? selectedFeature.profDesc.split('<br>') : null;
 
     let renderContent = null;
 

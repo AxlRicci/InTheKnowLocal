@@ -42,7 +42,7 @@ const InterviewSection = (props) => {
                     return (
                         <div className="article__q-a" key={question.key}>
                             <h3 className={`article__question article__question--question${contentIndex}`}>{question.question}</h3>
-                            {question.answer.split('<br>').map((line, index) => <p key={index} className={`article__answer article__answer--answer${contentIndex}`}>{line}</p>)} 
+                            {question.answer.split('<br>').map((line, index) => <p key={index}>{line}</p>)} 
                         </div>
                     )
                 })}
@@ -58,3 +58,5 @@ const InterviewSection = (props) => {
 }
 
 export default InterviewSection
+
+// className = {`article__answer article__answer--answer${contentIndex}`}

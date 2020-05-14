@@ -4,7 +4,7 @@ import './contactSection.scss'
 const ContactSection = (props) => {
     const { selectedFeature } = props;
 
-    let contactTypes = ['twitter', 'instagram', 'linkedin', 'facebook', 'youtube', 'website'];
+    let contactTypes = ['email', 'twitter', 'instagram', 'linkedin', 'facebook', 'youtube', 'website'];
     let contactInfo = [];
     
     let renderContent = null;
@@ -12,7 +12,7 @@ const ContactSection = (props) => {
     if (selectedFeature) {
         // query feature for contact types and add them to contactInfo variable.
         contactTypes.forEach(type => {
-            if (selectedFeature.hasOwnProperty(type)) {
+            if (selectedFeature.hasOwnProperty(type) && selectedFeature[type]) {
                 let contactObj = {
                     'type': type,
                     'address': selectedFeature[type]
@@ -28,11 +28,19 @@ const ContactSection = (props) => {
                 </h3>
                 <ul className="article__contact-section-list">
                     {contactInfo.map((value, index) => {
+                      if (value.type === 'email') {
+                        return (
+                        <li className={`article__contact-section-list-item article__contact-list-item--${value.type}`} key={value.address}>
+                          <a href={`mailto:${value.address}`} className={`article__contact-section-list-link issue article__contact-section-list-link--item${index}`} rel="noopener noreferrer" target="_blank">{value.type}</a>
+                        </li>
+                        )
+                      } else {
                         return (
                             <li className={`article__contact-section-list-item article__contact-list-item--${value.type}`} key={value.address}>
                                 <a href={value.address} className={`article__contact-section-list-link issue article__contact-section-list-link--item${index}`} rel="noopener noreferrer" target="_blank">{value.type}</a>
                             </li>
                         )
+                      }
                     })}
                 </ul>
             </div> 
@@ -47,4 +55,3 @@ const ContactSection = (props) => {
 }
 
 export default ContactSection
-

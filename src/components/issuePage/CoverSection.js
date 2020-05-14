@@ -19,7 +19,7 @@ const CoverSection = (props) => {
                         {selectedFeature.name}
                     </h2>
                     <p className="cover-section__author-intro cover-section__author-intro--intro">
-                        {selectedFeature.intro}
+                        {selectedFeature.profDesc}
                     </p>
                 </div>
             </div>
