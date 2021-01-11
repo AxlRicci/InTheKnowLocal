@@ -1,27 +1,34 @@
-import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import ContactForm from './ContactForm'
+import React, { useEffect, useState } from 'react'
+import { firestore } from '../../firebase/firebase.utils'
+import ContactForm from '../../components/contact-form/contact-form.component'
 
-import './ContactPage.scss'
+import './contact-page.styles.scss'
 
 const ContactPage = () => {
+    const [content, setContent] = useState({})
+    const [isLoading, setLoading] = useState(true)
     
     useEffect(() => {document.title = 'Contact | In The Know Local'});
 
-    const reduxData = useSelector((state) => {
-        let data = state.firestore.data.siteContent;
-        return data ? Object.keys(data).map(key => data[key]) : null;
-    });
+    useEffect(() => {
+        const getSiteContent = async () => {
+            const ref = firestore.doc('siteContent/site-content');
+            ref.get()
+                .then(doc => {
+                    setContent(doc.data())
+                })
+                .catch(err => {
+                    console.error(err)
+                })
+            setLoading(false)
+        }
+        getSiteContent()
+    })
 
-    const siteContent = reduxData ? reduxData[0] : null;
+    if (isLoading) return <p>Spinner...</p>
 
-    // Content to be rendered if data from redux/firebase available.
-
-    let renderContent = null;
-
-    if (siteContent) {
-        renderContent = (
-            <div className="container">
+    return (
+        <div className="container">
                 <div className="contact">
                     <div className="contact__content">
                         <div className="contact__intro">
@@ -40,18 +47,10 @@ const ContactPage = () => {
                         </div>
                     </div>
                     <div className="contact__media">
-                        <img src={siteContent.contactImage} alt={siteContent.contactImageAlt} className="contact__media contact__media--image"/>
+                        <img src={content.contactImage} alt={content.contactImageAlt} className="contact__media contact__media--image"/>
                     </div>
                 </div>
             </div>
-        )
-    }
-
-
-    return (
-        <>
-        {renderContent ? renderContent : null}
-        </>
         )
     }
     

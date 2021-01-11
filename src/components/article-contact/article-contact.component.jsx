@@ -1,7 +1,7 @@
 import React from 'react';
-import './contactSection.scss'
+import './article-contact.styles.scss'
 
-const ContactSection = (props) => {
+const ArticleContact = (props) => {
     const { selectedFeature } = props;
 
     let contactTypes = ['email', 'twitter', 'instagram', 'linkedin', 'facebook', 'youtube', 'website'];
@@ -54,4 +54,4 @@ const ContactSection = (props) => {
     )
 }
 
-export default ContactSection
+export default ArticleContact

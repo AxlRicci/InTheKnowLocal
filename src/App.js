@@ -1,24 +1,22 @@
 import React from 'react';
-import { useFirestoreConnect } from 'react-redux-firebase';
-import Navbar from './components/navigation/Navbar';
 import { BrowserRouter, Route } from 'react-router-dom';
 import ScrollToTop from './components/function/ScrollToTop'
-import Home from './components/home/Home';
-import IssueList from './components/issues/IssueList';
-import IssuePage from './components/issues/IssuePage';
-import ContactPage from './components/contact/ContactPage';
-import AboutPage from './components/about/AboutPage';
-import Footer from './components/navigation/Footer'
 
-import './components/navigation/navbar.scss' // scss for navbar
+
+import Navbar from './components/navbar/navbar.component';
+import Home from './pages/home/home';
+import IssueList from './components/issue-list/issue-list.component';
+import IssuePage from './pages/issue/issue-page.component';
+import ContactPage from './pages/contact/contact-page.component';
+// import AboutPage from './components/about/AboutPage';
+// import LegacyMainPage from './components/legacy/LegacyMainPage';
+import Footer from './components/footer/footer.component'
+
 import './components/styles/global.scss'
-import LegacyMainPage from './components/legacy/LegacyMainPage';
 
 
 
 const App = () => {
-
-  useFirestoreConnect(['features', 'questions', 'siteContent', 'placeholders', 'legacyRoutes']);
 
   return (
     <BrowserRouter>
@@ -29,8 +27,8 @@ const App = () => {
         <Route path='/features/:slug' component={IssuePage} />
         <Route path='/issues' component={IssueList} />
         <Route path='/contact' component={ContactPage} />
-        <Route path='/about' component={AboutPage} />
-        <Route exact path='/city/:slug' component={LegacyMainPage} />
+        {/* <Route path='/about' component={AboutPage} />
+        <Route exact path='/city/:slug' component={LegacyMainPage} /> */}
         <Footer />
       </div>
     </BrowserRouter>

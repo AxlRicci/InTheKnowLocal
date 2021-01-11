@@ -1,0 +1,35 @@
+.article__content {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+  row-gap: 25px;
+}
+
+.article__q-a {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "question"
+    "answer";
+  row-gap: 10px;
+
+  & p {
+    white-space: pre-line;
+  }
+}
+
+.article__question {
+  grid-area: question;
+}
+
+.article__answer {
+  grid-area: answer;
+}
+
+@media (min-width: 992px) {
+  .article__content {
+    margin-top: 62px;
+  }
+}

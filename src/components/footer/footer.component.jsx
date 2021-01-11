@@ -1,25 +1,38 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import React, {useEffect, useState} from 'react'
+import { firestore } from '../../firebase/firebase.utils';
 
-import './Footer.scss'
+import './footer.styles.scss'
 
 const Footer = () => {
-    const data = useSelector((state) => state.firestore.data.siteContent);
-    const siteContentArray = data ? Object.keys(data).map(key => data[key]) : null;
-    const siteContent = siteContentArray ? siteContentArray[0] : null;
+    const [data, setData] = useState({});
+    const [isLoading, setLoading] = useState(true);
 
-    let renderFooter = null;
+    useEffect(() => {
+        const getData = async () => {
+            const ref = firestore.doc('siteContent/site-content');
+            ref.get()
+                .then(doc => {
+                    setData(doc.data())
+                    setLoading(false)
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+        }
+        getData()
+    })
 
-    if(siteContent) {
-        renderFooter = (
-            <footer>
+    if (isLoading) return <p>Spinner...</p>
+
+    return (
+        <>
+        <footer>
             <div className="holder">
                 <div className="footer">
                     <div className="footer__about">
                         <h3 className="footer__about-title">About</h3>
                         <p className="footer__about-desc">
-                            {siteContent.footerAbout}
+                            {data.footerAbout}
                         </p>
                     </div>
                     {/* <div className="footer__categories">
@@ -64,27 +77,27 @@ const Footer = () => {
                     </div> */}
                     <div className="footer__copyright">
                         <p className="footer__copyright-text">
-                            {siteContent.footerCopyright}
+                            {data.footerCopyright}
                         </p>
                     </div>
                     <div className="footer__social">
                         <div className="footer__social-item footer__social-item--facebook">
-                            <a href={siteContent.footerFacebook} rel="noopener noreferrer">
+                            <a href={data.footerFacebook} rel="noopener noreferrer">
                                 <img className="footer__social-img footer__social-img--facebook" src="https://img.icons8.com/metro/52/FFFFFF/facebook-new--v2.png" alt='In The Know Local Facebook'/>                        
                             </a>
                         </div>
                         <div className="footer__social-item footer__social-item--linkedin">
-                            <a href={siteContent.footerLinkedin} rel="noopener noreferrer">
+                            <a href={data.footerLinkedin} rel="noopener noreferrer">
                                 <img className="footer__social-img footer__social-img--linkedin" src="https://img.icons8.com/metro/52/FFFFFF/linkedin.png" alt='In The Know Local Linkedin'/>
                             </a>
                         </div>
                         <div className="footer__social-item footer__social-item--instagram">
-                            <a href={siteContent.footerInstagram} rel="noopener noreferrer">  
+                            <a href={data.footerInstagram} rel="noopener noreferrer">  
                                 <img className="footer__social-img footer__social-img--instagram" src="https://img.icons8.com/metro/52/FFFFFF/instagram-new.png" alt='In The Know Local Instagram'/>
                             </a>
                         </div>
                         <div className="footer__social-item footer__social-item--twitter">
-                            <a href={siteContent.footerFacebook} target="_blank" rel="noopener noreferrer">
+                            <a href={data.footerFacebook} target="_blank" rel="noopener noreferrer">
                                 <img className="footer__social-img footer__social-img--twitter" src="https://img.icons8.com/metro/52/FFFFFF/twitter.png" alt='In The Know Local Twitter'/>
                             </a>
                         </div>
@@ -92,12 +105,6 @@ const Footer = () => {
                 </div>
             </div>
         </footer>
-        )
-    }
-
-    return (
-        <>
-        {renderFooter ? renderFooter : null}
         </>
         )
     }

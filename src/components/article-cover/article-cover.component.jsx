@@ -1,8 +1,8 @@
 import React from 'react'
-import './coverSection.scss'
+import './article-cover.styles.scss'
 import '../styles/global.scss'
 
-const CoverSection = (props) => {
+const ArticleCover = (props) => {
     const { selectedFeature } = props;
 
     // Content to be rendered if/when data from props becomes available.
@@ -33,4 +33,4 @@ const CoverSection = (props) => {
     )
 }
 
-export default CoverSection
+export default ArticleCover

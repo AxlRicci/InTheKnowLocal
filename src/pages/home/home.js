@@ -1,10 +1,6 @@
 import React, { useEffect } from 'react';
-import HeaderGallery from './HeaderGallery'
-import IssueHighlights from './IssueHighlights'
-
-
-import './HeaderGallery.scss'
-import './IssueHighlights.scss'
+import HeaderGallery from '../../components/header-gallery/header-gallery.component';
+import MosaicIssueGallery from '../../components/mosaic-issue-gallery/mosaic-issue-gallery.component';
 
 
 const Home = () => {
@@ -12,7 +8,7 @@ const Home = () => {
         return (
             <main>
                 <HeaderGallery/>
-                <IssueHighlights />
+                <MosaicIssueGallery />
             </main>
         )
     }

@@ -1,6 +1,8 @@
 import React,  { useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
+import './navbar.styles.scss'
+
 const Navbar = () => {
 
     // Effect to animate mobile nav. 
