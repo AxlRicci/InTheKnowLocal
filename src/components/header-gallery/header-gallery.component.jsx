@@ -1,32 +1,25 @@
 import React, {useEffect, useState} from 'react'
-import {firestore } from '../../firebase/firebase.utils';
+import { getSiteContent } from '../../firebase/firebase.utils';
 
 import './header-gallery.styles.scss';
 
 
 const HeaderGallery = () => {
     const [isLoading, setLoading] = useState(true);
-    const [data, setData] = useState({})
+    const [content, setContent] = useState({})
     
     useEffect(() => {
         const getHeaderInfo = async () => {
-            const ref = firestore.doc(`siteContent/site-content`);
-            ref.get()
-                .then(doc => {
-                    setData(doc.data());
-                    setLoading(false);
-                })
-                .catch(err => {
-                    console.error(err)
-                })
+            const fetchedContent = await getSiteContent()
+            setContent(fetchedContent)
+            setLoading(false)
         }
         getHeaderInfo();
     },[])
 
+    if (isLoading) return <p>Spinner...</p>
 
-    if (isLoading) return <p>Loading content...</p>
-
-    const {headerGalleryMain, headerGalleryMainAlt, headerGallerySide1, headerGallerySide1Alt, headerGallerySide2, headerGallerySide2Alt} = data;
+    const {headerGalleryMain, headerGalleryMainAlt, headerGallerySide1, headerGallerySide1Alt, headerGallerySide2, headerGallerySide2Alt} = content;
     return (
         <div className="container">
             <div className="header-gallery">

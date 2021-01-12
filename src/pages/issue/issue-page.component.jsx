@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { firestore } from '../../firebase/firebase.utils';
+import { getFeature } from '../../firebase/firebase.utils';
 import ArticleSuggestedReading from '../../components/article-suggested-reading/article-suggested-reading.component'
 import ArticleCover from '../../components/article-cover/article-cover.component'
 import ArticleInterview from '../../components/article-interview/article-interview.component'
@@ -14,14 +14,10 @@ const IssuePage = ({match: {params: {slug}}}) => {
 
     useEffect(()=> {
         const getIssue = async () => {
-            const ref = firestore.collection('features');
-            const snapshot = await ref.where('slug', '==', slug).get();
-            snapshot.forEach(doc => {
-                const data = doc.data();
-                setIssue(data)
-                setTitle(`${data.name} | In The Know Local`)
-                setLoading(false)
-            })
+            const fetchedFeature = await getFeature(slug)
+            setIssue(fetchedFeature)
+            setTitle(`${fetchedFeature.name} | In The Know Local`)
+            setLoading(false)
         }
         getIssue();
     },[slug])

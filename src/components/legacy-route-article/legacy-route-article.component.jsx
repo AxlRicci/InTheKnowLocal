@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { firestore } from '../../firebase/firebase.utils'
+import { getLegacyRoutes } from '../../firebase/firebase.utils'
 import './legacy-route-article.styles.scss'
 
 const LegacyRouteArticle = ({slug}) => {
@@ -8,15 +8,9 @@ const LegacyRouteArticle = ({slug}) => {
 
     useEffect(() => {
         const getArticle = async () => {
-            const ref = firestore.doc(`legacyRoutes/${slug}`)
-            ref.get()
-                .then(doc => {
-                    setArticle(doc.data())
-                    setLoading(false)
-                })
-                .catch(err => {
-                    console.error(err)
-                })
+            const fetchedRoute = await getLegacyRoutes(slug)
+            setArticle(fetchedRoute)
+            setLoading(false)
         }
         getArticle()
     })

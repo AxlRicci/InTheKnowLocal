@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { firestore } from '../../firebase/firebase.utils'
+import { getSiteContent } from '../../firebase/firebase.utils'
 
 import './about-page.styles.scss'
 
 
-const AboutPage = (props) => {
+const AboutPage = () => {
     const [pageData, setPageData] = useState({})
     const [isLoading, setLoading] = useState(true)
 
@@ -12,18 +12,12 @@ const AboutPage = (props) => {
 
     useEffect(()=> {
         const getPageData = async () => {
-            const ref = firestore.doc('siteContent/site-content')
-            ref.get()
-                .then(doc => {
-                    setPageData(doc.data())
-                })
-                .catch(err => {
-                    console.log(err)
-                })
+            const fetchedContent = await getSiteContent()
+            setPageData(fetchedContent)
             setLoading(false)
         }
         getPageData();
-    })
+    },[])
 
     if (isLoading) return <p>Spinner...</p>
 

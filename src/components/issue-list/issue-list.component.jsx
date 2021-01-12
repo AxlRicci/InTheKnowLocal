@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { firestore } from '../../firebase/firebase.utils'
+import { getRealFeatures } from '../../firebase/firebase.utils'
 import { Link } from 'react-router-dom'
 
 import './issue-list.styles.scss'
@@ -10,11 +10,8 @@ const IssueList = () => {
 
     useEffect(() => {
         const getIssues = async () => {
-            const ref = firestore.collection('features')
-            const snapshot = await ref.where('1', '!=', '').get()
-            snapshot.forEach(doc => {
-                setIssues(issues => [...issues, doc.data()])
-            })
+            const fetchedFeatures = await getRealFeatures();
+            setIssues(fetchedFeatures)
             setLoading(false)
         }
         getIssues()

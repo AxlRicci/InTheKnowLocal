@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { firestore } from '../../firebase/firebase.utils';
+import { getAllFeatures, getPlaceholders } from '../../firebase/firebase.utils';
 import { Link } from 'react-router-dom'
 
 import './mosaic-issue-gallery.styles.scss';
@@ -10,28 +10,13 @@ const MosaicIssueGallery = () => {
     const [isLoading, setLoading] = useState(true)
 
     useEffect(()=> {
-        const getIssues = async () => {
-            const ref = firestore.collection('features');
-            const snapshot = await ref.orderBy('publishDate').get()
-            snapshot.forEach(doc => {
-                setIssues(issues => [...issues, doc.data()])
-            })
-        }
-
-        const getPlaceholders = async () => {
-            const ref = firestore.collection('placeholders');
-            const snapshot = await ref.get()
-            snapshot.forEach(doc => {
-                setPlaceholders(placeholders => [...placeholders, doc.data()])
-            })
-        }
-
         const getData = async () => {
-            await getIssues()
-            await getPlaceholders()
+            const fetchedFeatures = await getAllFeatures();
+            const fetchedPlaceholders = await getPlaceholders();
+            setIssues(fetchedFeatures)
+            setPlaceholders(fetchedPlaceholders)
             setLoading(false)
         }
-
         getData()
     },[])
 
@@ -91,7 +76,7 @@ const MosaicIssueGallery = () => {
         <div className="container">
             <div className="issue-highlights">
                 {issues.map((feature, index) => {
-                    if (index >=  (size.width >= 768 && size.width <= 992 ? 18 : 20)){ // determine how many covers to render depending on size of screen.
+                    if (index >=  (size.width >= 768 && size.width <= 992 ? 18 : 19)){ // determine how many covers to render depending on size of screen.
                         return null
                     } else if (feature.featured && feature.featureRank <= 4) { // if cover is designated as "featured" render a different size and determine location in layout. Only render 4.
                         return (

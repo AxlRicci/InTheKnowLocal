@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { firestore } from '../../firebase/firebase.utils'
+import { getSiteContent } from '../../firebase/firebase.utils'
 import ContactForm from '../../components/contact-form/contact-form.component'
 
 import './contact-page.styles.scss'
@@ -11,19 +11,13 @@ const ContactPage = () => {
     useEffect(() => {document.title = 'Contact | In The Know Local'});
 
     useEffect(() => {
-        const getSiteContent = async () => {
-            const ref = firestore.doc('siteContent/site-content');
-            ref.get()
-                .then(doc => {
-                    setContent(doc.data())
-                })
-                .catch(err => {
-                    console.error(err)
-                })
+        const getContent = async () => {
+            const fetchedContent = await getSiteContent();
+            setContent(fetchedContent)
             setLoading(false)
         }
-        getSiteContent()
-    })
+        getContent()
+    },[])
 
     if (isLoading) return <p>Spinner...</p>
 
@@ -51,7 +45,7 @@ const ContactPage = () => {
                     </div>
                 </div>
             </div>
-        )
-    }
+    )
+}
     
     export default ContactPage

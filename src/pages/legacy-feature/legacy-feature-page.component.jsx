@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { firestore } from '../../firebase/firebase.utils'
+import { getFeature } from '../../firebase/firebase.utils'
 import ArticleSuggestedReading from '../../components/article-suggested-reading/article-suggested-reading.component'
 import LegacyCover from '../../components/legacy-cover/legacy-cover.component'
 import ArticleContact from '../../components/article-contact/article-contact.component'
@@ -18,15 +18,9 @@ const LegacyFeaturePage = ({match: {params: {slug}}}) => {
     
     useEffect(()=> {
         const getFeatureData = async () => {
-            const ref = firestore.doc(`features/joette-fielding`);
-            ref.get()
-                .then(doc => {
-                    setFeatureData(doc.data())
-                    setLoading(false)
-                })
-                .catch(err => {
-                    console.error(err)
-                })
+            const fetchedFeature = await getFeature('joette-fielding')
+            setFeatureData(fetchedFeature)
+            setLoading(false)
         }
         getFeatureData()
     },[slug])

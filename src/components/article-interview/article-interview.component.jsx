@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { firestore } from '../../firebase/firebase.utils'
+import { getQuestionSet } from '../../firebase/firebase.utils'
 
 import './article-interview.styles.scss'
 
@@ -10,17 +10,15 @@ const ArticleInterview = ({ selectedFeature, articleType }) => {
     useEffect(() => {
         const getQuestions = async () => {
             const selectedFeatureKeys = Object.keys(selectedFeature);
-            const ref = firestore.collection('questions');
-            const snapshot = await ref.where('type', '==', articleType).get();
-            const unsortedQuestions = []
-            snapshot.forEach(doc => {
-                const question = doc.data();
+            const questions = await getQuestionSet(articleType)
+            const sortedQuestions = questions.map(question => {
                 const questionId = question.qid.replace(/[a-z]/,'')
                 if (selectedFeatureKeys.includes(questionId)) {
-                    unsortedQuestions.push({id: questionId, question: question.desc, answer: selectedFeature[questionId]}) 
+                    return {id: questionId, question: question.desc, answer: selectedFeature[questionId]}
                 }
-            })
-            setQuestions(unsortedQuestions.sort((a,b) => a.id - b.id))
+                return null
+            }).sort((a,b) => a.id - b.id)
+            setQuestions(sortedQuestions)
             setLoading(false)
         }
         getQuestions()

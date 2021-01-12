@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { firestore } from '../../firebase/firebase.utils'
+import { getLegacyRoutes } from '../../firebase/firebase.utils'
 import { Link } from 'react-router-dom'
 
 import './legacy-routes.styles.scss'
@@ -10,11 +10,8 @@ const LegacyRoutes = () => {
 
     useEffect(() => {
         const getRoutes = async () => {
-            const ref = firestore.collection('legacyRoutes')
-            const snapshot = await ref.get();
-            snapshot.forEach(doc => {
-                setRoutes(routes => [...routes, doc.data()])
-            })
+            const fetchedRoutes = await getLegacyRoutes()
+            setRoutes(fetchedRoutes)
             setLoading(false)
         }
         getRoutes()

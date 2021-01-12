@@ -1,26 +1,20 @@
 import React, {useEffect, useState} from 'react'
-import { firestore } from '../../firebase/firebase.utils';
+import { getSiteContent } from '../../firebase/firebase.utils';
 
 import './footer.styles.scss'
 
 const Footer = () => {
-    const [data, setData] = useState({});
+    const [content, setContent] = useState({});
     const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
         const getData = async () => {
-            const ref = firestore.doc('siteContent/site-content');
-            ref.get()
-                .then(doc => {
-                    setData(doc.data())
-                    setLoading(false)
-                })
-                .catch(err => {
-                    console.error(err);
-                })
+            const fetchedContent = await getSiteContent()
+            setContent(fetchedContent)
+            setLoading(false)
         }
         getData()
-    })
+    },[])
 
     if (isLoading) return <p>Spinner...</p>
 
@@ -32,7 +26,7 @@ const Footer = () => {
                     <div className="footer__about">
                         <h3 className="footer__about-title">About</h3>
                         <p className="footer__about-desc">
-                            {data.footerAbout}
+                            {content.footerAbout}
                         </p>
                     </div>
                     {/* <div className="footer__categories">
@@ -77,27 +71,27 @@ const Footer = () => {
                     </div> */}
                     <div className="footer__copyright">
                         <p className="footer__copyright-text">
-                            {data.footerCopyright}
+                            {content.footerCopyright}
                         </p>
                     </div>
                     <div className="footer__social">
                         <div className="footer__social-item footer__social-item--facebook">
-                            <a href={data.footerFacebook} rel="noopener noreferrer">
+                            <a href={content.footerFacebook} rel="noopener noreferrer">
                                 <img className="footer__social-img footer__social-img--facebook" src="https://img.icons8.com/metro/52/FFFFFF/facebook-new--v2.png" alt='In The Know Local Facebook'/>                        
                             </a>
                         </div>
                         <div className="footer__social-item footer__social-item--linkedin">
-                            <a href={data.footerLinkedin} rel="noopener noreferrer">
+                            <a href={content.footerLinkedin} rel="noopener noreferrer">
                                 <img className="footer__social-img footer__social-img--linkedin" src="https://img.icons8.com/metro/52/FFFFFF/linkedin.png" alt='In The Know Local Linkedin'/>
                             </a>
                         </div>
                         <div className="footer__social-item footer__social-item--instagram">
-                            <a href={data.footerInstagram} rel="noopener noreferrer">  
+                            <a href={content.footerInstagram} rel="noopener noreferrer">  
                                 <img className="footer__social-img footer__social-img--instagram" src="https://img.icons8.com/metro/52/FFFFFF/instagram-new.png" alt='In The Know Local Instagram'/>
                             </a>
                         </div>
                         <div className="footer__social-item footer__social-item--twitter">
-                            <a href={data.footerFacebook} target="_blank" rel="noopener noreferrer">
+                            <a href={content.footerFacebook} target="_blank" rel="noopener noreferrer">
                                 <img className="footer__social-img footer__social-img--twitter" src="https://img.icons8.com/metro/52/FFFFFF/twitter.png" alt='In The Know Local Twitter'/>
                             </a>
                         </div>

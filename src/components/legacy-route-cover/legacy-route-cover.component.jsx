@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { firestore } from '../../firebase/firebase.utils'
+import { getLegacyRoutes } from '../../firebase/firebase.utils'
 import './legacy-route-cover.styles.scss'
 
 const LegacyRouteCover = ({ slug, selectedFeature }) => {
@@ -8,18 +8,12 @@ const LegacyRouteCover = ({ slug, selectedFeature }) => {
 
     useEffect(() => {
         const getRoute = async () => {
-            const ref = firestore.doc(`legacyRoutes/${slug}`);
-            ref.get()
-                .then(doc => {
-                    setRoute(doc.data())
-                    setLoading(false)
-                })
-                .catch(err => {
-                    console.error(err)
-                })
+            const fetchedRoute = await getLegacyRoutes(slug);
+            setRoute(fetchedRoute)
+            setLoading(false)
         }
         getRoute();
-    })
+    },[slug])
 
     if (isLoading) return <p>Spinner...</p>
 
