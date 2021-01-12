@@ -1,21 +1,31 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import { firestore } from '../../firebase/firebase.utils'
 import { Link } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import './legacyRoutesSection.scss'
 
-const LegacyRoutesSection = (props) => {
-    const routes = useSelector((state) => {
-        let data = state.firestore.data.legacyRoutes;
-        return data ? Object.keys(data).map(key => data[key]) : null
-    });
+import './legacy-routes.styles.scss'
 
-    let renderContent = null;
+const LegacyRoutes = () => {
+    const [routes, setRoutes] = useState([])
+    const [isLoading, setLoading] = useState(true)
 
-    if (routes) {
-        renderContent = (
-            <>
+    useEffect(() => {
+        const getRoutes = async () => {
+            const ref = firestore.collection('legacyRoutes')
+            const snapshot = await ref.get();
+            snapshot.forEach(doc => {
+                setRoutes(routes => [...routes, doc.data()])
+            })
+            setLoading(false)
+        }
+        getRoutes()
+    },[])
+
+    if (isLoading) return <p>Spinner...</p>
+
+    return (
+        <>
             <div>
-            <h2>#JoettesRoutes</h2>
+                <h2>#JoettesRoutes</h2>
             </div>
             <div className="route__list">
                 {routes.map(route => {
@@ -31,15 +41,8 @@ const LegacyRoutesSection = (props) => {
                         </Link>
                     )})}
             </div>
-            </>
-        )
-    }
-
-    return (
-        <>
-        {renderContent ? renderContent : null}
         </>
     )
 }
 
-export default LegacyRoutesSection
+export default LegacyRoutes
