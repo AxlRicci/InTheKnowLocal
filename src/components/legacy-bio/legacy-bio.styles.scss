@@ -1,17 +1,7 @@
 .legacy-bio {
-  margin-top: 62px;
-}
+  margin-top: 6.2rem;
 
-.legacy-bio__content {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: auto;
-
-  & p {
+  &__content {
     white-space: pre-line;
   }
-}
-
-.legacy-bio__line {
-  height: fit-content;
 }

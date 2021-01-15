@@ -8,7 +8,7 @@ const ArticleSuggestedReading = ({suggestedIssues}) => (
         <div className="suggested-reading__intro">
             <h3 className="suggested-reading__intro suggested-reading__intro--title">Suggested Reading</h3>
         </div>
-        <div className="suggested-reading__issue-grid">
+        <div className="suggested-reading__issue-list">
             {
                 suggestedIssues.map((feature, index) => (
                     <div className="suggested-reading__issue" key={feature.slug}>

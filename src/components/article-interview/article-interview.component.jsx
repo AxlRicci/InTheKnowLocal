@@ -8,7 +8,7 @@ const ArticleInterview = ({ questions }) => (
             return (
                 <div className="article__q-a" key={question.id}>
                     <h3 className={`article__question article__question--question${contentIndex}`}>{question.question}</h3>
-                    <p>{question.answer}</p> 
+                    <p className="article__answer">{question.answer}</p> 
                 </div>
             )
         })}

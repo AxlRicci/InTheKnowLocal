@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getFeature } from '../../firebase/firebase.utils'
+import { getFeature, getSuggestedIssues } from '../../firebase/firebase.utils'
 
 import ArticleContact from '../../components/article-contact/article-contact.component'
 import ArticleSuggestedReading from '../../components/article-suggested-reading/article-suggested-reading.component'
@@ -14,6 +14,7 @@ import './legacy-feature-page.styles.scss'
 
 const LegacyFeaturePage = ({match: {params: {slug}}}) => {
     const [featureData, setFeatureData] = useState({})
+    const [suggestedReading, setSuggestedReading] = useState([])
     const [isLoading, setLoading] = useState(true);
     document.title = '... | In The Know Local'
     
@@ -21,6 +22,8 @@ const LegacyFeaturePage = ({match: {params: {slug}}}) => {
     useEffect(()=> {
         const getFeatureData = async () => {
             const fetchedFeature = await getFeature('joette-fielding')
+            const fetchedSuggested = await getSuggestedIssues(slug);
+            setSuggestedReading(fetchedSuggested)
             setFeatureData(fetchedFeature)
             setLoading(false)
         }
@@ -48,27 +51,24 @@ const LegacyFeaturePage = ({match: {params: {slug}}}) => {
                         <ArticleContact  selectedFeature={featureData} />
                     </div>
                 </div>
-                <div className="suggested-reading">
-                    <ArticleSuggestedReading className="suggested-reading" currentPage={'joette-fielding'}/>
-                </div>
             </main>
         )
     }
 
     return (
-            <main className="container">
-                <div className="legacy-page__content">
-                    <div className="legacy-route-cover-section">
-                        <LegacyRouteCover selectedFeature={featureData} slug={slug}/>
-                    </div>
-                    <div className="legacy-route-article-section">
-                        <LegacyRouteArticle slug={slug} />
-                    </div>
+        <main className="container">
+            <div className="legacy-page__content">
+                <div className="legacy-route-cover-section">
+                    <LegacyRouteCover selectedFeature={featureData} slug={slug}/>
                 </div>
-                <div className="suggested-reading">
-                    <ArticleSuggestedReading currentPage={'joette-fielding'}/>
+                <div className="legacy-route-article-section">
+                    <LegacyRouteArticle slug={slug} />
                 </div>
-            </main>
+            </div>
+            <div className="suggested-reading">
+                <ArticleSuggestedReading suggestedIssues={suggestedReading} />
+            </div>
+        </main>
         )
     }
 

@@ -1,59 +1,43 @@
-  .contact {
-      margin: 78px 0 15px 0;
-      
-      &__title {
-          margin-bottom: 10px;
-      }
+.contact {
+  margin: 12rem 0;
+  display: flex;
+  flex-direction: column;
 
-      &__info {
-          padding-bottom: 5px;
-    
-          &--email {
-              padding-top: 15px;
-          }
-    
-          &--desc {
-              padding-top: 15px;
-          }
-      }
-      
-      &__media {
-          display: none;
-      }
+  &__title {
+    margin-bottom: 1rem;
   }
 
-  @media (min-width: 768px) {
+  &__info {
+    margin-bottom: 0.5rem;
 
-  }
+    &--email {
+      margin-top: 1.5rem;
+    }
 
-  @media (min-width: 992px) {
-
-    .contact {
-        display: grid;
-        grid-template-columns: 3fr 2fr;
-        grid-template-rows: auto;
-        grid-gap: 20px;
-        grid-template-areas:
-        "form image";
-
-        
-        &__content {
-            grid-area: form;
-        }
-
-        &__media {
-            grid-area: image;
-            display: block;
-            
-            &--image {
-                width: 100%;
-                height: 100%;
-                object-fit: fill;
-            }
-        }
+    &--desc {
+      margin-top: 1.5rem;
     }
   }
 
-  @media (min-width: 1200px) {
-    
+  &__media {
+    display: none;
   }
+}
+
+@media (min-width: 62em) {
+  .contact {
+    flex-direction: row;
+    gap: 2rem;
+
+    &__media {
+      display: block;
+      display: flex;
+      justify-content: flex-end;
+
+      &--image {
+        width: 75%;
+        height: auto;
+      }
+    }
+  }
+}

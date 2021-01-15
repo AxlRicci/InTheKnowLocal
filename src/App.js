@@ -11,7 +11,7 @@ import AboutPage from './pages/about/about-page.component';
 import LegacyFeaturePage from './pages/legacy-feature/legacy-feature-page.component'
 import Footer from './components/footer/footer.component'
 
-import './design-tokens/global.scss'
+import './app.scss'
 
 const App = () => {
 

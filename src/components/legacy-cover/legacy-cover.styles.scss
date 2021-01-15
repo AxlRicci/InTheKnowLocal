@@ -1,50 +1,41 @@
 .legacy-cover {
-    display: grid;
-
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    grid-template-areas:
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
     "img"
     "content";
 
-    &__cover {
-        grid-area: img;
-        text-align: center;
+  &__cover {
+    grid-area: img;
+    text-align: center;
+  }
 
-        &-image {
-            width: 75%;
-            height: 75%;
-            object-fit: fill;
-        }
-    }
+  &__cover-image {
+    width: 100%;
+    max-width: 40rem;
+    height: auto;
+    object-fit: fill;
+  }
 }
 
-
-@media (min-width: 768px) {
-    .legacy-cover {
-        &__cover {
-            &-image {
-                width: 50%;
-                height: 50%;
-                object-fit: fill;
-            }
-        }
+@media only screen and (min-width: 48em) {
+  .legacy-cover {
+    &__cover-image {
+      width: 50%;
+      height: auto;
+      object-fit: fill;
     }
+  }
 }
 
+@media only screen and (min-width: 62em) {
+  .legacy-cover {
+    margin-top: 5rem;
 
-@media (min-width: 992px) {
-    .legacy-cover {
-        margin-top: 50px;
-        &__cover-image {
-            width: 80%;
-            height: 80%;
-        }
+    &__cover-image {
+      width: 80%;
+      height: auto;
     }
-}
-
-@media (min-width: 1200px) {
-    .cover-section {
-        margin-top: 50px;
-    }
+  }
 }

@@ -4,8 +4,8 @@ import './legacy-bio.styles.scss'
 
 const LegacyBio = ({featureData}) => (
     <article className="legacy-bio">
-        <div className="legacy-bio__content">
-            <p>{featureData.profDesc}</p>
+        <div className="legacy-bio__content-container">
+            <p classname="legacy-bio__content">{featureData.profDesc}</p>
         </div>
     </article>
 )

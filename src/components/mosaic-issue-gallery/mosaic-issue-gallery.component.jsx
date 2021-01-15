@@ -62,7 +62,7 @@ const MosaicIssueGallery = ({issues, placeholders}) => {
                         return null
                     } else if (feature.featured && feature.featureRank <= 4) { // if cover is designated as "featured" render a different size and determine location in layout. Only render 4.
                         return (
-                            <div className={`issue-highlights__item--featured-${feature.featureRank}`} key={feature.slug}>
+                            <div className={`issue-highlights__item-featured--${feature.featureRank}`} key={feature.slug}>
                                 <Link to={ feature.slug === 'joette-fielding' ? `/city/oakville-joette-fielding` : `/features/${feature.slug}`}> {/*  if feature is a legacy article i.e joette-fielding redirect to old style url */}
                                     <img src={`${feature.cover}${featImg}`} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
                                 </Link>
@@ -71,13 +71,13 @@ const MosaicIssueGallery = ({issues, placeholders}) => {
                     } else if(index % 5 === 0) { // place a random ad tile every ~5 covers.
                         let img = placeholders[Math.floor(Math.random()*Math.floor(placeholders.length))].imgUrl;
                         return (
-                            <div className="issue-highlights__item--placeholder" key={index}>
+                            <div className="issue-highlights__item-placeholder" key={index}>
                                     <img src={`${img}${regImg}`} className="issue-highlights__img" alt='...'/>
                             </div>
                         )
                     } else { // place a regular cover into the layout.
                         return ( 
-                            <div className="issue-highlights__item--regular" key={feature.slug}>
+                            <div className="issue-highlights__item-regular" key={feature.slug}>
                                 <Link to={feature.slug === 'joette-fielding' ? `/city/oakville-joette-fielding` : `/features/${feature.slug}`}>{/*  if feature is a legacy article i.e joette fielding redirect to old style url */}
                                     <img src={`${feature.cover}${regImg}`} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
                                 </Link>

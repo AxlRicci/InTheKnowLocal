@@ -1,56 +1,52 @@
 .issue__content {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, auto);
-    grid-template-areas:
+  margin-top: 12rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, auto);
+  grid-template-areas:
     "intro"
     "article"
     "contact";
 }
 
+.cover-area {
+  grid-area: intro;
+}
+
+.interview-area {
+  grid-area: article;
+}
+
+.contact-area {
+  grid-area: contact;
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+  .issue {
+    &__content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      column-gap: 50px;
+      grid-template-areas:
+        "intro article"
+        "intro article"
+        ". contact";
+    }
+  }
+
   .cover-area {
-      grid-area: intro;
+    grid-area: intro;
   }
 
   .interview-area {
-      grid-area: article;
+    grid-area: article;
   }
 
   .contact-area {
-      grid-area: contact;
+    grid-area: contact;
   }
-
-  @media (min-width: 768px) {
-
-  }
-
-  @media (min-width: 992px) {
-    .issue {
-        &__content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: auto auto auto;
-            column-gap: 50px;
-            grid-template-areas: 
-            "intro article"
-            "intro article"
-            ". contact";
-        }
-    }
-
-    .cover-area {
-        grid-area: intro;
-    }
-  
-    .interview-area {
-        grid-area: article;
-    }
-  
-    .contact-area {
-        grid-area: contact;
-    }
-  }
-
-  @media (min-width: 1200px) {
-
-  }
+}

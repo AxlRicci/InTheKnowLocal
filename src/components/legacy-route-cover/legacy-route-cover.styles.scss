@@ -1,11 +1,11 @@
-.route__intro-content {
+.route {
+  &__cover {
     text-align: center;
-    margin-top: 50px;
-    max-width: 100%;
-    }
+  }
 
-.route__cover-img {
-        width: 75%;
-        height: 75%;
-        object-fit: fill;
-    }
+  &__cover-img {
+    width: 100%;
+    max-width: 40rem;
+    height: auto;
+  }
+}

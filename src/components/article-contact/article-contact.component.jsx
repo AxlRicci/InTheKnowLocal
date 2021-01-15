@@ -21,17 +21,17 @@ const ArticleContact = ({ selectedFeature }) => {
             <h3 className="article__contact-section-title">
                 Connect with {selectedFeature.name.split(' ')[0]}:
             </h3>
-            <ul className="article__contact-section-list">
+            <ul className="article__contact-list">
                 {contactInfo.map((value, index) => {
                     if (value.type === 'email') {
                     return (
-                    <li className={`article__contact-section-list-item article__contact-list-item--${value.type}`} key={value.address}>
+                    <li className={`article__contact-list-item article__contact-list-item--${value.type}`} key={value.address}>
                         <a href={`mailto:${value.address}`} className={`article__contact-section-list-link issue article__contact-section-list-link--item${index}`} rel="noopener noreferrer" target="_blank">{value.type}</a>
                     </li>
                     )
                     } else {
                     return (
-                        <li className={`article__contact-section-list-item article__contact-list-item--${value.type}`} key={value.address}>
+                        <li className={`article__contact-list-item article__contact-list-item--${value.type}`} key={value.address}>
                             <a href={value.address} className={`article__contact-section-list-link issue article__contact-section-list-link--item${index}`} rel="noopener noreferrer" target="_blank">{value.type}</a>
                         </li>
                     )
