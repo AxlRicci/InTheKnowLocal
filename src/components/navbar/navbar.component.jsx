@@ -6,17 +6,6 @@ import './navbar.styles.scss'
 const Navbar = () => {
     const [navToggled, setNavToggled] = useState(false)
 
-    // // Effect to animate mobile nav. 
-    // useEffect(()=> {
-    //     const burger = document.querySelector('.navbar__burger');
-    //     const nav = document.querySelector('.navbar__link-list');
-    //     burger.addEventListener('click', ()=> {
-    //         nav.classList.toggle('nav-active');
-    //         burger.classList.toggle('nav-active');
-
-    //     });
-    // })
-
     const handleClick = () => {
         console.log('clicked!')
         setNavToggled(!navToggled)

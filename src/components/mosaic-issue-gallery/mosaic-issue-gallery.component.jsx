@@ -1,25 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import { getAllFeatures, getPlaceholders } from '../../firebase/firebase.utils';
 import { Link } from 'react-router-dom'
 
 import './mosaic-issue-gallery.styles.scss';
 
-const MosaicIssueGallery = () => {
-    const [issues, setIssues] = useState([])
-    const [placeholders, setPlaceholders] = useState([])
-    const [isLoading, setLoading] = useState(true)
-
-    useEffect(()=> {
-        const getData = async () => {
-            const fetchedFeatures = await getAllFeatures();
-            const fetchedPlaceholders = await getPlaceholders();
-            setIssues(fetchedFeatures)
-            setPlaceholders(fetchedPlaceholders)
-            setLoading(false)
-        }
-        getData()
-    },[])
-
+const MosaicIssueGallery = ({issues, placeholders}) => {
     // Current size of the window.
     const size = useWindowSize();
 
@@ -69,8 +53,6 @@ const MosaicIssueGallery = () => {
         regImg = '?w=277&h=363';
         featImg = '?w=564&h=736';
     }
-
-    if (isLoading) return <p>Spinner....</p>
 
     return (
         <div className="container">

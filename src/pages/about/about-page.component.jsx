@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { getSiteContent } from '../../firebase/firebase.utils'
 
+import Spinner from '../../components/spinner/spinner.component'
+
 import './about-page.styles.scss'
 
 
@@ -19,7 +21,7 @@ const AboutPage = () => {
         getPageData();
     },[])
 
-    if (isLoading) return <p>Spinner...</p>
+    if (isLoading) return <Spinner />
 
     return (
 			<main className="container">
@@ -32,7 +34,6 @@ const AboutPage = () => {
 									<img src={pageData.aboutImage} alt={pageData.aboutImageAlt} className="about__media about__media--image"/>
 							</div>
 							<article className="about__description">
-											{/* {pageData.aboutMain.split("<br>").map(line => <><p className="about__description about__content--text">{line}</p><br/></>)}             */}
 											<p>{pageData.aboutMain}</p>
 							</article>
 					</div>

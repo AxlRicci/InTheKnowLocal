@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { getFeature } from '../../firebase/firebase.utils'
-import ArticleSuggestedReading from '../../components/article-suggested-reading/article-suggested-reading.component'
-import LegacyCover from '../../components/legacy-cover/legacy-cover.component'
+
 import ArticleContact from '../../components/article-contact/article-contact.component'
-import LegacyRoutes from '../../components/legacy-routes/legacy-routes.component'
+import ArticleSuggestedReading from '../../components/article-suggested-reading/article-suggested-reading.component'
 import LegacyBio from '../../components/legacy-bio/legacy-bio.component'
+import LegacyCover from '../../components/legacy-cover/legacy-cover.component'
 import LegacyRouteArticle from '../../components/legacy-route-article/legacy-route-article.component'
 import LegacyRouteCover from '../../components/legacy-route-cover/legacy-route-cover.component'
+import LegacyRoutes from '../../components/legacy-routes/legacy-routes.component'
+import Spinner from '../../components/spinner/spinner.component'
 
 import './legacy-feature-page.styles.scss'
 
@@ -25,7 +27,7 @@ const LegacyFeaturePage = ({match: {params: {slug}}}) => {
         getFeatureData()
     },[slug])
     
-    if (isLoading) return <p>Spinner...</p>
+    if (isLoading) return <Spinner />
     document.title = `${featureData.name} | In The Know Local`
     
     // determine if the content is bio page or route page by slug.

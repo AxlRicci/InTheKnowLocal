@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { getSiteContent } from '../../firebase/firebase.utils'
+
 import ContactForm from '../../components/contact-form/contact-form.component'
+import Spinner from '../../components/spinner/spinner.component'
 
 import './contact-page.styles.scss'
 
@@ -19,7 +21,7 @@ const ContactPage = () => {
         getContent()
     },[])
 
-    if (isLoading) return <p>Spinner...</p>
+    if (isLoading) return <Spinner />
 
     return (
         <div className="container">

@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import { getLegacyRoutes } from '../../firebase/firebase.utils'
+
+import Spinner from '../spinner/spinner.component'
+
 import './legacy-route-cover.styles.scss'
 
 const LegacyRouteCover = ({ slug, selectedFeature }) => {
@@ -15,7 +18,7 @@ const LegacyRouteCover = ({ slug, selectedFeature }) => {
         getRoute();
     },[slug])
 
-    if (isLoading) return <p>Spinner...</p>
+    if (isLoading) return <Spinner />
 
     return (
         <div className="route__intro-content">

@@ -97,3 +97,13 @@ export const getQuestionSet = async (set) => {
   })
   return questionArray;
 }
+
+export const getSuggestedIssues = async (slug) => {
+  const ref = firestore.collection('features')
+  const snapshot = await ref.where('slug', '!=', slug).limit(6).get()
+  const suggestedIssues = []
+  snapshot.forEach(doc => {
+      suggestedIssues.push(doc.data())
+  })
+  return suggestedIssues
+}

@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react'
 import { getLegacyRoutes } from '../../firebase/firebase.utils'
 import { Link } from 'react-router-dom'
 
+import Spinner from '../spinner/spinner.component'
+
 import './legacy-routes.styles.scss'
 
 const LegacyRoutes = () => {
@@ -17,7 +19,7 @@ const LegacyRoutes = () => {
         getRoutes()
     },[])
 
-    if (isLoading) return <p>Spinner...</p>
+    if (isLoading) return <Spinner />
 
     return (
         <>

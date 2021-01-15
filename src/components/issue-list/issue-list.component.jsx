@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { getRealFeatures } from '../../firebase/firebase.utils'
 import { Link } from 'react-router-dom'
 
+import Spinner from '../spinner/spinner.component'
+
 import './issue-list.styles.scss'
 
 const IssueList = () => {
@@ -17,7 +19,7 @@ const IssueList = () => {
         getIssues()
     },[])
 
-    if (isLoading) return <p>Spinner...</p>
+    if (isLoading) return <Spinner />
 
     return (
         <main className="container">

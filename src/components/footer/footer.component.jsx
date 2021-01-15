@@ -16,7 +16,7 @@ const Footer = () => {
         getData()
     },[])
 
-    if (isLoading) return <p>Spinner...</p>
+    if (isLoading) return null
 
     return (
         <>

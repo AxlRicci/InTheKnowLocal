@@ -19,7 +19,7 @@ const App = () => {
     <BrowserRouter>
       <ScrollToTop />
       <div className="App">
-        <Navbar/>
+        <Navbar />
         <Route exact path='/' component={Home} />
         <Route path='/features/:slug' component={IssuePage} />
         <Route path='/issues' component={IssueList} />
