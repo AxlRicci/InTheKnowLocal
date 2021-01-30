@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import ScrollToTop from './components/function/ScrollToTop'
+import {initCache} from './firebase/firebase.utils';
 
 import Navbar from './components/navbar/navbar.component';
 import Home from './pages/home/home';
@@ -15,6 +16,10 @@ import './app.scss'
 
 const App = () => {
 
+  useEffect(() => {
+    initCache()
+  },[])
+  
   return (
     <BrowserRouter>
       <ScrollToTop />

@@ -18,19 +18,73 @@ firebase.initializeApp(firebaseConfig);
 // export firestore
 export const firestore = firebase.firestore();
 
+/* Caching system.
+What it does:
+  1. Adds new article data to the local storage.
+  2. Checks the local storage before fetching data from Firestore.
+  3. Creates an array of slugs that are available within the local storage (so the array can be used when querying firestore)
+*/
+
+const itklDataCache = {
+  features: [],
+  placeholders: [],
+  siteContent: [],
+  questions: [],
+}
+
+export const initCache = () => {
+  const itklData = localStorage.getItem('itkl-data');
+  if (!itklData) {
+    localStorage.setItem('itkl-data', JSON.stringify(itklDataCache))
+  }
+}
+
+// determines what items are in the cache.
+const checkCache = (type) => {
+  const itklData = localStorage.getItem('itkl-data');
+  if (itklData && JSON.parse(itklData)[type].length > 0) {
+    return JSON.parse(itklData)[type].reduce((acc, cur) => {
+      if (!acc.some(item => item.slug === cur.slug)) {
+        acc.push(cur)
+        return acc
+      }
+      return acc
+    },[])
+  }
+  return []
+}
+
+// add newly fetched data to the cache.
+const mergeCache = (type, fetchedData) => {
+  const itklData = localStorage.getItem('itkl-data');
+  if (itklData) {
+    const currentCache = JSON.parse(itklData);
+    const joinedTypeData = [...currentCache[type], ...fetchedData];
+    const updatedTypeData = joinedTypeData.reduce((acc, cur) => {
+      if (!acc.some(item => item.slug === cur.slug)) {
+        acc.push(cur)
+        return acc
+      }
+      return acc
+    },[])
+
+    const updatedCache = {
+      ...currentCache,
+      [type]: updatedTypeData
+    }
+    localStorage.setItem('itkl-data', JSON.stringify(updatedCache))
+  } else {
+    initCache()
+  }
+}
 
 // 1. get all features
 export const getAllFeatures = async (limit) => {
   const featureArray = []
   const ref = firestore.collection('features')
-  if (!limit) {
-    const snapshot = await ref.get();
-    snapshot.forEach(doc => featureArray.push(doc.data()))
-  } else {
-    const snapshot = await ref.limit(limit).get()
-    snapshot.forEach(doc => featureArray.push(doc.data()))
-  }
-  return featureArray;
+  const snapshot = await ref.limit(limit).get();
+  snapshot.forEach(doc => featureArray.push(doc.data()))
+  return featureArray
 }
 
 // 2. get single feature issue
