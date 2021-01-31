@@ -1,25 +1,26 @@
-.cover-section {
-  display: flex;
-  flex-direction: column;
-
-  &__cover {
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-
-  &__cover-image {
+.cover {
+  &__container {
     width: 100%;
     max-width: 50rem;
-    height: auto;
-    object-fit: fill;
-  }
-
-  &__author-title {
-    text-transform: capitalize;
-    margin-bottom: 0.5rem;
-  }
-
-  &__author-intro {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     text-align: center;
+  }
+
+  &__image {
+    height: auto;
+    width: 100%;
+    max-width: 50rem;
+    margin: 0 auto;
+  }
+
+  &__title {
+    text-transform: capitalize;
+  }
+
+  &__subtitle {
+    font-size: 2.2rem;
   }
 }

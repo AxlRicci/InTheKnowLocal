@@ -46,17 +46,17 @@ const IssuePage = ({match: {params: {slug}}}) => {
 
     return (
         <main className="container">
-            <div className="issue__content">
-                <div className='cover-area'>
-                    <ArticleCover className='cover-component' selectedFeature={issue}/>
+            <section className="issue__content">
+                <div className='issue__cover'>
+                    <ArticleCover selectedFeature={issue}/>
                 </div>
-                <div className="interview-area">
-                    <ArticleInterview className='interview-component' questions={questions} />
+                <div className="issue__interview">
+                    <ArticleInterview questions={questions} />
                 </div>
-                <div className="contact-area">
-                    <ArticleContact className='contact-component' selectedFeature={issue} />
+                <div className="issue__contact">
+                    <ArticleContact selectedFeature={issue} />
                 </div>
-            </div>
+            </section>
             <div className="suggested-reading">
                 <ArticleSuggestedReading suggestedIssues={suggestedIssues}/>
             </div>

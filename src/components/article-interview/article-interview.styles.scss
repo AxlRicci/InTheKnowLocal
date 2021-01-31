@@ -1,16 +1,16 @@
-.article__content {
-  margin-top: 4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
+.article {
+  &__container {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
 
-.article__q-a {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  &__question {
+    margin-bottom: 1rem;
+  }
 
-  & p {
+  &__answer {
     white-space: pre-line;
   }
 }

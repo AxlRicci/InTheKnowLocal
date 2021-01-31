@@ -24,21 +24,17 @@ const AboutPage = () => {
     if (isLoading) return <Spinner />
 
     return (
-			<main className="container">
-					<div className="about">
-							<div className="about__title">
-									<h1 className="about__title about__title--main-title">{pageData.aboutTitle}</h1>
-									<h2 className="about__title about__title--subtitle">{pageData.aboutSubtitle}</h2>
-							</div>
-							<div className="about__media">
-									<img src={pageData.aboutImage} alt={pageData.aboutImageAlt} className="about__media about__media--image"/>
-							</div>
-							<article className="about__description">
-											<p>{pageData.aboutMain}</p>
-							</article>
-					</div>
-			</main>
-			)
-    }
+        <main className="container">
+            <article className="about">
+                <h1 className="about__title about__title--main-title">{pageData.aboutTitle}</h1>
+                <h2 className="about__title about__title--subtitle">{pageData.aboutSubtitle}</h2>
+                <img src={pageData.aboutImage} alt={pageData.aboutImageAlt} className="about__image"/>
+                <div className="about__description">
+                    <p>{pageData.aboutMain}</p>
+                </div>
+            </article>
+        </main>
+	)
+}
     
     export default AboutPage

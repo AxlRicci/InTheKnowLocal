@@ -1,57 +1,41 @@
-.legacy-page__content {
-  margin: 12rem 0 1.5px 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(4, minmax(0px, auto));
-  grid-template-areas:
-    "intro"
-    "article"
-    "routes"
-    "contact";
-}
-
-.legacy-cover-section {
-  grid-area: intro;
-}
-
-.legacy-bio-section {
-  grid-area: article;
-}
-
-.legacy-contact-section {
-  grid-area: contact;
-  text-align: center;
-}
-
-.legacy-routes-section {
-  grid-area: routes;
-}
-
-.legacy-route-cover-section {
-  grid-area: intro;
-}
-
-.legacy-route-article-section {
-  grid-area: article;
-}
-
-@media only screen and (min-width: 62em) {
-  .legacy-page__content {
+.legacy-page {
+  &__container {
+    margin: 12rem 0 1.5px 0;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(4, auto);
-    column-gap: 50px;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, minmax(0px, auto));
     grid-template-areas:
-      "intro article"
-      ". contact"
-      "routes routes";
+      "intro"
+      "article"
+      "routes"
+      "contact";
+
+    @media only screen and (min-width: 62em) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "intro article"
+        ". contact"
+        "routes routes";
+    }
   }
-}
 
-.legacy-route-cover-section {
-  grid-area: intro;
-}
+  &__cover {
+    grid-area: intro;
+  }
 
-.legacy-route-article-section {
-  grid-area: article;
+  &__bio {
+    grid-area: article;
+  }
+
+  &__contact {
+    grid-area: contact;
+  }
+
+  &__routes {
+    grid-area: routes;
+  }
+
+  &__article {
+    grid-area: article;
+  }
 }

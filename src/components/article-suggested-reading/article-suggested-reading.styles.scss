@@ -1,12 +1,15 @@
 .suggested-reading {
-  margin: 2rem 0;
+  &__container {
+    margin: 2rem 0;
+  }
+
   &__intro {
     margin: 3rem 0 1.5rem 0;
   }
 
   &__issue-list {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 1rem;
   }
@@ -15,28 +18,14 @@
     width: 100%;
     max-width: 30rem;
     height: auto;
-    object-fit: fill;
-  }
-}
 
-@media only screen and (min-width: 48em) {
-  .suggested-reading {
-    &__cover-img {
+    @media only screen and (min-width: 48em) {
       max-width: 20rem;
     }
-  }
-}
-@media only screen and (min-width: 62em) {
-  .suggested-reading {
-    &__cover-img {
+    @media only screen and (min-width: 62em) {
       max-width: 25rem;
     }
-  }
-}
-
-@media only screen and (min-width: 75em) {
-  .suggested-reading {
-    &__cover-img {
+    @media only screen and (min-width: 75em) {
       max-width: 18rem;
     }
   }

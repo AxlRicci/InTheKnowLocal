@@ -1,52 +1,32 @@
-.issue__content {
-  margin-top: 12rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(3, auto);
-  grid-template-areas:
-    "intro"
-    "article"
-    "contact";
-}
+.issue {
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas:
+      "intro"
+      "article"
+      "contact";
 
-.cover-area {
-  grid-area: intro;
-}
-
-.interview-area {
-  grid-area: article;
-}
-
-.contact-area {
-  grid-area: contact;
-}
-
-@media (min-width: 768px) {
-}
-
-@media (min-width: 992px) {
-  .issue {
-    &__content {
-      display: grid;
+    @media only screen and (min-width: 56.25em) {
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto auto;
-      column-gap: 50px;
       grid-template-areas:
         "intro article"
         "intro article"
         ". contact";
+      gap: 5rem;
     }
   }
 
-  .cover-area {
+  &__cover {
     grid-area: intro;
   }
 
-  .interview-area {
+  &__interview {
     grid-area: article;
   }
 
-  .contact-area {
+  &__contact {
     grid-area: contact;
   }
 }

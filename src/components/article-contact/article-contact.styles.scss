@@ -1,32 +1,30 @@
-.article {
-  &__contact-section {
+.contact {
+  &__container {
     margin: 3rem 0;
-  }
-
-  &__contact-list {
-    margin-top: 1rem;
-
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    align-items: flex-start;
+  }
 
+  &__list {
+    width: 100%;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     list-style-type: none;
-  }
 
-  &__contact-section-list-link {
-    text-decoration: none;
-    font-size: 1.6rem;
-    color: #ef1e25;
-    font-weight: 600;
-    text-transform: capitalize;
-  }
-}
-
-@media (min-width: 48em) {
-  .article {
-    &__contact-list {
+    @media only screen and (min-width: 48em) {
       flex-direction: row;
       justify-content: space-evenly;
     }
+  }
+
+  &__link {
+    color: #ef1e25;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-decoration: none;
   }
 }

@@ -13,19 +13,17 @@ const HeaderGallery = ({
         headerGallerySide2Alt
         }
     }) => (
-        <div className="container">
-            <div className="header-gallery">
-                <div className="header-gallery__item header-gallery__item--main">
-                    <img className="header-gallery__img" src={`${headerGalleryMain}`} alt={headerGalleryMainAlt}/>
-                </div>
-                <div className="header-gallery__item header-gallery__item--side-1">
-                    <img className="header-gallery__img" src={`${headerGallerySide1}`} alt={headerGallerySide1Alt}/>
-                </div>
-                <div className="header-gallery__item header-gallery__item--side-2">
-                    <img className="header-gallery__img"src={headerGallerySide2} alt={headerGallerySide2Alt}/>
-                </div>
+        <header className="header-gallery">
+            <div className="header-gallery__item header-gallery__item--main">
+                <img className="header-gallery__img" src={`${headerGalleryMain}`} alt={headerGalleryMainAlt}/>
             </div>
-        </div>
+            <div className="header-gallery__item header-gallery__item--side-1">
+                <img className="header-gallery__img" src={`${headerGallerySide1}`} alt={headerGallerySide1Alt}/>
+            </div>
+            <div className="header-gallery__item header-gallery__item--side-2">
+                <img className="header-gallery__img"src={headerGallerySide2} alt={headerGallerySide2Alt}/>
+            </div>
+        </header>
     )
 
 export default HeaderGallery

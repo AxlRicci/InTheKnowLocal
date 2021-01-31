@@ -30,7 +30,7 @@ const Home = () => {
     if (isLoading) return <Spinner />
 
     return (
-        <main>
+        <main className="container">
             <HeaderGallery content={headerContent} />
             <MosaicIssueGallery issues={issues} placeholders={placeholders} />
         </main>

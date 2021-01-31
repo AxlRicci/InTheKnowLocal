@@ -24,29 +24,33 @@ const ContactPage = () => {
     if (isLoading) return <Spinner />
 
     return (
-        <div className="container">
-                <div className="contact">
-                    <div className="contact__content">
-                        <div className="contact__intro">
-                            <div className="contact__title">
-                                <h1 className="contact__title contact__title--main-title">Contact Us!</h1>
-                                <h3 className="contact__title contact__title--subtitle">You have questions, we have answers!</h3>
-                            </div>
-                            <div className="contact__info">
-                                <p className="contact__info contact__info--email">Email us: <a href="mailto:sharon@influencefactor.ca" className="contact__link contact__link--email">sharon@influencefactor.ca</a></p>
-                                <p className="contact__info contact__info--twitter">Tweet to us: <a href="mailto:sharon@influencefactor.ca" className="contact__link contact__link--twitter">sharon@influencefactor.ca</a></p>
-                                <p className="contact__info contact__info--desc">Or fill in your information below and we'll get back to you pronto!</p>
-                            </div>
-                        </div>
-                        <div className="contact__form-section">
-                            <ContactForm/>
-                        </div>
-                    </div>
-                    <div className="contact__media">
-                        <img src={content.contactImage} alt={content.contactImageAlt} className="contact__media contact__media--image"/>
-                    </div>
-                </div>
+        <main className="container">
+            <div className="contact__container">
+                <section className="contact__content">
+                    <h1 className="contact__title contact__title--main-title">Contact Us!</h1>
+                    <h3 className="contact__title contact__title--subtitle">You have questions, we have answers!</h3>
+                    <p className="contact__info">
+                        <span>
+                            Email us:
+                            <a href="mailto:sharon@influencefactor.ca" className="contact__link contact__link--email">
+                                sharon@influencefactor.ca
+                            </a>
+                        </span>
+                        <span>
+                            Tweet to us:
+                            <a href="mailto:sharon@influencefactor.ca" className="contact__link contact__link--twitter">
+                                sharon@influencefactor.ca
+                            </a>
+                        </span>
+                        <span>
+                            Or fill in your information below and we'll get back to you pronto!
+                        </span>
+                    </p>
+                    <ContactForm/>
+                </section>
+                <img src={content.contactImage} alt={content.contactImageAlt} className="contact__image"/>
             </div>
+        </main>
     )
 }
     

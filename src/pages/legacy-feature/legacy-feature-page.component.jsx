@@ -37,17 +37,17 @@ const LegacyFeaturePage = ({match: {params: {slug}}}) => {
     if (slug === 'oakville-joette-fielding') {
         return (
             <main className="container">
-                <div className="legacy-page__content">
-                    <div className="legacy-cover-section">
+                <div className="legacy-page__container">
+                    <div className="legacy-page__cover">
                         <LegacyCover selectedFeature={featureData}/>
                     </div>
-                    <div className="legacy-bio-section">
+                    <div className="legacy-page__bio">
                         <LegacyBio featureData={featureData} />
                     </div>
-                    <div className="legacy-routes-section">
+                    <div className="legacy-page__routes">
                         <LegacyRoutes  />
                     </div>
-                    <div className="legacy-contact-section">
+                    <div className="legacy-page__contact">
                         <ArticleContact  selectedFeature={featureData} />
                     </div>
                 </div>
@@ -57,11 +57,11 @@ const LegacyFeaturePage = ({match: {params: {slug}}}) => {
 
     return (
         <main className="container">
-            <div className="legacy-page__content">
-                <div className="legacy-route-cover-section">
+            <div className="legacy-page__container">
+                <div className="legacy-page__cover">
                     <LegacyRouteCover selectedFeature={featureData} slug={slug}/>
                 </div>
-                <div className="legacy-route-article-section">
+                <div className="legacy-page__article">
                     <LegacyRouteArticle slug={slug} />
                 </div>
             </div>

@@ -1,31 +1,20 @@
 .about {
   margin: 8rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  text-align: center;
 
   &__title {
     text-align: center;
   }
 
-  &__media {
-    text-align: center;
-
-    &--image {
-      width: 100%;
-      height: auto;
-    }
+  &__image {
+    width: 100%;
+    max-width: 90rem;
+    height: auto;
+    margin: 2rem 0;
   }
 
   &__description {
     text-align: center;
     white-space: pre-line;
-  }
-}
-
-@media (min-width: 62em) {
-  .about__media--image {
-    width: 75%;
-    height: auto;
   }
 }

@@ -17,28 +17,20 @@ const ArticleContact = ({ selectedFeature }) => {
     });
 
     return (
-        <div className="article__contact-section">
-            <h3 className="article__contact-section-title">
+        <section className="contact__container">
+            <h3 className="contact__title">
                 Connect with {selectedFeature.name.split(' ')[0]}:
             </h3>
-            <ul className="article__contact-list">
-                {contactInfo.map((value, index) => {
-                    if (value.type === 'email') {
-                    return (
-                    <li className={`article__contact-list-item article__contact-list-item--${value.type}`} key={value.address}>
-                        <a href={`mailto:${value.address}`} className={`article__contact-section-list-link issue article__contact-section-list-link--item${index}`} rel="noopener noreferrer" target="_blank">{value.type}</a>
-                    </li>
-                    )
-                    } else {
-                    return (
-                        <li className={`article__contact-list-item article__contact-list-item--${value.type}`} key={value.address}>
-                            <a href={value.address} className={`article__contact-section-list-link issue article__contact-section-list-link--item${index}`} rel="noopener noreferrer" target="_blank">{value.type}</a>
+            <ul className="contact__list">
+                {
+                    contactInfo.map((contact) => (
+                        <li className="contact__item" key={contact.address}>
+                            <a href={`${contact.type === 'email' ? 'mailto:' : ''}${contact.address}`} className="contact__link" rel="noopener noreferrer" target="_blank">{contact.type}</a>
                         </li>
-                    )
-                    }
-                })}
+                    ))
+                }
             </ul>
-        </div> 
+        </section> 
     )
 }
 
