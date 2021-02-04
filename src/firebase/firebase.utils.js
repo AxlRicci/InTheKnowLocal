@@ -18,7 +18,9 @@ firebase.initializeApp(firebaseConfig);
 // export firestore
 export const firestore = firebase.firestore();
 
-// 1. get all features
+// 1. Get all feature issues
+// Use limit param to determine how many items are fetched from firestore.
+// Returns an array of feature objects.
 export const getAllFeatures = async (limit) => {
   const featureArray = []
   const ref = firestore.collection('features')
@@ -27,7 +29,9 @@ export const getAllFeatures = async (limit) => {
   return featureArray
 }
 
-// 2. get single feature issue
+// 2. Get single feature issue
+// Slug is used to only fetch the single feature issue.
+// Returns a single feature object.
 export const getFeature = async (slug) => {
   const ref = firestore.doc(`features/${slug}`)
   return ref.get()
@@ -35,7 +39,8 @@ export const getFeature = async (slug) => {
     .catch(err => console.error(err))
 }
 
-// 3. get site content
+// 3. Get site content
+// Returns a single object with site content.
 export const getSiteContent = async () => {
   const ref = firestore.doc('siteContent/site-content')
   return ref.get()
@@ -43,7 +48,9 @@ export const getSiteContent = async () => {
     .catch(err => console.error(err))
 }
 
-// 4. get legacy route(s) using slug
+// 4. Get legacy route(s) using slug
+// routeSlug is used to only fetch the single route article.
+// Returns a single route article object.
 export const getLegacyRoutes = async (routeSlug) => {
   if (routeSlug) {
     const ref = firestore.doc(`legacyRoutes/${routeSlug}`)
@@ -60,7 +67,8 @@ export const getLegacyRoutes = async (routeSlug) => {
   return legacyRoutesArray;
 }
 
-// 5. get placeholders
+// 5. Get placeholders
+// Returns an array of placeholder objects.
 export const getPlaceholders = async () => {
   const placeholderArray = []
   const ref = firestore.collection('placeholders')
@@ -71,7 +79,9 @@ export const getPlaceholders = async () => {
   return placeholderArray
 }
 
-// 6. get questions from specific set
+// 6. Get questions from specific set
+// Set is used to only fetch the specific question set.
+// Returns an array of question objects.
 export const getQuestionSet = async (set) => {
   const questionArray = []
   const ref = firestore.collection('questions')
@@ -83,7 +93,8 @@ export const getQuestionSet = async (set) => {
 }
 
 // 7. Get suggested issues.
-// Fetch 6 other issues that are not the slug.
+// Slug is used to fetch 6 other issues that are not the slug.
+// Returns an array of feature issue objects
 export const getSuggestedIssues = async (slug) => {
   const ref = firestore.collection('features')
   const snapshot = await ref.where('slug', '!=', slug).limit(6).get()
@@ -95,15 +106,20 @@ export const getSuggestedIssues = async (slug) => {
 }
 
 // 8. Organize interview questions and answers.
+// Only add the questions that have been answered to the array.
+// Returns an array of Q&A objects.
 export const formatQuestions = async (feature) => {
   const fetchedFeatureKeys = Object.keys(feature);
   const questions = await getQuestionSet(feature.type)
-  const sortedQuestions = questions.map(question => {
-  const questionId = question.qid.replace(/[a-z]/,'')
-  if (fetchedFeatureKeys.includes(questionId)) {
-      return {id: questionId, question: question.desc, answer: feature[questionId]}
-  }
-  return null
-  }).sort((a,b) => a.id - b.id)
+  const sortedQuestions = questions.reduce((acc, question) => {
+    const questionId = question.qid.replace(/[a-z]/,'')
+    if (fetchedFeatureKeys.includes(questionId) && feature[questionId]) {
+        acc.push({id: questionId, question: question.desc, answer: feature[questionId]})
+        return acc
+    }
+    return acc
+  },[]).sort((a,b) => a.id - b.id)
   return sortedQuestions
 }
+
+

@@ -9,6 +9,10 @@
     font-weight: 400;
   }
 
+  &__paragraph {
+    white-space: pre-line;
+  }
+
   &__stop-list {
     margin: 0 auto;
     font-size: 1.6rem;
