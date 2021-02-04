@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import {getSiteContent, getPlaceholders, getAllFeatures } from '../../firebase/firebase.utils';
+import {getSiteContent, getAllFeatures } from '../../firebase/firebase.utils';
 import HeaderGallery from '../../components/header-gallery/header-gallery.component';
 import MosaicIssueGallery from '../../components/mosaic-issue-gallery/mosaic-issue-gallery.component';
 import Spinner from '../../components/spinner/spinner.component'
 
+// Renders the homepage
 
 const Home = () => {
     const [headerContent, setHeaderContent] = useState({})
     const [issues, setIssues] = useState([])
-    const [placeholders, setPlaceholders] = useState([])
     const [isLoading, setLoading] = useState(true)
     
     document.title = 'In The Know Local'
 
     useEffect(() => {
         const getHeaderInfo = async () => {
-            const fetchedContent = await getSiteContent()
+            const fetchedContent = await getSiteContent() // Fetch image data for header component
+            const fetchedFeatures = await getAllFeatures(19); // Fetch feature issue
             setHeaderContent(fetchedContent)
-            const fetchedFeatures = await getAllFeatures();
-            const fetchedPlaceholders = await getPlaceholders();
             setIssues(fetchedFeatures)
-            setPlaceholders(fetchedPlaceholders)
             setLoading(false)
         }
         getHeaderInfo();
@@ -32,7 +30,7 @@ const Home = () => {
     return (
         <main className="container">
             <HeaderGallery content={headerContent} />
-            <MosaicIssueGallery issues={issues} placeholders={placeholders} />
+            <MosaicIssueGallery issues={issues} />
         </main>
     )
 }

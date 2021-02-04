@@ -5,3 +5,9 @@
   max-width: 144rem;
   min-height: 100vh;
 }
+
+.sr-only {
+  position: absolute !important;
+  top: -100000px;
+  opacity: 0;
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getFeature, getQuestionSet, getSuggestedIssues } from '../../firebase/firebase.utils';
+import { getFeature, formatQuestions, getSuggestedIssues } from '../../firebase/firebase.utils';
 
 import ArticleContact from '../../components/article-contact/article-contact.component'
 import ArticleCover from '../../components/article-cover/article-cover.component'
@@ -8,6 +8,10 @@ import ArticleSuggestedReading from '../../components/article-suggested-reading/
 import Spinner from '../../components/spinner/spinner.component'
 
 import './issue-page.styles.scss'
+
+// Renders the issue page.
+// Fetches the feature and questions associated with the slug.
+// Formats the questions into required format.
 
 const IssuePage = ({match: {params: {slug}}}) => {
     const [issue, setIssue] = useState({})
@@ -21,20 +25,11 @@ const IssuePage = ({match: {params: {slug}}}) => {
             setLoading(true)
             const fetchedFeature = await getFeature(slug)
             const fetchedSuggestedIssues = await getSuggestedIssues(slug)
-            setSuggestedIssues(fetchedSuggestedIssues)
+            const formattedQuestions = await formatQuestions(fetchedFeature)
             setIssue(fetchedFeature)
+            setSuggestedIssues(fetchedSuggestedIssues)
+            setQuestions(formattedQuestions)
             setTitle(`${fetchedFeature.name} | In The Know Local`)
-
-            const fetchedFeatureKeys = Object.keys(fetchedFeature);
-            const questions = await getQuestionSet(fetchedFeature.type)
-            const sortedQuestions = questions.map(question => {
-                const questionId = question.qid.replace(/[a-z]/,'')
-                if (fetchedFeatureKeys.includes(questionId)) {
-                    return {id: questionId, question: question.desc, answer: fetchedFeature[questionId]}
-                }
-                return null
-            }).sort((a,b) => a.id - b.id)
-            setQuestions(sortedQuestions)
             setLoading(false)
         }
         getIssue();
@@ -48,7 +43,7 @@ const IssuePage = ({match: {params: {slug}}}) => {
         <main className="container">
             <section className="issue__content">
                 <div className='issue__cover'>
-                    <ArticleCover selectedFeature={issue}/>
+                    <ArticleCover type="standard" selectedFeature={issue}/>
                 </div>
                 <div className="issue__interview">
                     <ArticleInterview questions={questions} />
@@ -61,7 +56,7 @@ const IssuePage = ({match: {params: {slug}}}) => {
                 <ArticleSuggestedReading suggestedIssues={suggestedIssues}/>
             </div>
         </main>
-        )      
-    }
+    )      
+}
     
 export default IssuePage

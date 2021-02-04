@@ -1,57 +1,20 @@
-* {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
+.issue {
+  margin: 0 auto;
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+
+    @media only screen and (min-width: 90em) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__img {
+    width: 100%;
+    min-width: 34rem;
+    height: auto;
+  }
 }
-  .issue__grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-gap: 10px;
-      margin: 78px 0 15px 0;
-
-      .issue__img {
-          width: 100%;
-          height: 100%;
-          object-fit: fill;
-      }
-
-      &-item {
-          max-height: 100%;
-          grid-column: span 6;
-          grid-row: span 1;
-      }
-  }
-
-  @media (min-width: 768px) {
-      
-    .issue__grid {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        grid-gap: 10px;
-  
-        &-item {
-            max-height: 100%;
-            grid-column: span 4;
-            grid-row: span 1;
-        }
-    }
-  }
-
-  @media (min-width: 992px) {
-
-    .issue__grid {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        grid-gap: 10px;
-  
-        &-item {
-            max-height: 100%;
-            grid-column: span 3;
-            grid-row: span 1;
-        }
-    }
-  }
-
-  @media (min-width: 1200px) {
-
-  }

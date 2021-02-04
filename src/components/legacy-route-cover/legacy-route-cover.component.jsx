@@ -1,29 +1,24 @@
 import React, {useEffect, useState} from 'react'
-import { getLegacyRoutes } from '../../firebase/firebase.utils'
-
-import Spinner from '../spinner/spinner.component'
 
 import './legacy-route-cover.styles.scss'
 
-const LegacyRouteCover = ({ slug, selectedFeature }) => {
+// Renders the cover for the legacy route article.
+// Filters routes array from Feature Page and selects route matching the slug.
+// Props:
+// 1. Slug for the article
+// 2. Array of routes.
+
+const LegacyRouteCover = ({ slug, routes }) => {
     const [route, setRoute] = useState({})
-    const [isLoading, setLoading] = useState(true)
 
     useEffect(() => {
-        const getRoute = async () => {
-            const fetchedRoute = await getLegacyRoutes(slug);
-            setRoute(fetchedRoute)
-            setLoading(false)
-        }
-        getRoute();
-    },[slug])
-
-    if (isLoading) return <Spinner />
+        setRoute(routes.filter((route) => route.slug === slug)[0])
+    },[slug, routes])
 
     return (
         <div className="route__intro-content">
             <div className="route__cover">
-                <img src={route.cover} alt={`${selectedFeature.name}'s In The Know Local Cover for ${selectedFeature.city}`} className="route__cover-img"/>
+                <img src={route.cover} alt={`In The Know Local Cover for ${route.name}`} className="route__cover-img"/>
             </div>
         </div>  
     )

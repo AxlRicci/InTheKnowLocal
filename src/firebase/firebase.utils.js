@@ -18,66 +18,6 @@ firebase.initializeApp(firebaseConfig);
 // export firestore
 export const firestore = firebase.firestore();
 
-/* Caching system.
-What it does:
-  1. Adds new article data to the local storage.
-  2. Checks the local storage before fetching data from Firestore.
-  3. Creates an array of slugs that are available within the local storage (so the array can be used when querying firestore)
-*/
-
-const itklDataCache = {
-  features: [],
-  placeholders: [],
-  siteContent: [],
-  questions: [],
-}
-
-export const initCache = () => {
-  const itklData = localStorage.getItem('itkl-data');
-  if (!itklData) {
-    localStorage.setItem('itkl-data', JSON.stringify(itklDataCache))
-  }
-}
-
-// determines what items are in the cache.
-const checkCache = (type) => {
-  const itklData = localStorage.getItem('itkl-data');
-  if (itklData && JSON.parse(itklData)[type].length > 0) {
-    return JSON.parse(itklData)[type].reduce((acc, cur) => {
-      if (!acc.some(item => item.slug === cur.slug)) {
-        acc.push(cur)
-        return acc
-      }
-      return acc
-    },[])
-  }
-  return []
-}
-
-// add newly fetched data to the cache.
-const mergeCache = (type, fetchedData) => {
-  const itklData = localStorage.getItem('itkl-data');
-  if (itklData) {
-    const currentCache = JSON.parse(itklData);
-    const joinedTypeData = [...currentCache[type], ...fetchedData];
-    const updatedTypeData = joinedTypeData.reduce((acc, cur) => {
-      if (!acc.some(item => item.slug === cur.slug)) {
-        acc.push(cur)
-        return acc
-      }
-      return acc
-    },[])
-
-    const updatedCache = {
-      ...currentCache,
-      [type]: updatedTypeData
-    }
-    localStorage.setItem('itkl-data', JSON.stringify(updatedCache))
-  } else {
-    initCache()
-  }
-}
-
 // 1. get all features
 export const getAllFeatures = async (limit) => {
   const featureArray = []
@@ -93,16 +33,6 @@ export const getFeature = async (slug) => {
   return ref.get()
     .then(doc => doc.data())
     .catch(err => console.error(err))
-}
-
-export const getRealFeatures = async (slug) => {
-  const realFeatureArray = []
-  const ref = firestore.collection('features')
-  const snapshot = await ref.where('1', '!=', '').get()
-  snapshot.forEach(doc => {
-      realFeatureArray.push(doc.data())
-  })
-  return realFeatureArray
 }
 
 // 3. get site content
@@ -152,6 +82,8 @@ export const getQuestionSet = async (set) => {
   return questionArray;
 }
 
+// 7. Get suggested issues.
+// Fetch 6 other issues that are not the slug.
 export const getSuggestedIssues = async (slug) => {
   const ref = firestore.collection('features')
   const snapshot = await ref.where('slug', '!=', slug).limit(6).get()
@@ -160,4 +92,18 @@ export const getSuggestedIssues = async (slug) => {
       suggestedIssues.push(doc.data())
   })
   return suggestedIssues
+}
+
+// 8. Organize interview questions and answers.
+export const formatQuestions = async (feature) => {
+  const fetchedFeatureKeys = Object.keys(feature);
+  const questions = await getQuestionSet(feature.type)
+  const sortedQuestions = questions.map(question => {
+  const questionId = question.qid.replace(/[a-z]/,'')
+  if (fetchedFeatureKeys.includes(questionId)) {
+      return {id: questionId, question: question.desc, answer: feature[questionId]}
+  }
+  return null
+  }).sort((a,b) => a.id - b.id)
+  return sortedQuestions
 }

@@ -1,56 +1,43 @@
-.route {
+.routes {
+  &__container {
+    width: 100%;
+    margin-top: 3rem;
+  }
+
   &__list {
-    width: 100%;
-    height: max-content;
-    margin: 5rem auto;
+    margin: 3rem 0;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     flex-wrap: wrap;
-    gap: 2rem;
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+    justify-content: space-evenly;
+    gap: 1rem;
   }
+}
 
-  &__card {
-    width: 30rem;
-    height: auto;
-    height: max-content;
-    text-align: center;
+.route-card {
+  height: 100%;
+  width: 100%;
+  max-width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  text-align: center;
+  text-decoration: none;
 
+  &__link {
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    gap: 1.5rem;
+
+    color: var(--black);
+    text-decoration: none;
   }
 
-  &__card-image {
+  &__image {
     width: 100%;
     height: auto;
-  }
-
-  &__card-content {
-    padding: 1rem;
-
-    & h3 {
-      margin-bottom: 1rem;
-    }
-  }
-}
-
-@media (min-width: 48em) {
-  .route__list {
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: flex-start;
-  }
-}
-
-@media only screen and (min-width: 75em) {
-  .route {
-    &__card {
-      width: 25rem;
-    }
   }
 }

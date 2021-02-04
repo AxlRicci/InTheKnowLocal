@@ -1,7 +1,7 @@
 .footer {
-  background-color: #26272b;
+  background-color: var(--grey);
   padding: 3rem 0;
-  color: #eeeeee;
+  color: var(--white);
 
   &__content {
     width: 100%;

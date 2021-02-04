@@ -8,7 +8,7 @@
   &__input {
     width: 100%;
     border: none;
-    border-bottom: 1px solid #e6e6e6;
+    border-bottom: 1px solid var(--grey-2);
     padding: 1rem;
     font-family: "Montserrat", sans-serif;
     font-size: 1.6rem;
@@ -23,19 +23,6 @@
     font-size: 1.6rem;
 
     border: none;
-    border-bottom: 1px solid #e6e6e6;
-  }
-
-  &__input-submit {
-    padding: 1.5rem 4rem;
-
-    font-family: "Lato", sans-serif;
-    font-size: 1.6rem;
-    font-weight: 500;
-
-    background-color: #ea212c;
-    border: none;
-    border-radius: 2px;
-    color: #fff;
+    border-bottom: 1px solid var(--grey-2);
   }
 }

@@ -5,6 +5,7 @@ import Spinner from '../../components/spinner/spinner.component'
 
 import './about-page.styles.scss'
 
+// Renders the about page.
 
 const AboutPage = () => {
     const [pageData, setPageData] = useState({})
@@ -13,6 +14,7 @@ const AboutPage = () => {
     useEffect(() => {document.title = 'About | In The Know Local'})
 
     useEffect(()=> {
+        // Fetching necessary about page content from Firestore.
         const getPageData = async () => {
             const fetchedContent = await getSiteContent()
             setPageData(fetchedContent)

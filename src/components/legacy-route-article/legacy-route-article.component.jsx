@@ -1,42 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import { getLegacyRoutes } from '../../firebase/firebase.utils'
+import { withRouter } from 'react-router-dom'
+
 import './legacy-route-article.styles.scss'
 
-const LegacyRouteArticle = ({slug}) => {
-    const [article, setArticle] = useState({})
-    const [isLoading, setLoading] = useState(true)
+// Renders out an article for the legacy style articles.
+// Filters the route 
+// Props:
+// 1. All available content from routes.
+
+const LegacyRouteArticle = ({routes, slug}) => {
+    const [article, setArticle] = useState()
 
     useEffect(() => {
-        const getArticle = async () => {
-            const fetchedRoute = await getLegacyRoutes(slug)
-            setArticle(fetchedRoute)
-            setLoading(false)
-        }
-        getArticle()
-    })
+        setArticle(routes.filter((route) => route.slug === slug)[0])
+    },[slug, routes])
 
-    if (isLoading) return <p>Spinner...</p>
+    if (!article) return null
 
     return (
         <article className="route-article">
-            <div className="route-article__intro">
-                <h1 className="route-article__title">{article.title}</h1>
-                <h3 className="route-article__subtitle">{article.subtitle}</h3>
-            </div>
-            <div className="route-article__content">
-                <div className="route-article__content-intro">
-                    <p>{article.intro}</p>
-                </div>
-            </div>
-            <div className="route-article__stop-list">
-                <div>
-                    <ol className='stop-list'>
-                        {article.locations.split(',').map((location,index) => <li className='stop-list__link' key={`location ${index}`}>{location}</li>)}
-                    </ol>
-                </div>
-            </div>
+            <h1 className="route-article__title">{article.title}</h1>
+            <h3 className="route-article__subtitle">{article.subtitle}</h3>
+            <p className="route-article__paragraph">{article.intro}</p>
+            <ol className='route-article__stop-list'>
+                {article.locations.split(',').map((location,index) => <li className='route-article__stop-item' key={`location-${index}`}>{location}</li>)}
+            </ol>
         </article>
     )
 }
 
-export default LegacyRouteArticle
+export default withRouter(LegacyRouteArticle)

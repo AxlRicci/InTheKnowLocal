@@ -1,10 +1,16 @@
 import React, {useState} from 'react'
 import { firestore } from '../../firebase/firebase.utils'
+import CustomButton from '../custom-button/custom-button.component'
 
 import ReCAPTCHA from 'react-google-recaptcha';
 
 import './contact-form.styles.scss'
 
+// The contact form component.
+// Sends data to firestore and alerts user that the form was submitted.
+// Submit button is disabled until the recaptcha is validated.
+
+// The initial state of the form.
 const initalData = {
     name: '',
     phone: '',
@@ -60,7 +66,7 @@ const ContactForm = () => {
                 <textarea autoComplete="on" onChange={handleChange} className="contact__input-text-area contact__input-text-area--msg" id="msg" rows="3" placeholder='Enter your message'></textarea>
             </div>
             <ReCAPTCHA size='normal' sitekey='6LeDX-UUAAAAAMIYoGlvS3xxpfWpHqrT6MDz0RB4' onChange={handleCaptchaChange}/>
-            <button disabled={!formData.captchaVerified} className="contact__input-submit" type="submit">SUBMIT</button>
+            <CustomButton disabled={!formData.captchaVerified} className="contact__input-submit" type="submit">SUBMIT</CustomButton>
         </form>
     )
 }

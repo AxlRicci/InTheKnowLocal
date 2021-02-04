@@ -1,6 +1,8 @@
 import React from 'react'
-
 import './article-interview.styles.scss'
+
+// Iterates through array of question objects. Object contains; id, question, answer.
+// Renders an article with individual sections for each question/answer pair.
 
 const ArticleInterview = ({ questions }) => (
     <article className="article__container">

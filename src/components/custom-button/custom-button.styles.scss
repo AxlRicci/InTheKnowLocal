@@ -1,0 +1,15 @@
+.custom-button {
+  padding: 1.5rem 5rem;
+  font-size: 1.8rem;
+  background-color: var(--red);
+  border: none;
+  color: var(--white);
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: var(--red);
+    opacity: 0.5;
+  }
+}

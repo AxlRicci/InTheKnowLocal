@@ -6,6 +6,8 @@ import Spinner from '../../components/spinner/spinner.component'
 
 import './contact-page.styles.scss'
 
+// Renders the contact page and form component.
+
 const ContactPage = () => {
     const [content, setContent] = useState({})
     const [isLoading, setLoading] = useState(true)
@@ -25,21 +27,21 @@ const ContactPage = () => {
 
     return (
         <main className="container">
-            <div className="contact__container">
-                <section className="contact__content">
-                    <h1 className="contact__title contact__title--main-title">Contact Us!</h1>
-                    <h3 className="contact__title contact__title--subtitle">You have questions, we have answers!</h3>
-                    <p className="contact__info">
+            <div className="contact-form__container">
+                <section className="contact-form__content">
+                    <h1 className="contact-form__title contact-form__title--main-title">Contact Us!</h1>
+                    <h3 className="contact-form__title contact-form__title--subtitle">You have questions, we have answers!</h3>
+                    <p className="contact-form__info">
                         <span>
-                            Email us:
-                            <a href="mailto:sharon@influencefactor.ca" className="contact__link contact__link--email">
+                            Email us: &nbsp;
+                            <a href="mailto:sharon@influencefactor.ca" className="contact-form__link contact-form__link--email">
                                 sharon@influencefactor.ca
                             </a>
                         </span>
                         <span>
-                            Tweet to us:
-                            <a href="mailto:sharon@influencefactor.ca" className="contact__link contact__link--twitter">
-                                sharon@influencefactor.ca
+                            Tweet to us: &nbsp;
+                            <a href="mailto:sharon@influencefactor.ca" className="contact-form__link contact-form__link--twitter">
+                                @influencefactor
                             </a>
                         </span>
                         <span>
@@ -48,7 +50,7 @@ const ContactPage = () => {
                     </p>
                     <ContactForm/>
                 </section>
-                <img src={content.contactImage} alt={content.contactImageAlt} className="contact__image"/>
+                <img src={content.contactImage} alt={content.contactImageAlt} className="contact-form__image"/>
             </div>
         </main>
     )

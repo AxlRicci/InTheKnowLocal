@@ -1,9 +1,21 @@
 @keyframes spin {
-  from {
+  0% {
     transform: rotate(0deg);
   }
 
-  to {
+  25% {
+    transform: rotate(90deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  75% {
+    transform: rotate(270deg);
+  }
+
+  100% {
     transform: rotate(360deg);
   }
 }
@@ -19,18 +31,69 @@
     justify-content: center;
   }
 
+  &__cover {
+    width: 100%;
+    height: 70%;
+    background-color: var(--white);
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+  }
+
+  &__cover-image {
+    width: 10rem;
+    height: 10rem;
+    transform: translateY(-50%);
+  }
+
   &__image-container {
     width: max-content;
     height: max-content;
+    position: relative;
+    overflow: hidden;
+  }
 
-    animation-duration: 1s;
+  &__disk {
+    height: 10rem;
+    width: 10rem;
+
+    position: relative;
+
+    animation-duration: 2s;
     animation-name: spin;
     animation-iteration-count: infinite;
     animation-direction: reverse;
   }
 
   &__image {
-    height: 100px;
-    width: 100px;
+    height: 2rem;
+    width: 2rem;
+    position: absolute;
+
+    &--1 {
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%) rotate(-90deg);
+    }
+
+    &--2 {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &--3 {
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%) rotate(90deg);
+    }
+
+    &--4 {
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) rotate(180deg);
+    }
   }
 }

@@ -3,11 +3,15 @@ import { getSiteContent } from '../../firebase/firebase.utils';
 
 import './footer.styles.scss'
 
+// The footer component.
+// Fetches content data from Firebase on mount.
+
 const Footer = () => {
     const [content, setContent] = useState({});
     const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
+        // Fetch content from Firestore on mount.
         const getData = async () => {
             const fetchedContent = await getSiteContent()
             setContent(fetchedContent)
@@ -19,7 +23,6 @@ const Footer = () => {
     if (isLoading) return null
 
     return (
-        <>
         <footer className="footer">
             <section className="footer__content">
                 <section className="footer__about">
@@ -47,8 +50,7 @@ const Footer = () => {
                 </p>
             </section>
         </footer>
-        </>
-        )
-    }
+    )
+}
     
 export default Footer

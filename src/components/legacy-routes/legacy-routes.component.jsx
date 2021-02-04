@@ -1,46 +1,30 @@
-import React, {useEffect, useState} from 'react'
-import { getLegacyRoutes } from '../../firebase/firebase.utils'
+import React from 'react'
 import { Link } from 'react-router-dom'
-
-import Spinner from '../spinner/spinner.component'
 
 import './legacy-routes.styles.scss'
 
-const LegacyRoutes = () => {
-    const [routes, setRoutes] = useState([])
-    const [isLoading, setLoading] = useState(true)
+// Renders a cards for all available route articles.
+// Props:
+// 1. Array of route article data.
 
-    useEffect(() => {
-        const getRoutes = async () => {
-            const fetchedRoutes = await getLegacyRoutes()
-            setRoutes(fetchedRoutes)
-            setLoading(false)
-        }
-        getRoutes()
-    },[])
-
-    if (isLoading) return <Spinner />
-
+const LegacyRoutes = ({routes}) => {
     return (
-        <>
-            <div>
-                <h2>#JoettesRoutes</h2>
+        <section className="routes__container">
+            <h2>#JoettesRoutes</h2>
+            <div className="routes__list">
+                {
+                    routes.map(route => (
+                        <section className="route-card" >
+                            <Link className="route-card__link" to={`${route.slug}`} key={route.slug}>
+                                <img className="route-card__image" src={route.cover} alt={`${route.name}'s article cover`} />
+                                <h3 className="route-card__title">{route.name}</h3>
+                                <p className="route-card__paragraph">{route.subtitle}</p>
+                            </Link>
+                        </section>
+                    ))
+                }
             </div>
-            <div className="route__list">
-                {routes.map(route => {
-                    return (
-                        <Link to={`${route.slug}`} key={route.slug}>
-                        <div className="route__card" >
-                            <img className="route__card-image" src={route.cover} alt=""/>
-                            <div className="route__card-content">
-                                <h3 className="route__card-title">{route.name}</h3>
-                                <p className="route__card-desc">{route.subtitle}</p>
-                            </div>
-                        </div>
-                        </Link>
-                    )})}
-            </div>
-        </>
+        </section>
     )
 }
 

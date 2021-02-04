@@ -1,7 +1,6 @@
-import React, {useEffect} from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ScrollToTop from './components/function/ScrollToTop'
-import {initCache} from './firebase/firebase.utils';
 
 import Navbar from './components/navbar/navbar.component';
 import Home from './pages/home/home';
@@ -11,26 +10,25 @@ import ContactPage from './pages/contact/contact-page.component';
 import AboutPage from './pages/about/about-page.component';
 import LegacyFeaturePage from './pages/legacy-feature/legacy-feature-page.component'
 import Footer from './components/footer/footer.component'
+import NotFound from './pages/not-found/not-found.component'
 
-import './app.scss'
+import './app.css'
 
 const App = () => {
-
-  useEffect(() => {
-    initCache()
-  },[])
-  
   return (
     <BrowserRouter>
       <ScrollToTop />
       <div className="App">
         <Navbar />
-        <Route exact path='/' component={Home} />
-        <Route path='/features/:slug' component={IssuePage} />
-        <Route path='/issues' component={IssueList} />
-        <Route path='/contact' component={ContactPage} />
-        <Route path='/about' component={AboutPage} />
-        <Route exact path='/city/:slug' component={LegacyFeaturePage} />
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route path='/features/:slug' component={IssuePage} />
+          <Route path='/issues' component={IssueList} />
+          <Route path='/contact' component={ContactPage} />
+          <Route path='/about' component={AboutPage} />
+          <Route exact path='/city/:slug' component={LegacyFeaturePage} />
+          <Route component={NotFound} />
+        </Switch>
         <Footer />
       </div>
     </BrowserRouter>

@@ -1,93 +1,38 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
-import './mosaic-issue-gallery.styles.scss';
+import './mosaic-issue-gallery.styles.scss'
 
-const MosaicIssueGallery = ({issues, placeholders}) => {
-    // Current size of the window.
-    const size = useWindowSize();
+// Renders a mosaic of issue covers. 
+// Cover sizes and placements vary depending on featured and FeatureRank properties.
+// Props:
+// 1. An array of issues
 
-    // Hook to monitor window size.
-    function useWindowSize() {
-        const isClient = typeof window === 'object';
-
-        function getSize() {
-            return {
-            width: isClient ? window.innerWidth : undefined,
-            height: isClient ? window.innerHeight : undefined
-            };
+const MosaicIssueGallery = ({issues}) => (
+    <section className="issue-gallery">
+        {
+            issues.map((feature) => (
+                <div className={feature.featured ? `issue-gallery__featured-item issue-gallery__featured-item--${feature.featureRank}` : `issue-gallery__item`} key={feature.name}> 
+                    <Link to={ feature.slug === 'joette-fielding' ? '/city/oakville-joette-fielding' : `/features/${feature.slug}`}>
+                        <img
+                            className="issue-gallery__img" 
+                            alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}
+                            srcSet={`
+                                ${feature.cover}${feature.featured ? "?w=705&h=923" : "?w=347&h=456"}&format=webp&webp.fallback=jpg 1440w,
+                                ${feature.cover}${feature.featured ? "?w=497&h=651" : "?w=243&h=321"}&format=webp&webp.fallback=jpg 1024w,
+                                ${feature.cover}${feature.featured ? "?w=558&h=732" : "?w=179&h=237"}&format=webp&webp.fallback=jpg 768w,
+                                ${feature.cover}${feature.featured ? "?w=405&h=531" : "?w=197&h=261"}&format=webp&webp.fallback=jpg 425w,
+                                ${feature.cover}${feature.featured ? "?w=355&h=466" : "?w=172&h=228"}&format=webp&webp.fallback=jpg 375w,
+                                ${feature.cover}${feature.featured ? "?w=300&h=394" : "?w=145&h=192"}&format=webp&webp.fallback=jpg 320w,
+                            `}
+                            src={feature.cover}
+                        />
+                    </Link>
+                    <span className="sr-only">{`Article featuring ${feature.name}'s interview on the city of ${feature.city}.`}</span>
+                </div>
+            ))
         }
-
-        const [windowSize, setWindowSize] = useState(getSize);
-
-        useEffect(() => {
-            if (!isClient) {
-            return false;
-            }
-            
-            function handleResize() {
-            setWindowSize(getSize());
-            }
-
-            window.addEventListener('resize', handleResize);
-            return () => window.removeEventListener('resize', handleResize);
-        }); 
-
-        return windowSize;
-    }
-
-    // Use current window size to load appropriately sized images.
-    let regImg = null;
-    let featImg = null;
-
-    if (size.width < 768 ) { // mobile
-        regImg = '?w=192&h=253';
-        featImg = '?w=395&h=515';
-    } else if (size.width >= 768 && size.width < 992) { //tablet
-        regImg = '?w=233&h=306';
-        featImg = '?w=476&h=621';
-    } else if (size.width >= 992 && size.width < 1200 ) { // small desktop
-        regImg = '?w=227&h=298';
-        featImg = '?w=465&h=606';
-    } else if (size.width >= 1200) { // large desktop
-        regImg = '?w=277&h=363';
-        featImg = '?w=564&h=736';
-    }
-
-    return (
-        <div className="container">
-            <div className="issue-highlights">
-                {issues.map((feature, index) => {
-                    if (index >=  (size.width >= 768 && size.width <= 992 ? 18 : 19)){ // determine how many covers to render depending on size of screen.
-                        return null
-                    } else if (feature.featured && feature.featureRank <= 4) { // if cover is designated as "featured" render a different size and determine location in layout. Only render 4.
-                        return (
-                            <div className={`issue-highlights__item-featured--${feature.featureRank}`} key={feature.slug}>
-                                <Link to={ feature.slug === 'joette-fielding' ? `/city/oakville-joette-fielding` : `/features/${feature.slug}`}> {/*  if feature is a legacy article i.e joette-fielding redirect to old style url */}
-                                    <img src={`${feature.cover}${featImg}`} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
-                                </Link>
-                            </div>
-                        )
-                    } else if(index % 5 === 0) { // place a random ad tile every ~5 covers.
-                        let img = placeholders[Math.floor(Math.random()*Math.floor(placeholders.length))].imgUrl;
-                        return (
-                            <div className="issue-highlights__item-placeholder" key={index}>
-                                    <img src={`${img}${regImg}`} className="issue-highlights__img" alt='...'/>
-                            </div>
-                        )
-                    } else { // place a regular cover into the layout.
-                        return ( 
-                            <div className="issue-highlights__item-regular" key={feature.slug}>
-                                <Link to={feature.slug === 'joette-fielding' ? `/city/oakville-joette-fielding` : `/features/${feature.slug}`}>{/*  if feature is a legacy article i.e joette fielding redirect to old style url */}
-                                    <img src={`${feature.cover}${regImg}`} className="issue-highlights__img" alt={`${feature.name}'s In The Know Local Magazine Cover for ${feature.city}`}/>
-                                </Link>
-                            </div>
-                        )
-                    }
-                })}
-            </div>
-        </div>
-    )
-}
+    </section>
+)
 
 export default MosaicIssueGallery;
